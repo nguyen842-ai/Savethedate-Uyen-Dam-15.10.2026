@@ -1424,7 +1424,7 @@
                     data.forEach(item => {
                         if (item.name && item.message) {
                             // Tạo số random từ 1 đến 5 để lấy file ảnh avatar 1.gif, 2.gif...
-                            const randomAvatarId = Math.floor(Math.random() * 5) + 1; 
+                            const randomAvatarId = Math.floor(Math.random() * 30) + 1; 
                             const avatarUrl = `${AVATAR_FOLDER_PATH}/${randomAvatarId}.gif`;
                             
                             const bubble = document.createElement('div');
