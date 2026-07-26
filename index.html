@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation - Dam & Uyên</title>
+    <title>Wedding Invitation - Đạm & Uyên</title>
+    
     <!-- Tích hợp Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Great Vibes cho tên cô dâu chú rể, Montserrat cho text hiện đại, Quicksand cho text thường -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CÀI ĐẶT BIẾN MÀU SẮC --- */
         :root {
-            --bg-color: #fdfcfb;      /* Nền sáng tinh tế */
-            --text-gold: #a68b6c;     /* Màu nâu vàng giống màu chữ mẫu */
-            --text-dark: #5a4b41;     /* Nâu đậm cho chữ thường */
+            --bg-color: #f6f5f3;      /* Màu nền giấy trùng với viền ảnh 1.png */
+            --text-gold: #a68b6c;     /* Màu nâu vàng sang trọng của chữ mẫu */
+            --text-dark: #5a4b41;     /* Màu chữ nội dung chính */
             --accent-color: #c5a880;
             --white: #ffffff;
         }
@@ -38,77 +37,66 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- KHU VỰC HERO (BÌA THIỆP SỬ DỤNG 1.PNG) --- */
+        /* --- SỬA LỖI HÌNH NỀN BỊ CẮT TẠI ĐÂY --- */
         .hero {
             position: relative;
-            height: 100vh; /* Full màn hình */
+            height: 100vh; /* Full màn hình thiết bị */
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* Đặt 1.png làm hình nền */
             background-image: url('1.png'); 
-            background-size: cover; 
-            background-position: center;
+            background-size: contain; /* Đảm bảo hình ảnh luôn hiển thị trọn vẹn 100%, không bao giờ bị cắt */
+            background-position: center center;
             background-repeat: no-repeat;
-            background-color: #f9f8f6;
+            background-color: var(--bg-color); /* Đồng bộ màu nền xung quanh nếu màn hình quá rộng */
         }
 
         .hero-content {
-            /* Căn chỉnh khối chữ nằm chính giữa khung hoa */
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -20px; /* Tinh chỉnh độ cao cho vừa vặn với khung oval trong 1.png */
+            justify-content: center;
+            padding: 20px;
+            margin-top: -10px; /* Tinh chỉnh nhẹ để nội dung lọt lòng hoàn hảo vào khung oval */
         }
 
+        /* Sử dụng font-size dạng clamp để tự động co giãn chữ theo kích thước màn hình, tránh tràn khung hoa */
         .hero .names {
             font-family: 'Great Vibes', cursive;
-            font-size: 5.5rem;
+            font-size: clamp(3.2rem, 7vw, 5.2rem);
             color: var(--text-gold);
-            line-height: 0.9;
-            margin-bottom: 25px;
+            line-height: 0.95;
+            margin-bottom: 20px;
             font-weight: 400;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.5); /* Chữ nổi bật nhẹ trên nền */
         }
 
         .hero .names .and {
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             display: block;
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .hero .save-the-date {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
             letter-spacing: 5px;
             color: var(--text-gold);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 400;
         }
 
         .hero .date {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             letter-spacing: 3px;
             color: var(--text-gold);
             font-weight: 500;
         }
 
-        /* Responsive cho điện thoại phần Hero */
-        @media (max-width: 768px) {
-            .hero {
-                background-size: contain; /* Để khung hoa không bị cắt trên mobile */
-                background-color: #fbfaf8; /* Màu nền trùng với viền ảnh */
-            }
-            .hero .names { font-size: 4rem; }
-            .hero .names .and { font-size: 2rem; }
-            .hero .save-the-date { font-size: 0.9rem; }
-            .hero .date { font-size: 1rem; }
-        }
-
-        /* --- CÁC PHẦN CÒN LẠI CỦA THIỆP --- */
+        /* --- CÁC KHU VỰC KHÁC --- */
         section {
             padding: 80px 20px;
             text-align: center;
@@ -117,21 +105,12 @@
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--text-gold);
             margin-bottom: 40px;
-            position: relative;
         }
 
-        .section-title::after {
-            content: '✦';
-            display: block;
-            font-size: 1rem;
-            color: var(--accent-color);
-            margin-top: 10px;
-        }
-
-        /* Countdown Timer */
+        /* Hộp hiển thị thời gian đếm ngược */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -143,24 +122,24 @@
             background: var(--white);
             padding: 15px 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(166, 139, 108, 0.1);
-            min-width: 80px;
+            box-shadow: 0 4px 15px rgba(166, 139, 108, 0.08);
+            min-width: 90px;
         }
 
         .time-box span {
             display: block;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: var(--text-gold);
+            font-family: 'Montserrat', sans-serif;
         }
 
         @media (max-width: 480px) {
             .countdown-container { gap: 10px; }
-            .time-box { padding: 10px 15px; min-width: 65px; }
-            .time-box span { font-size: 1.5rem; }
+            .time-box { padding: 10px 12px; min-width: 70px; }
+            .time-box span { font-size: 1.6rem; }
         }
 
-        /* Events Section */
         .events-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -176,17 +155,12 @@
             background: var(--white);
             padding: 40px 30px;
             border-radius: 12px;
-            border: 1px solid rgba(166, 139, 108, 0.2);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
-            transition: transform 0.3s ease;
-        }
-
-        .event-card:hover {
-            transform: translateY(-5px);
+            border: 1px solid rgba(166, 139, 108, 0.15);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.01);
         }
 
         .event-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--text-gold);
             margin-bottom: 15px;
         }
@@ -196,26 +170,23 @@
             font-weight: 500;
             color: var(--accent-color);
             margin-bottom: 10px;
-            letter-spacing: 1px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 40px 20px;
             font-size: 0.9rem;
-            color: var(--text-dark);
-            background-color: #f4efea;
+            background-color: #f0ebe4;
         }
     </style>
 </head>
 <body>
 
-    <!-- BÌA THIỆP - SỬ DỤNG 1.PNG LÀM NỀN -->
+    <!-- PHẦN BÌA THIỆP (ĐÃ SỬA CẮT HÌNH) -->
     <div class="hero">
         <div class="hero-content">
             <h1 class="names">
-                Dam <br>
+                Đạm <br>
                 <span class="and">&</span>
                 Uyên
             </h1>
@@ -224,7 +195,7 @@
         </div>
     </div>
 
-    <!-- KHU VỰC ĐẾM NGƯỢC THỜI GIAN -->
+    <!-- PHẦN ĐẾM NGƯỢC THỜI GIAN -->
     <section id="countdown">
         <h2 class="section-title serif-font">Ngày Vui Sắp Đến</h2>
         <div class="countdown-container">
@@ -235,11 +206,10 @@
         </div>
     </section>
 
-    <!-- KHU VỰC THÔNG TIN LỄ CƯỚI -->
-    <section id="events" style="background-color: #fdfcfb;">
+    <!-- PHẦN THÔNG TIN LỄ CƯỚI -->
+    <section id="events">
         <h2 class="section-title serif-font">Thời Gian & Địa Điểm</h2>
         <div class="events-grid">
-            <!-- Nhà Gái -->
             <div class="event-card">
                 <h3 class="serif-font">Lễ Vu Quy</h3>
                 <p class="time">09:00 AM - 15.10.2026</p>
@@ -247,7 +217,6 @@
                 <hr style="margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
                 <p style="font-size: 0.9rem; font-style: italic;">Đón tiếp đoàn nhà trai và làm lễ gia tiên</p>
             </div>
-            <!-- Tiệc Cưới -->
             <div class="event-card">
                 <h3 class="serif-font">Tiệc Cưới</h3>
                 <p class="time">06:00 PM - 15.10.2026</p>
@@ -258,28 +227,23 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <p class="names" style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--text-gold); margin-bottom: 10px;">Đạm & Uyên</p>
+        <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--text-gold); margin-bottom: 5px;">Đạm & Uyên</p>
         <p>Thank you for being a part of our lives!</p>
     </footer>
 
-    <!-- JAVASCRIPT CHO BỘ ĐẾM NGƯỢC -->
+    <!-- CODE JAVASCRIPT ĐẾM NGƯỢC HOÀN CHỈNH -->
     <script>
-        // Cài đặt ngày cưới: 15 tháng 10 năm 2026
+        // Thiết lập ngày cưới chính xác: Ngày 15 tháng 10 năm 2026
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
 
+        // Cập nhật bộ đếm mỗi 1 giây
         const countdownTimer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
-            if (distance < 0) {
-                clearInterval(countdownTimer);
-                document.getElementById("countdown").innerHTML = "<h2 class='section-title serif-font'>Ngày Vui Đã Đến!</h2>";
-                return;
-            }
-
             // Tính toán Ngày, Giờ, Phút, Giây
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance %Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
