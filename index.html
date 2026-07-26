@@ -8,7 +8,7 @@
     <!-- Tích hợp Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -100,7 +100,7 @@
         section {
             padding: 80px 20px;
             text-align: center;
-            max-width: 900px; /* Mở rộng max-width một chút cho phần gia đình 2 bên */
+            max-width: 900px; 
             margin: 0 auto;
         }
 
@@ -140,37 +140,37 @@
             .time-box span { font-size: 1.6rem; }
         }
 
-        /* --- PHẦN THÔNG TIN LỄ CƯỚI (GIA ĐÌNH) --- */
+        /* --- PHẦN THÔNG TIN LỄ CƯỚI (ĐÃ CẬP NHẬT FONT MONTSERRAT & KÍCH THƯỚC) --- */
         #wedding-info {
-            background-image: url('3.png'); /* Chèn ảnh nền 3.png */
+            background-image: url('3.png'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 100px 20px; /* Tăng padding để có không gian thở */
+            padding: 100px 20px; 
             position: relative;
-            background-color: #faf6f0; /* Nền dự phòng màu kem nhạt */
+            background-color: #faf6f0; 
         }
 
         .info-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem; /* Tăng kích thước tiêu đề chính */
             color: var(--text-gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 60px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .family-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .family-grid {
-                grid-template-columns: 1fr; /* Chuyển thành 1 cột trên mobile */
+                grid-template-columns: 1fr; 
                 gap: 50px;
             }
         }
@@ -183,48 +183,54 @@
         }
 
         .role {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text-gold);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 1.15rem; /* Tăng nhẹ font chữ */
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            font-weight: 400;
         }
 
         .parent-name {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text-gold);
-            font-size: 1.5rem;
-            line-height: 1.5;
+            font-size: 1.45rem; /* Tăng font tên cha mẹ */
+            line-height: 1.6;
             margin-bottom: 15px;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
 
         .address {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text-gold);
-            font-size: 1rem;
-            max-width: 250px;
+            font-size: 1.1rem; /* Tăng kích thước font chữ địa chỉ */
+            max-width: 340px; /* Tăng độ rộng để 2 dòng địa chỉ ngắt dòng bằng chặn chặn nhau */
             line-height: 1.6;
+            margin: 0 auto;
+            font-weight: 400;
         }
 
         .announcement {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text-gold);
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
         .announcement h4 {
-            font-size: 1.4rem;
+            font-size: 1.45rem; /* Tăng font chữ thông báo */
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
         }
 
         .announcement p {
-            font-size: 1.3rem;
+            font-size: 1.25rem; 
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 400;
         }
-
 
         /* --- PHẦN THỜI GIAN & ĐỊA ĐIỂM (SỰ KIỆN) --- */
         .events-grid {
@@ -293,8 +299,7 @@
         </div>
     </section>
 
-    <!-- KHU VỰC THÔNG TIN LỄ CƯỚI (MỚI THÊM) -->
-    <!-- Lưu ý không dùng thẻ <section> có max-width để background ảnh 3.png được tràn viền toàn màn hình ngang -->
+    <!-- KHU VỰC THÔNG TIN LỄ CƯỚI -->
     <div id="wedding-info">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <h2 class="info-title">THÔNG TIN LỄ CƯỚI</h2>
@@ -310,7 +315,7 @@
                 <!-- Nhà Gái (Bên phải) -->
                 <div class="family-side">
                     <p class="role">Ông</p>
-                    <p class="parent-name">NGUYỄN TRUNG NGÔN<br></p>
+                    <p class="parent-name">NGUYỄN TRUNG NGÔN<br>&nbsp;</p> <!-- Dùng &nbsp; để giữ khoảng trống dòng bằng với nhà trai -->
                     <p class="address">825/8K, đường Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM</p>
                 </div>
             </div>
