@@ -12,9 +12,9 @@
     
     <style>
         :root {
-            --bg-color: #f6f5f3;      /* Màu nền giấy trùng với viền ảnh 1.png */
-            --text-gold: #a68b6c;     /* Màu nâu vàng sang trọng của chữ mẫu */
-            --text-dark: #5a4b41;     /* Màu chữ nội dung chính */
+            --bg-color: #f6f5f3;      
+            --text-gold: #a68b6c;     
+            --text-dark: #5a4b41;     
             --accent-color: #c5a880;
             --white: #ffffff;
         }
@@ -37,20 +37,19 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- SỬA LỖI HÌNH NỀN BỊ CẮT TẠI ĐÂY --- */
+        /* --- CẤU HÌNH HÌNH NỀN TRÀN MÀN HÌNH --- */
         .hero {
             position: relative;
-            height: 100vh; /* Full màn hình thiết bị */
+            height: 100vh; 
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-image: url('1.png'); 
-            background-size: contain; /* Đảm bảo hình ảnh luôn hiển thị trọn vẹn 100%, không bao giờ bị cắt */
+            background-image: url('1.png'); /* Sử dụng ảnh mới đã vẽ lại tràn nền */
+            background-size: cover; /* Tràn hết toàn bộ không gian trang web */
             background-position: center center;
             background-repeat: no-repeat;
-            background-color: var(--bg-color); /* Đồng bộ màu nền xung quanh nếu màn hình quá rộng */
         }
 
         .hero-content {
@@ -59,28 +58,30 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            margin-top: -10px; /* Tinh chỉnh nhẹ để nội dung lọt lòng hoàn hảo vào khung oval */
+            background-color: rgba(246, 245, 243, 0.4); /* Lớp nền mờ nhẹ giúp chữ cực kỳ sắc nét trên hoa văn */
+            border-radius: 50%;
+            width: 380px;
+            height: 380px;
         }
 
-        /* Sử dụng font-size dạng clamp để tự động co giãn chữ theo kích thước màn hình, tránh tràn khung hoa */
         .hero .names {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(3.2rem, 7vw, 5.2rem);
+            font-size: 3.8rem;
             color: var(--text-gold);
             line-height: 0.95;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 400;
         }
 
         .hero .names .and {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: 2.2rem;
             display: block;
             margin: 5px 0;
         }
 
         .hero .save-the-date {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(0.8rem, 2vw, 1.1rem);
+            font-size: 1rem;
             letter-spacing: 5px;
             color: var(--text-gold);
             text-transform: uppercase;
@@ -90,10 +91,21 @@
 
         .hero .date {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-size: 1.1rem;
             letter-spacing: 3px;
             color: var(--text-gold);
             font-weight: 500;
+        }
+
+        @media (max-width: 480px) {
+            .hero-content {
+                width: 300px;
+                height: 300px;
+            }
+            .hero .names { font-size: 3rem; }
+            .hero .names .and { font-size: 1.8rem; }
+            .hero .save-the-date { font-size: 0.8rem; letter-spacing: 3px; }
+            .hero .date { font-size: 0.9rem; }
         }
 
         /* --- CÁC KHU VỰC KHÁC --- */
@@ -110,7 +122,7 @@
             margin-bottom: 40px;
         }
 
-        /* Hộp hiển thị thời gian đếm ngược */
+        /* Hộp hiển thị đếm ngược */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -182,7 +194,7 @@
 </head>
 <body>
 
-    <!-- PHẦN BÌA THIỆP (ĐÃ SỬA CẮT HÌNH) -->
+    <!-- PHẦN BÌA THIỆP TRÀN NỀN -->
     <div class="hero">
         <div class="hero-content">
             <h1 class="names">
@@ -232,18 +244,34 @@
         <p>Thank you for being a part of our lives!</p>
     </footer>
 
-    <!-- CODE JAVASCRIPT ĐẾM NGƯỢC HOÀN CHỈNH -->
+    <!-- CODE JAVASCRIPT CHẠY ĐẦY ĐỦ KHÔNG BỊ LỖI -->
     <script>
-        // Thiết lập ngày cưới chính xác: Ngày 15 tháng 10 năm 2026
+        // Cài đặt ngày giờ đám cưới đích xác
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
 
-        // Cập nhật bộ đếm mỗi 1 giây
+        // Cập nhật liên tục mỗi 1 giây (1000ms)
         const countdownTimer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
-            // Tính toán Ngày, Giờ, Phút, Giây
+            // 1. Tính toán chi tiết Ngày, Giờ, Phút, Giây còn lại
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance %Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // 2. In giá trị hiển thị ra màn hình HTML (thêm số 0 phía trước nếu số bé hơn 10)
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // 3. Xử lý khi thời gian đếm ngược kết thúc
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "<h2 class='section-title serif-font'>Ngày Vui Đã Đến!</h2>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
