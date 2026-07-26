@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Cưới - Đàm Nam Trường & Trần Thị Mai</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Styling */
+        :root {
+            --mint-green: #cbe0cb;
+            --dark-green: #6b8e6b;
+            --copper: #c17551;
+            --text-dark: #333333;
+            --bg-white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e8eee8; /* Màu nền dự phòng */
+            background-image: linear-gradient(135deg, #e8eee8 0%, #d1ded1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .invitation-wrapper {
+            display: flex;
+            flex-direction: row;
+            background-color: var(--mint-green);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-width: 1200px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .panel {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-height: 600px;
+        }
+
+        /* Border bo góc bên trong cho panel giữa và phải */
+        .inner-border {
+            background-color: var(--bg-white);
+            border: 2px solid var(--mint-green);
+            border-radius: 20px;
+            padding: 30px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Typography */
+        h1, h2, .names {
+            font-family: 'Great Vibes', cursive;
+            color: var(--copper);
+            font-weight: normal;
+        }
+
+        .names {
+            font-size: 3rem;
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        .heart-icon {
+            color: var(--copper);
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--copper);
+            margin: 15px 0;
+        }
+
+        p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .bold-text {
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Panel Trái - Save the date */
+        .left-panel {
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 50px;
+            border-right: 1px dashed rgba(0,0,0,0.1);
+        }
+        
+        .left-panel h2 {
+            font-size: 3rem;
+            color: var(--dark-green);
+        }
+
+        /* Chỗ để chèn ảnh hoa */
+        .floral-placeholder {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--dark-green);
+            border: 2px dashed var(--dark-green);
+        }
+
+        /* Panel Giữa - Thông tin chính */
+        .center-panel {
+            border-right: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        .divider {
+            width: 80%;
+            height: 1px;
+            background-color: #ccc;
+            margin: 15px 0;
+        }
+
+        .parents-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 0.75rem;
+        }
+
+        .parents-info div {
+            width: 48%;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: 1px solid var(--text-dark);
+            background: transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .btn:hover {
+            background-color: var(--text-dark);
+            color: var(--bg-white);
+        }
+
+        /* Panel Phải - Lịch và RSVP */
+        .calendar {
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            border-collapse: collapse;
+        }
+
+        .calendar th {
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .calendar td {
+            padding: 5px;
+            text-align: center;
+        }
+
+        .highlight-date {
+            background-color: var(--copper);
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rsvp-form {
+            width: 100%;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px 0;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 30px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background-color: var(--copper);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 10px;
+        }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 900px) {
+            .invitation-wrapper {
+                flex-direction: column;
+            }
+            .left-panel, .center-panel {
+                border-right: none;
+                border-bottom: 1px dashed rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-wrapper">
+        <!-- Cánh Trái: Save the Date -->
+        <div class="panel left-panel">
+            <div class="floral-placeholder">
+                [Chèn ảnh hoa lá vòng cung vào đây]
+            </div>
+            <h2>Save the Date</h2>
+        </div>
+
+        <!-- Cánh Giữa: Thông tin chi tiết -->
+        <div class="panel center-panel">
+            <div class="inner-border">
+                <p class="bold-text" style="font-size: 0.7rem; letter-spacing: 2px;">TRÂN TRỌNG KÍNH MỜI</p>
+                <div class="divider"></div>
+                <p>TỚI DỰ BỮA CƠM THÂN MẬT CHUNG VUI<br>CÙNG GIA ĐÌNH CHÚNG TÔI</p>
+                
+                <div class="names">
+                    Đàm Nam Trường<br>
+                    <div class="heart-icon">♥</div>
+                    Trần Thị Mai
+                </div>
+
+                <p style="margin-top: 15px;">ĐƯỢC TỔ CHỨC VÀO HỒI<br><span class="bold-text">09 GIỜ 45</span></p>
+                
+                <div class="divider"></div>
+                <p class="bold-text" style="font-size: 1.1rem;">CHỦ NHẬT <span style="font-size: 2rem; color: var(--copper); font-family: 'Playfair Display', serif;">17</span> 03 - 2024</p>
+                <div class="divider"></div>
+                
+                <p style="font-size: 0.75rem;">(Tức ngày 08 tháng 02 năm Giáp Thìn)</p>
+                
+                <p class="bold-text" style="color: var(--copper); margin-top: 15px;">TẠI NHÀ VĂN HOÁ THÔN THÁI THUẦN</p>
+                <p>Xã An Thái, Huyện Quỳnh Phụ, Tỉnh Thái Bình</p>
+                
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; margin-top: 10px;">Rất hân hạnh được đón tiếp!</p>
+
+                <div class="parents-info">
+                    <div>
+                        <p class="bold-text">NHÀ TRAI</p>
+                        <p>BỐ: ĐÀM VĂN BẬT<br>MẸ: ĐÀM THỊ THƠM</p>
+                        <p style="font-size: 0.65rem;">Thôn Thái Thuần, Xã An Thái<br>H. Quỳnh Phụ, T. Thái Bình</p>
+                    </div>
+                    <div>
+                        <p class="bold-text">NHÀ GÁI</p>
+                        <p>BỐ: TRẦN ĐỨC THẮNG<br>MẸ: ĐOÀN THỊ DỤ</p>
+                        <p style="font-size: 0.65rem;">Thôn Dung, Xã Hưng Đạo<br>H. Tiên Lữ, T. Hưng Yên</p>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="btn">View Map</a>
+                    <a href="#" class="btn">Add to Calendar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cánh Phải: Lịch và RSVP -->
+        <div class="panel right-panel">
+            <div class="inner-border">
+                <div style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--copper);">T&M</div>
+                <h3>Lễ Thành Hôn</h3>
+                <p class="bold-text">17 - 03 - 2024</p>
+                
+                <table class="calendar">
+                    <tr>
+                        <th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th><th>CN</th>
+                    </tr>
+                    <tr>
+                        <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+                    </tr>
+                    <tr>
+                        <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td><span class="highlight-date">17</span></td>
+                    </tr>
+                    <tr>
+                        <td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+                    </tr>
+                    <tr>
+                        <td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
+                    </tr>
+                </table>
+
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; line-height: 1.2; margin-bottom: 20px;">Sự hiện diện của Quý khách<br>là niềm vinh hạnh cho gia đình chúng tôi!</p>
+
+                <!-- Form RSVP -->
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Quý khách" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nam/Nữ">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="E-mail">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Message:"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Gửi Lời Chúc</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Xử lý Form cơ bản -->
+    <script>
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã xác nhận tham dự! Lời chúc đã được gửi.');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
