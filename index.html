@@ -12,7 +12,7 @@
     
     <style>
         :root {
-            --bg-color: #f6f5f3;      
+            --bg-color: #fbfaf9;      /* Điều chỉnh màu nền tệp với màu giấy của ảnh */
             --text-gold: #a68b6c;     
             --text-dark: #5a4b41;     
             --accent-color: #c5a880;
@@ -37,7 +37,7 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- CẤU HÌNH HÌNH NỀN TRÀN MÀN HÌNH --- */
+        /* --- CẤU HÌNH HÌNH NỀN KHÔNG BỊ CẮT --- */
         .hero {
             position: relative;
             height: 100vh; 
@@ -46,10 +46,11 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-image: url('1.png'); /* Sử dụng ảnh mới đã vẽ lại tràn nền */
-            background-size: cover; /* Tràn hết toàn bộ không gian trang web */
+            background-image: url('1.png');
+            background-size: contain; /* CHÌA KHÓA: contain giúp ảnh luôn vừa vặn trong màn hình, không bao giờ bị cắt */
             background-position: center center;
             background-repeat: no-repeat;
+            background-color: var(--bg-color); 
         }
 
         .hero-content {
@@ -58,15 +59,14 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background-color: rgba(246, 245, 243, 0.4); /* Lớp nền mờ nhẹ giúp chữ cực kỳ sắc nét trên hoa văn */
-            border-radius: 50%;
-            width: 380px;
-            height: 380px;
+            /* Bỏ lớp nền mờ vì dùng contain ảnh đã trọn vẹn */
+            width: 100%;
+            max-width: 400px;
         }
 
         .hero .names {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.8rem;
+            font-size: clamp(3.5rem, 6vw, 4.5rem);
             color: var(--text-gold);
             line-height: 0.95;
             margin-bottom: 15px;
@@ -74,14 +74,14 @@
         }
 
         .hero .names .and {
-            font-size: 2.2rem;
+            font-size: clamp(2rem, 3vw, 2.5rem);
             display: block;
             margin: 5px 0;
         }
 
         .hero .save-the-date {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             letter-spacing: 5px;
             color: var(--text-gold);
             text-transform: uppercase;
@@ -91,21 +91,10 @@
 
         .hero .date {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             letter-spacing: 3px;
             color: var(--text-gold);
             font-weight: 500;
-        }
-
-        @media (max-width: 480px) {
-            .hero-content {
-                width: 300px;
-                height: 300px;
-            }
-            .hero .names { font-size: 3rem; }
-            .hero .names .and { font-size: 1.8rem; }
-            .hero .save-the-date { font-size: 0.8rem; letter-spacing: 3px; }
-            .hero .date { font-size: 0.9rem; }
         }
 
         /* --- CÁC KHU VỰC KHÁC --- */
@@ -122,7 +111,6 @@
             margin-bottom: 40px;
         }
 
-        /* Hộp hiển thị đếm ngược */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -194,7 +182,6 @@
 </head>
 <body>
 
-    <!-- PHẦN BÌA THIỆP TRÀN NỀN -->
     <div class="hero">
         <div class="hero-content">
             <h1 class="names">
@@ -207,7 +194,6 @@
         </div>
     </div>
 
-    <!-- PHẦN ĐẾM NGƯỢC THỜI GIAN -->
     <section id="countdown">
         <h2 class="section-title serif-font">Ngày Vui Sắp Đến</h2>
         <div class="countdown-container">
@@ -218,7 +204,6 @@
         </div>
     </section>
 
-    <!-- PHẦN THÔNG TIN LỄ CƯỚI -->
     <section id="events">
         <h2 class="section-title serif-font">Thời Gian & Địa Điểm</h2>
         <div class="events-grid">
@@ -244,29 +229,23 @@
         <p>Thank you for being a part of our lives!</p>
     </footer>
 
-    <!-- CODE JAVASCRIPT CHẠY ĐẦY ĐỦ KHÔNG BỊ LỖI -->
     <script>
-        // Cài đặt ngày giờ đám cưới đích xác
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
 
-        // Cập nhật liên tục mỗi 1 giây (1000ms)
         const countdownTimer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
-            // 1. Tính toán chi tiết Ngày, Giờ, Phút, Giây còn lại
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // 2. In giá trị hiển thị ra màn hình HTML (thêm số 0 phía trước nếu số bé hơn 10)
             document.getElementById("days").innerText = days < 10 ? "0" + days : days;
             document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
             document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
 
-            // 3. Xử lý khi thời gian đếm ngược kết thúc
             if (distance < 0) {
                 clearInterval(countdownTimer);
                 document.getElementById("countdown").innerHTML = "<h2 class='section-title serif-font'>Ngày Vui Đã Đến!</h2>";
