@@ -12,7 +12,6 @@
     
     <style>
         :root {
-            /* CHÌA KHÓA CHÍNH: Màu nền #fbfafc trùng khớp 100% với màu giấy của ảnh 1.png */
             --bg-color: #fbfafc;      
             --text-gold: #a68b6c;     
             --text-dark: #5a4b41;     
@@ -28,7 +27,7 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color); /* Nền toàn trang web sử dụng màu giấy */
+            background-color: var(--bg-color); 
             color: var(--text-dark);
             line-height: 1.6;
             scroll-behavior: smooth;
@@ -38,25 +37,19 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- CẤU HÌNH BÌA THIỆP ĐỂ ẢNH HÒA QUYỆN VÀO NỀN --- */
+        /* --- CẤU HÌNH BÌA THIỆP --- */
         .hero {
             position: relative;
-            height: 100vh; /* Tràn toàn bộ chiều cao màn hình */
+            height: 100vh;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            
-            /* Đặt ảnh gốc vào giữa */
-            background-image: url('1.png'); 
-            
-            /* Dùng contain để vòng hoa không bao giờ bị cắt trên bất kỳ màn hình nào */
+            background-image: url('1_2.png'); 
             background-size: contain; 
             background-position: center center;
             background-repeat: no-repeat;
-            
-            /* Màu nền khu vực này cũng đồng bộ để xóa ranh giới mép ảnh */
             background-color: var(--bg-color); 
         }
 
@@ -70,7 +63,6 @@
             max-width: 400px;
         }
 
-        /* Chữ tự động co giãn kích thước mềm mại */
         .hero .names {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3.5rem, 6vw, 4.5rem);
@@ -104,11 +96,11 @@
             font-weight: 500;
         }
 
-        /* --- CÁC KHU VỰC BÊN DƯỚI (Không đổi) --- */
+        /* --- CÁC KHU VỰC BÊN DƯỚI --- */
         section {
             padding: 80px 20px;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px; /* Mở rộng max-width một chút cho phần gia đình 2 bên */
             margin: 0 auto;
         }
 
@@ -118,6 +110,7 @@
             margin-bottom: 40px;
         }
 
+        /* --- PHẦN ĐẾM NGƯỢC --- */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -147,6 +140,93 @@
             .time-box span { font-size: 1.6rem; }
         }
 
+        /* --- PHẦN THÔNG TIN LỄ CƯỚI (GIA ĐÌNH) --- */
+        #wedding-info {
+            background-image: url('3.png'); /* Chèn ảnh nền 3.png */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px 20px; /* Tăng padding để có không gian thở */
+            position: relative;
+            background-color: #faf6f0; /* Nền dự phòng màu kem nhạt */
+        }
+
+        .info-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            font-weight: 500;
+        }
+
+        .family-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 600px) {
+            .family-grid {
+                grid-template-columns: 1fr; /* Chuyển thành 1 cột trên mobile */
+                gap: 50px;
+            }
+        }
+
+        .family-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .role {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .parent-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .address {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1rem;
+            max-width: 250px;
+            line-height: 1.6;
+        }
+
+        .announcement {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            margin-top: 20px;
+        }
+
+        .announcement h4 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .announcement p {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+        /* --- PHẦN THỜI GIAN & ĐỊA ĐIỂM (SỰ KIỆN) --- */
         .events-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -189,6 +269,7 @@
 </head>
 <body>
 
+    <!-- HERO BÌA THIỆP -->
     <div class="hero">
         <div class="hero-content">
             <h1 class="names">
@@ -201,6 +282,7 @@
         </div>
     </div>
 
+    <!-- KHU VỰC ĐẾM NGƯỢC -->
     <section id="countdown">
         <h2 class="section-title serif-font">Ngày Vui Sắp Đến</h2>
         <div class="countdown-container">
@@ -211,6 +293,36 @@
         </div>
     </section>
 
+    <!-- KHU VỰC THÔNG TIN LỄ CƯỚI (MỚI THÊM) -->
+    <!-- Lưu ý không dùng thẻ <section> có max-width để background ảnh 3.png được tràn viền toàn màn hình ngang -->
+    <div id="wedding-info">
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+            <h2 class="info-title">THÔNG TIN LỄ CƯỚI</h2>
+            
+            <div class="family-grid">
+                <!-- Nhà Trai (Bên trái) -->
+                <div class="family-side">
+                    <p class="role">Ông Bà</p>
+                    <p class="parent-name">Hoàng Văn Minh<br>Bùi Thị Lan</p>
+                    <p class="address">25 Lê Lợi, Minh Khai, Hồng Bàng, Hải Phòng</p>
+                </div>
+                
+                <!-- Nhà Gái (Bên phải) -->
+                <div class="family-side">
+                    <p class="role">Ông Bà</p>
+                    <p class="parent-name">Nguyễn Văn Cường<br>Trần Thị Yến</p>
+                    <p class="address">78 Điện Biên Phủ, Đằng Giang, Ngô Quyền, Hải Phòng</p>
+                </div>
+            </div>
+
+            <div class="announcement">
+                <h4>TRÂN TRỌNG BÁO TIN</h4>
+                <p>LỄ THÀNH HÔN CỦA CON CHÚNG TÔI</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- KHU VỰC SỰ KIỆN -->
     <section id="events">
         <h2 class="section-title serif-font">Thời Gian & Địa Điểm</h2>
         <div class="events-grid">
