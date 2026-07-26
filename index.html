@@ -1368,7 +1368,7 @@
         <p>Thank you for being a part of our lives!</p>
     </footer>
 
-    <script>
+  <script>
         // ------------------------- XỬ LÝ URL & ĐẾM NGƯỢC -------------------------
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
 
@@ -1407,6 +1407,9 @@
         // ------------------------- XỬ LÝ GOOGLE SHEETS SỔ LƯU BÚT -------------------------
         
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwWmMYuNQu002C6QcH8KEvvZ8opwe7zOOGKziwrQH3zoCi3OfrQJOQfShpq6IixdNq/exec';
+        
+        // NẾU TÊN THƯ MỤC CỦA BẠN LÀ 2026 (1 số 6), HÃY XÓA BỚT 1 SỐ 6 Ở DÒNG BÊN DƯỚI NHÉ:
+        const AVATAR_FOLDER_PATH = './Savethedate-Uyen-Dam-15.10.20266/gif';
 
         // Lấy dữ liệu (GET)
         function fetchMessages() {
@@ -1424,11 +1427,12 @@
                         if (item.name && item.message) {
                             // Tạo số random từ 1 đến 5 để lấy file ảnh avatar 1.gif, 2.gif...
                             const randomAvatarId = Math.floor(Math.random() * 5) + 1; 
+                            const avatarUrl = `${AVATAR_FOLDER_PATH}/${randomAvatarId}.gif`;
                             
                             const bubble = document.createElement('div');
                             bubble.className = 'chat-bubble-wrapper';
                             bubble.innerHTML = `
-                                <img src="Savethedate-Uyen-Dam-15.10.20266/gif/${randomAvatarId}.gif" alt="avatar" class="chat-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
+                                <img src="${avatarUrl}" alt="avatar" class="chat-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
                                 <div class="chat-bubble">
                                     <div class="chat-name">${item.name}</div>
                                     <div class="chat-text">${item.message}</div>
