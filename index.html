@@ -186,7 +186,7 @@
 
         .info-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem; 
+            font-size: 2rem; 
             color: var(--text-gold);
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -218,7 +218,7 @@
         .role {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-gold);
-            font-size: 1rem; 
+            font-size: 1.15rem; 
             margin-bottom: 8px;
             letter-spacing: 1px;
             font-weight: 400;
@@ -635,7 +635,7 @@
             display: block;
         }
 
-        /* --- RSVP và Thêm Lịch --- */
+        /* --- RSVP và DRESS CODE --- */
         .rsvp-container {
             display: flex;
             flex-direction: column;
@@ -644,17 +644,33 @@
             padding-bottom: 40px;
         }
 
-        .add-to-calendar {
-            color: var(--btn-color);
-            text-decoration: none;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--btn-color);
-            transition: opacity 0.3s;
+        .dresscode-container {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .add-to-calendar:hover {
-            opacity: 0.7;
+        .dresscode-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--btn-color);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .dresscode-colors {
+            display: flex;
+            gap: 15px;
+        }
+
+        .color-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .btn-rsvp {
@@ -676,6 +692,165 @@
         .btn-rsvp:hover {
             transform: translateY(-2px);
             background-color: #7a5a44;
+        }
+
+        /* --- SỔ LƯU BÚT (GUESTBOOK) --- */
+        .guestbook-title-area {
+            background-color: var(--white); /* Nền trắng cho tiêu đề Sổ Lưu Bút */
+            padding: 80px 20px 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .guestbook-section {
+            width: 100%; /* Tràn viền website */
+            padding: 60px 20px 80px;
+            background-image: url('4.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .gb-container {
+            max-width: 900px; /* Giới hạn độ rộng vùng nội dung bên trong hình 4.webp */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .gb-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gb-box {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 1.5px solid rgba(166, 139, 108, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Form Nhập Lời Chúc */
+        .gb-form input, .gb-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            outline: none;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .gb-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .gb-form input:focus, .gb-form textarea:focus {
+            box-shadow: 0 0 8px rgba(197, 168, 128, 0.5);
+        }
+
+        .btn-submit-wish {
+            background-color: var(--btn-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit-wish:hover {
+            background-color: #7a5a44;
+        }
+
+        /* Hiển Thị Lời Chúc (FB Messenger Style) */
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 10px;
+            display: flex;
+            flex-direction: column;
+            scroll-behavior: smooth;
+        }
+
+        /* Tuỳ chỉnh thanh cuộn cho khu vực chat */
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-container::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05); 
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background: var(--accent-color); 
+            border-radius: 10px;
+        }
+
+        .chat-bubble-wrapper {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            text-align: left;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+            flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .chat-bubble {
+            background-color: #f0f2f5;
+            padding: 10px 16px;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            max-width: 85%;
+            color: #050505;
+        }
+
+        .chat-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #65676b;
+            margin-bottom: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chat-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        /* Trạng thái Loading */
+        .loading-text {
+            color: var(--text-gold);
+            font-style: italic;
+            font-size: 0.9rem;
         }
 
         footer {
@@ -791,9 +966,9 @@
         </div>
     </div>
 
-    <!-- ================= SỰ KIỆN 1: LỄ THÀNH HÔN ================= -->
+    <!-- ================= SỰ KIỆN 1: LỄ VU QUY ================= -->
     <section class="event-wrapper">
-        <h2 class="section-title serif-font">LỄ THÀNH HÔN</h2>
+        <h2 class="section-title serif-font">Lễ Vu Quy</h2>
     </section>
 
     <div class="schedule-calendar-section">
@@ -892,10 +1067,24 @@
             </div>
             
         </div>
+        
+        <!-- RSVP NẰM DƯỚI CÙNG Ở GIỮA -->
+        <div class="rsvp-container">
+            <div class="dresscode-container">
+                <p class="dresscode-title">Dress Code</p>
+                <div class="dresscode-colors">
+                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="Trắng"></div>
+                    <div class="color-circle" style="background-color: #000000;" title="Đen"></div>
+                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold"></div>
+                    <div class="color-circle" style="background-color: #7a1f24;" title="Đỏ Rượu"></div>
+                </div>
+            </div>
+            <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
+        </div>
     </div>
 
 
-    <!-- ================= SỰ KIỆN 2: TIỆC CƯỚI ================= -->
+    <!-- ================= SỰ KIỆN 2: TIỆC CƯỚI TẠI TP.HCM ================= -->
     <section class="event-wrapper">
         <h2 class="section-title serif-font">TIỆC CƯỚI TẠI TP.HCM</h2>
     </section>
@@ -1003,10 +1192,174 @@
             
         </div>
         
-        <!-- ================= NÚT XÁC NHẬN THAM DỰ (DƯỚI CÙNG) ================= -->
+        <!-- RSVP NẰM DƯỚI CÙNG Ở GIỮA -->
         <div class="rsvp-container">
-            <a href="#" class="add-to-calendar">Thêm vào lịch</a>
+            <div class="dresscode-container">
+                <p class="dresscode-title">Dress Code</p>
+                <div class="dresscode-colors">
+                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="Trắng"></div>
+                    <div class="color-circle" style="background-color: #000000;" title="Đen"></div>
+                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold"></div>
+                    <div class="color-circle" style="background-color: #7a1f24;" title="Đỏ Rượu"></div>
+                </div>
+            </div>
             <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
+        </div>
+    </div>
+
+
+    <!-- ================= SỰ KIỆN 3: TIỆC CƯỚI TẠI HẢI PHÒNG ================= -->
+    <section class="event-wrapper">
+        <h2 class="section-title serif-font">TIỆC CƯỚI TẠI HẢI PHÒNG</h2>
+    </section>
+
+    <div class="schedule-calendar-section">
+        <div class="sc-container">
+            
+            <!-- CỘT 1: ĐỊA ĐIỂM -->
+            <div class="info-box">
+                <h3 class="box-title">Địa Điểm</h3>
+                <p style="margin-bottom: 15px;">3/161 ngõ Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
+                
+                <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
+                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Khai tiệc mừng hạnh phúc trăm năm</p>
+                
+                <div class="map-container" style="margin-top: 0;">
+                    <iframe src="https://maps.google.com/maps?q=3%2F161%20ng%C3%B5%20C%E1%BA%A5m%2C%20ph%C6%B0%E1%BB%9Dng%20gia%20vi%C3%AAn%2C%20qu%E1%BA%ADn%20Ng%C3%B4%20Quy%E1%BB%81n%2C%20TP.%20H%E1%BA%A3i%20Ph%C3%B2ng&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- CỘT 2: LỊCH TRÌNH -->
+            <div class="info-box">
+                <h3 class="box-title">Lịch Trình</h3>
+                <div class="timeline">
+                    <!-- Mục 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">17:30</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Đón khách</div>
+                    </div>
+                    <!-- Mục 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">18:30</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Khai tiệc</div>
+                    </div>
+                    <!-- Mục 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">18:45</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Rót rượu, cắt bánh</div>
+                    </div>
+                    <!-- Mục 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">19:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Phục vụ món chính</div>
+                    </div>
+                    <!-- Mục 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">21:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Kết thúc tiệc</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘT 3: LỊCH THÁNG -->
+            <div class="info-box">
+                <h3 class="box-title">Tháng 10 / 2026</h3>
+                <div class="calendar-grid">
+                    <div class="calendar-day-name">T2</div>
+                    <div class="calendar-day-name">T3</div>
+                    <div class="calendar-day-name">T4</div>
+                    <div class="calendar-day-name">T5</div>
+                    <div class="calendar-day-name">T6</div>
+                    <div class="calendar-day-name">T7</div>
+                    <div class="calendar-day-name">CN</div>
+
+                    <div></div><div></div><div></div>
+                    <div class="calendar-date">1</div>
+                    <div class="calendar-date">2</div>
+                    <div class="calendar-date">3</div>
+                    <div class="calendar-date">4</div>
+                    <div class="calendar-date">5</div>
+                    <div class="calendar-date">6</div>
+                    <div class="calendar-date">7</div>
+                    <div class="calendar-date">8</div>
+                    <div class="calendar-date">9</div>
+                    <div class="calendar-date">10</div>
+                    <div class="calendar-date">11</div>
+                    <div class="calendar-date">12</div>
+                    <div class="calendar-date">13</div>
+                    <div class="calendar-date">14</div>
+                    <div class="calendar-date">15</div> 
+                    <div class="calendar-date">16</div>
+                    <div class="calendar-date">17</div>
+                    <div class="calendar-date">18</div>
+                    <div class="calendar-date">19</div>
+                    <div class="calendar-date">20</div>
+                    <div class="calendar-date">21</div>
+                    <div class="calendar-date">22</div>
+                    <div class="calendar-date">23</div>
+                    <div class="calendar-date">24</div>
+                    <div class="calendar-date wedding-day"><span>25</span></div> <!-- Highlight ngày 25 -->
+                    <div class="calendar-date">26</div>
+                    <div class="calendar-date">27</div>
+                    <div class="calendar-date">28</div>
+                    <div class="calendar-date">29</div>
+                    <div class="calendar-date">30</div>
+                    <div class="calendar-date">31</div>
+                    <div></div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- RSVP NẰM DƯỚI CÙNG Ở GIỮA -->
+        <div class="rsvp-container">
+            <div class="dresscode-container">
+                <p class="dresscode-title">Dress Code</p>
+                <div class="dresscode-colors">
+                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="Trắng"></div>
+                    <div class="color-circle" style="background-color: #000000;" title="Đen"></div>
+                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold"></div>
+                    <div class="color-circle" style="background-color: #7a1f24;" title="Đỏ Rượu"></div>
+                </div>
+            </div>
+            <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
+        </div>
+    </div>
+
+
+    <!-- ================= SỔ LƯU BÚT ================= -->
+    <div class="guestbook-title-area">
+        <h2 class="section-title serif-font" style="margin-bottom: 0;">Sổ Lưu Bút</h2>
+    </div>
+
+    <div class="guestbook-section">
+        <div class="gb-container">
+            
+            <!-- CỘT TRÁI: FORM GỬI LỜI CHÚC -->
+            <div class="gb-box">
+                <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;">Gửi Lời Chúc</h3>
+                <form id="wish-form" class="gb-form">
+                    <input type="text" name="Ten" id="guest-name-input" placeholder="Tên của bạn..." required>
+                    <textarea name="LoiChuc" id="guest-wish-input" placeholder="Nhập lời chúc của bạn tới cô dâu và chú rể..." required></textarea>
+                    <button type="submit" class="btn-submit-wish" id="btn-submit">Gửi Lời Chúc</button>
+                    <p id="form-msg" style="margin-top: 10px; font-size: 0.9rem; color: var(--btn-color); display: none;"></p>
+                </form>
+            </div>
+
+            <!-- CỘT PHẢI: HIỂN THỊ LỜI CHÚC (STYLE MESSENGER) -->
+            <div class="gb-box" style="padding: 20px 10px 20px 20px;">
+                <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;">Lời Chúc Yêu Thương</h3>
+                <div class="chat-container" id="chat-container">
+                    <p class="loading-text" id="loading-msg">Đang tải lời chúc...</p>
+                    <!-- Danh sách bong bóng chat sẽ được Javascript render ở đây -->
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -1016,7 +1369,7 @@
     </footer>
 
     <script>
-        // Xử lý đếm ngược
+        // ------------------------- XỬ LÝ URL & ĐẾM NGƯỢC -------------------------
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
 
         const countdownTimer = setInterval(function() {
@@ -1044,8 +1397,109 @@
         const guestName = urlParams.get('name');
         
         if (guestName) {
+            // Hiển thị ở thiệp mời
             document.getElementById('guest-name').innerText = guestName;
+            // Tự động điền vào ô form Gửi Lời Chúc
+            const inputName = document.getElementById('guest-name-input');
+            if(inputName) inputName.value = guestName;
         }
+
+        // ------------------------- XỬ LÝ GOOGLE SHEETS SỔ LƯU BÚT -------------------------
+        
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwWmMYuNQu002C6QcH8KEvvZ8opwe7zOOGKziwrQH3zoCi3OfrQJOQfShpq6IixdNq/exec';
+
+        // Lấy dữ liệu (GET)
+        function fetchMessages() {
+            fetch(GOOGLE_SCRIPT_URL)
+                .then(response => response.json())
+                .then(data => {
+                    const chatContainer = document.getElementById('chat-container');
+                    const loadingMsg = document.getElementById('loading-msg');
+                    if (loadingMsg) loadingMsg.style.display = 'none';
+                    
+                    chatContainer.innerHTML = ''; // Xóa chữ loading
+                    
+                    // Duyệt qua từng lời chúc và tạo giao diện bong bóng chat
+                    data.forEach(item => {
+                        if (item.name && item.message) {
+                            // Tạo số random từ 1 đến 5 để lấy file ảnh avatar 1.gif, 2.gif...
+                            const randomAvatarId = Math.floor(Math.random() * 5) + 1; 
+                            
+                            const bubble = document.createElement('div');
+                            bubble.className = 'chat-bubble-wrapper';
+                            bubble.innerHTML = `
+                                <img src="Savethedate-Uyen-Dam-15.10.20266/gif/${randomAvatarId}.gif" alt="avatar" class="chat-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
+                                <div class="chat-bubble">
+                                    <div class="chat-name">${item.name}</div>
+                                    <div class="chat-text">${item.message}</div>
+                                </div>
+                            `;
+                            chatContainer.appendChild(bubble);
+                        }
+                    });
+
+                    // Tính năng cuộn liên tục (mượt mà)
+                    startAutoScroll(chatContainer);
+                })
+                .catch(error => console.error('Error fetching messages:', error));
+        }
+
+        // Auto Scroll cho Chat Container
+        let scrollInterval;
+        function startAutoScroll(container) {
+            clearInterval(scrollInterval);
+            scrollInterval = setInterval(() => {
+                container.scrollTop += 1;
+                // Nếu cuộn chạm đáy, quay lại đầu
+                if (container.scrollTop >= (container.scrollHeight - container.clientHeight - 1)) {
+                    container.scrollTop = 0;
+                }
+            }, 40); // Tốc độ cuộn (nhỏ là nhanh, lớn là chậm)
+            
+            // Dừng cuộn khi rê chuột vào để đọc
+            container.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+            container.addEventListener('mouseleave', () => startAutoScroll(container));
+        }
+
+        // Gửi dữ liệu (POST)
+        const form = document.getElementById('wish-form');
+        const btnSubmit = document.getElementById('btn-submit');
+        const formMsg = document.getElementById('form-msg');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btnSubmit.innerText = 'Đang gửi...';
+            btnSubmit.disabled = true;
+
+            let requestBody = new FormData(form);
+
+            fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: requestBody })
+                .then(response => {
+                    formMsg.style.display = 'block';
+                    formMsg.style.color = 'green';
+                    formMsg.innerText = 'Gửi lời chúc thành công! Cảm ơn bạn.';
+                    form.reset();
+                    btnSubmit.innerText = 'Gửi Lời Chúc';
+                    btnSubmit.disabled = false;
+                    
+                    // Giữ lại tên nếu có từ URL
+                    if(guestName) document.getElementById('guest-name-input').value = guestName;
+                    
+                    // Fetch lại tin nhắn mới
+                    setTimeout(fetchMessages, 1500); 
+                })
+                .catch(error => {
+                    formMsg.style.display = 'block';
+                    formMsg.style.color = 'red';
+                    formMsg.innerText = 'Có lỗi xảy ra, vui lòng thử lại sau!';
+                    btnSubmit.innerText = 'Gửi Lời Chúc';
+                    btnSubmit.disabled = false;
+                });
+        });
+
+        // Tự động kéo dữ liệu khi tải trang
+        fetchMessages();
+
     </script>
 </body>
 </html>
