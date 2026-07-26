@@ -158,13 +158,20 @@
 
         /* --- PHẦN THÔNG TIN LỄ CƯỚI --- */
         #wedding-info {
-            background-image: url('2.png'); 
+            background-image: url('2.png'); /* Mặc định sử dụng 2.png cho giao diện website / máy tính */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             padding: 100px 20px; 
             position: relative;
             background-color: #faf6f0; 
+        }
+
+        /* Ghi đè nền sang c.png khi xem trên điện thoại (độ rộng dưới 768px) */
+        @media (max-width: 768px) {
+            #wedding-info {
+                background-image: url('c.png'); 
+            }
         }
 
         .info-title {
@@ -267,7 +274,7 @@
             border: 1px solid rgba(166, 139, 108, 0.15);
             box-shadow: 0 5px 20px rgba(0,0,0,0.01);
             display: flex;
-            flex-direction: column; /* Cho phép căn chỉnh dọc bằng Flexbox */
+            flex-direction: column; /* Căn chỉnh dọc bằng Flexbox */
             height: 100%; /* Giúp 2 thẻ trong Grid luôn có độ cao bằng nhau */
         }
 
