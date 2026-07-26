@@ -12,7 +12,8 @@
     
     <style>
         :root {
-            --bg-color: #fbfaf9;      /* Điều chỉnh màu nền tệp với màu giấy của ảnh */
+            /* CHÌA KHÓA CHÍNH: Màu nền #fbfafc trùng khớp 100% với màu giấy của ảnh 1_2.png */
+            --bg-color: #fbfafc;      
             --text-gold: #a68b6c;     
             --text-dark: #5a4b41;     
             --accent-color: #c5a880;
@@ -27,7 +28,7 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-color); /* Nền toàn trang web sử dụng màu giấy */
             color: var(--text-dark);
             line-height: 1.6;
             scroll-behavior: smooth;
@@ -37,19 +38,25 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- CẤU HÌNH HÌNH NỀN KHÔNG BỊ CẮT --- */
+        /* --- CẤU HÌNH BÌA THIỆP ĐỂ ẢNH HÒA QUYỆN VÀO NỀN --- */
         .hero {
             position: relative;
-            height: 100vh; 
+            height: 100vh; /* Tràn toàn bộ chiều cao màn hình */
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-image: url('1.png');
-            background-size: contain; /* CHÌA KHÓA: contain giúp ảnh luôn vừa vặn trong màn hình, không bao giờ bị cắt */
+            
+            /* Đặt ảnh gốc vào giữa */
+            background-image: url('1_2.png'); 
+            
+            /* Dùng contain để vòng hoa không bao giờ bị cắt trên bất kỳ màn hình nào */
+            background-size: contain; 
             background-position: center center;
             background-repeat: no-repeat;
+            
+            /* Màu nền khu vực này cũng đồng bộ để xóa ranh giới mép ảnh */
             background-color: var(--bg-color); 
         }
 
@@ -59,11 +66,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            /* Bỏ lớp nền mờ vì dùng contain ảnh đã trọn vẹn */
             width: 100%;
             max-width: 400px;
         }
 
+        /* Chữ tự động co giãn kích thước mềm mại */
         .hero .names {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3.5rem, 6vw, 4.5rem);
@@ -97,7 +104,7 @@
             font-weight: 500;
         }
 
-        /* --- CÁC KHU VỰC KHÁC --- */
+        /* --- CÁC KHU VỰC BÊN DƯỚI (Không đổi) --- */
         section {
             padding: 80px 20px;
             text-align: center;
