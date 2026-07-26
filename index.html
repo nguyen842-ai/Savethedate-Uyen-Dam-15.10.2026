@@ -186,7 +186,7 @@
 
         .info-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2rem; 
+            font-size: 1.5rem; 
             color: var(--text-gold);
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -218,7 +218,7 @@
         .role {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-gold);
-            font-size: 1.15rem; 
+            font-size: 1rem; 
             margin-bottom: 8px;
             letter-spacing: 1px;
             font-weight: 400;
@@ -299,11 +299,10 @@
             font-weight: 400;
             margin-bottom: 15px;
             
-            /* Thêm viền vàng */
             border: 1.5px solid var(--text-gold);
-            padding: 12px 25px; /* Tạo khoảng trống giữa chữ và viền */
-            border-radius: 15px; /* Bo góc viền nhẹ nhàng */
-            background-color: rgba(255, 255, 255, 0.6); /* Lớp nền trắng mờ để chữ rõ hơn */
+            padding: 12px 25px; 
+            border-radius: 15px; 
+            background-color: rgba(255, 255, 255, 0.6); 
             display: inline-block;
         }
 
@@ -325,7 +324,7 @@
 
         @media (max-width: 480px) {
             .couple-name { 
-                font-size: 1.9rem; /* Giảm cỡ chữ trên mobile để vừa với khung */
+                font-size: 1.9rem; 
                 padding: 10px 18px;
             }
         }
@@ -340,7 +339,6 @@
             z-index: 10;
         }
 
-        /* Dòng chữ to, nằm ngay dải fade */
         .ceremony-main-title {
             font-family: 'Montserrat', serif;
             color: var(--text-gold);
@@ -422,44 +420,104 @@
             max-width: 500px;
         }
 
-        /* --- PHẦN THỜI GIAN & ĐỊA ĐIỂM (SỰ KIỆN) --- */
-        .events-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
+        /* --- BOX THÂN MỜI KHÁCH --- */
+        .guest-invite-box {
+            margin-top: 40px;
+            padding: 25px 40px;
+            border-top: 1px solid rgba(166, 139, 108, 0.3);
+            border-bottom: 1px solid rgba(166, 139, 108, 0.3);
+            display: inline-block;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
         }
 
-        @media (max-width: 768px) {
-            .events-grid { grid-template-columns: 1fr; }
-        }
-
-        .event-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(166, 139, 108, 0.15);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.01);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .event-card h3 {
-            font-size: 1.5rem;
+        .invite-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
             color: var(--text-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
             margin-bottom: 15px;
         }
 
-        .event-card .time {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            color: var(--accent-color);
+        .guest-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--btn-color);
+            font-weight: 400;
+            line-height: 1.2;
             margin-bottom: 10px;
         }
-        
+
+        .invite-message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-top: 5px;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        /* --- SỰ KIỆN: LỊCH TRÌNH VÀ LỊCH THÁNG --- */
+        .event-wrapper {
+            padding: 80px 20px 20px;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .schedule-calendar-section {
+            padding: 60px 20px;
+            background-image: url('2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f8f5f0; 
+        }
+
+        .sc-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch; /* Ép 3 khung cao bằng nhau */
+        }
+
+        @media (max-width: 992px) {
+            .sc-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Class dùng chung cho cả 3 khung */
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.85); /* Lót nền trắng mờ */
+            border: 1.5px solid rgba(166, 139, 108, 0.4); /* Viền nhạt màu gold */
+            border-radius: 12px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .box-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--btn-color);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            text-align: center;
+        }
+
         .map-container {
-            margin-top: 20px;
             width: 100%;
             height: 250px;
             border-radius: 8px;
@@ -473,32 +531,65 @@
             border: 0;
         }
 
-        /* --- LỊCH VÀ NÚT --- */
-        .calendar-section {
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .calendar-wrapper {
-            background: transparent;
-            border: 1px solid rgba(166, 139, 108, 0.4);
-            border-radius: 8px;
-            padding: 20px;
-            max-width: 350px;
+        /* --- CSS Lịch Trình --- */
+        .timeline {
+            position: relative;
             width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        /* Đường kẻ dọc giữa */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            background-color: var(--btn-color);
+            opacity: 0.5;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 25px;
+            position: relative;
         }
 
-        .calendar-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            color: var(--text-gold);
-            margin-bottom: 15px;
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-time {
+            width: 42%;
+            text-align: right;
+            font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
+            color: var(--btn-color);
         }
 
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--btn-color);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-task {
+            width: 42%;
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--btn-color);
+        }
+
+        /* --- CSS Lịch Tháng --- */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -506,16 +597,19 @@
             text-align: center;
             font-family: 'Quicksand', sans-serif;
             color: var(--text-dark);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
         }
 
         .calendar-day-name {
             font-weight: 600;
-            color: var(--text-gold);
+            color: var(--btn-color);
             padding-bottom: 10px;
             border-bottom: 1px solid rgba(166, 139, 108, 0.3);
             margin-bottom: 10px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         .calendar-date {
@@ -541,12 +635,21 @@
             display: block;
         }
 
+        /* --- RSVP và Thêm Lịch --- */
+        .rsvp-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            padding-bottom: 40px;
+        }
+
         .add-to-calendar {
-            color: var(--text-gold);
+            color: var(--btn-color);
             text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--text-gold);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--btn-color);
             transition: opacity 0.3s;
         }
 
@@ -558,15 +661,15 @@
             background-color: var(--btn-color);
             color: var(--white);
             border: none;
-            padding: 12px 35px;
-            border-radius: 25px;
+            padding: 14px 40px;
+            border-radius: 30px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(140, 106, 81, 0.2);
+            box-shadow: 0 4px 15px rgba(140, 106, 81, 0.25);
             transition: transform 0.2s, background-color 0.2s;
         }
 
@@ -612,27 +715,27 @@
     <!-- KHU VỰC 1: THÔNG TIN GIA ĐÌNH VÀ CÔ DÂU CHÚ RỂ (NỀN 4.WEBP) -->
     <div id="wedding-info">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <h2 class="info-title">THÔNG TIN LỄ CƯỚI</h2>
+            <h2 class="info-title">ĐÔI BÊN GIA ĐÌNH CHÚNG TÔI</h2>
             
             <div class="family-grid">
                 <!-- Nhà Trai -->
                 <div class="family-side">
-                    <p class="role">Ông Bà</p>
-                    <p class="parent-name">NGUYỄN ANH LINH<br>BÙI THỊ BÍCH LIÊN</p>
+                    <p class="role">NHÀ TRAI</p>
+                    <p class="parent-name">Ông NGUYỄN ANH LINH<br>Bà BÙI THỊ BÍCH LIÊN</p>
                     <p class="address">3/161 Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
                 </div>
                 
                 <!-- Nhà Gái -->
                 <div class="family-side">
-                    <p class="role">Ông</p>
-                    <p class="parent-name">NGUYỄN TRUNG NGÔN<br>&nbsp;</p> 
+                    <p class="role">NHÀ GÁI</p>
+                    <p class="parent-name">Ông NGUYỄN TRUNG NGÔN<br>&nbsp;</p> 
                     <p class="address">825/8K, đường Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM</p>
                 </div>
             </div>
 
             <div class="announcement">
                 <h4>TRÂN TRỌNG BÁO TIN</h4>
-                <p>LỄ THÀNH HÔN CỦA CON CHÚNG TÔI</p>
+                <p>LỄ THÀNH HÔN CỦA CÁC CON</p>
             </div>
 
             <!-- Khối tên cô dâu chú rể -->
@@ -654,7 +757,7 @@
         </div>
     </div>
 
-    <!-- KHU VỰC 2: CHI TIẾT LỄ THÀNH HÔN ĐƯỢC TÁCH RA (LẶP LẠI NỀN 4.WEBP) -->
+    <!-- KHU VỰC 2: CHI TIẾT LỄ THÀNH HÔN VÀ KHÁCH MỜI -->
     <div id="ceremony-info">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <div class="ceremony-details">
@@ -677,108 +780,234 @@
                 <p class="cd-lunar">
                     ( Tức Ngày 6/9/2026<br>Ngày Nhâm Tuất, Tháng Mậu Tuất, Năm Bính Ngọ )
                 </p>
+
+                <!-- KHU VỰC THÂN MỜI KHÁCH -->
+                <div class="guest-invite-box">
+                    <p class="invite-title">THÂN MỜI</p>
+                    <h3 class="guest-name" id="guest-name">Quý Khách</h3>
+                    <p class="invite-message">Đến chung vui cùng gia đình chúng tôi</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- KHU VỰC SỰ KIỆN CÓ NHÚNG BẢN ĐỒ -->
-    <section id="events" style="padding-bottom: 20px;">
-        <h2 class="section-title serif-font">Thời Gian & Địa Điểm</h2>
-        <div class="events-grid">
-            
-            <!-- Lễ Vu Quy -->
-            <div class="event-card">
-                <h3 class="serif-font">Lễ Vu Quy</h3>
-                <p class="time">09:00 AM - 15.10.2026</p>
-                <p>Tư gia nhà gái, Quận 5, TP. Hồ Chí Minh</p>
-                
-                <div style="margin-top: auto;">
-                    <hr style="margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
-                    <p style="font-size: 0.9rem; font-style: italic;">Đón tiếp đoàn nhà trai và làm lễ gia tiên</p>
-                    
-                    <div class="map-container">
-                        <iframe src="https://maps.google.com/maps?q=QM3J%2BX7%20Ch%E1%BB%A3%20Qu%C3%A1n,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Tiệc Cưới -->
-            <div class="event-card">
-                <h3 class="serif-font">Tiệc Cưới</h3>
-                <p class="time">06:30 PM - 15.10.2026</p>
-                <p>Amor Resort- 61A Nguyễn Văn Đậu, phường Bình Lợi Trung, TP.HCM</p>
-                
-                <div style="margin-top: auto;">
-                    <hr style="margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
-                    <p style="font-size: 0.9rem; font-style: italic;">Khai tiệc mừng hạnh phúc trăm năm</p>
-                    
-                    <div class="map-container">
-                        <iframe src="https://maps.google.com/maps?q=RM5Q%2B53%20B%C3%ACnh%20L%E1%BB%A3i%20Trung,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- ================= SỰ KIỆN 1: LỄ THÀNH HÔN ================= -->
+    <section class="event-wrapper">
+        <h2 class="section-title serif-font">LỄ THÀNH HÔN</h2>
     </section>
 
-    <!-- KHU VỰC LỊCH VÀ XÁC NHẬN THAM DỰ -->
-    <div class="calendar-section">
-        <div class="calendar-wrapper">
-            <h3 class="calendar-title">Tháng 10 / 2026</h3>
-            <div class="calendar-grid">
-                <!-- Tên thứ -->
-                <div class="calendar-day-name">T2</div>
-                <div class="calendar-day-name">T3</div>
-                <div class="calendar-day-name">T4</div>
-                <div class="calendar-day-name">T5</div>
-                <div class="calendar-day-name">T6</div>
-                <div class="calendar-day-name">T7</div>
-                <div class="calendar-day-name">CN</div>
-
-                <!-- Các ngày trong tháng 10/2026 -->
-                <div></div><div></div><div></div>
-                <div class="calendar-date">1</div>
-                <div class="calendar-date">2</div>
-                <div class="calendar-date">3</div>
-                <div class="calendar-date">4</div>
+    <div class="schedule-calendar-section">
+        <div class="sc-container">
+            
+            <!-- CỘT 1: ĐỊA ĐIỂM -->
+            <div class="info-box">
+                <h3 class="box-title">Địa Điểm</h3>
+                <p style="margin-bottom: 15px;">Tư gia nhà gái, Quận 5, TP. Hồ Chí Minh</p>
                 
-                <div class="calendar-date">5</div>
-                <div class="calendar-date">6</div>
-                <div class="calendar-date">7</div>
-                <div class="calendar-date">8</div>
-                <div class="calendar-date">9</div>
-                <div class="calendar-date">10</div>
-                <div class="calendar-date">11</div>
+                <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
+                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Đón tiếp đoàn nhà trai và làm lễ gia tiên</p>
                 
-                <div class="calendar-date">12</div>
-                <div class="calendar-date">13</div>
-                <div class="calendar-date">14</div>
-                <!-- Ngày Cưới - Highlight -->
-                <div class="calendar-date wedding-day"><span>15</span></div>
-                <div class="calendar-date">16</div>
-                <div class="calendar-date">17</div>
-                <div class="calendar-date">18</div>
-                
-                <div class="calendar-date">19</div>
-                <div class="calendar-date">20</div>
-                <div class="calendar-date">21</div>
-                <div class="calendar-date">22</div>
-                <div class="calendar-date">23</div>
-                <div class="calendar-date">24</div>
-                <div class="calendar-date">25</div>
-                
-                <div class="calendar-date">26</div>
-                <div class="calendar-date">27</div>
-                <div class="calendar-date">28</div>
-                <div class="calendar-date">29</div>
-                <div class="calendar-date">30</div>
-                <div class="calendar-date">31</div>
-                <div></div>
+                <div class="map-container" style="margin-top: 0;">
+                    <iframe src="https://maps.google.com/maps?q=QM3J%2BX7%20Ch%E1%BB%A3%20Qu%C3%A1n,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
-        </div>
 
-        <a href="#" class="add-to-calendar">Thêm vào lịch</a>
-        <br>
-        <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
+            <!-- CỘT 2: LỊCH TRÌNH -->
+            <div class="info-box">
+                <h3 class="box-title">Lịch Trình</h3>
+                <div class="timeline">
+                    <!-- Mục 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">09:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Đón nhà trai</div>
+                    </div>
+                    <!-- Mục 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">09:30</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Lễ gia tiên</div>
+                    </div>
+                    <!-- Mục 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">10:30</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Phục vụ trà bánh</div>
+                    </div>
+                    <!-- Mục 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">11:30</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Kết thúc</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘT 3: LỊCH THÁNG -->
+            <div class="info-box">
+                <h3 class="box-title">Tháng 10 / 2026</h3>
+                <div class="calendar-grid">
+                    <div class="calendar-day-name">T2</div>
+                    <div class="calendar-day-name">T3</div>
+                    <div class="calendar-day-name">T4</div>
+                    <div class="calendar-day-name">T5</div>
+                    <div class="calendar-day-name">T6</div>
+                    <div class="calendar-day-name">T7</div>
+                    <div class="calendar-day-name">CN</div>
+
+                    <div></div><div></div><div></div>
+                    <div class="calendar-date">1</div>
+                    <div class="calendar-date">2</div>
+                    <div class="calendar-date">3</div>
+                    <div class="calendar-date">4</div>
+                    <div class="calendar-date">5</div>
+                    <div class="calendar-date">6</div>
+                    <div class="calendar-date">7</div>
+                    <div class="calendar-date">8</div>
+                    <div class="calendar-date">9</div>
+                    <div class="calendar-date">10</div>
+                    <div class="calendar-date">11</div>
+                    <div class="calendar-date">12</div>
+                    <div class="calendar-date">13</div>
+                    <div class="calendar-date">14</div>
+                    <div class="calendar-date wedding-day"><span>15</span></div>
+                    <div class="calendar-date">16</div>
+                    <div class="calendar-date">17</div>
+                    <div class="calendar-date">18</div>
+                    <div class="calendar-date">19</div>
+                    <div class="calendar-date">20</div>
+                    <div class="calendar-date">21</div>
+                    <div class="calendar-date">22</div>
+                    <div class="calendar-date">23</div>
+                    <div class="calendar-date">24</div>
+                    <div class="calendar-date">25</div>
+                    <div class="calendar-date">26</div>
+                    <div class="calendar-date">27</div>
+                    <div class="calendar-date">28</div>
+                    <div class="calendar-date">29</div>
+                    <div class="calendar-date">30</div>
+                    <div class="calendar-date">31</div>
+                    <div></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <!-- ================= SỰ KIỆN 2: TIỆC CƯỚI ================= -->
+    <section class="event-wrapper">
+        <h2 class="section-title serif-font">TIỆC CƯỚI TẠI TP.HCM</h2>
+    </section>
+
+    <div class="schedule-calendar-section">
+        <div class="sc-container">
+            
+            <!-- CỘT 1: ĐỊA ĐIỂM -->
+            <div class="info-box">
+                <h3 class="box-title">Địa Điểm</h3>
+                <p style="margin-bottom: 15px;">Amor Resort- 61A Nguyễn Văn Đậu, phường Bình Lợi Trung, TP.HCM</p>
+                
+                <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
+                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Khai tiệc mừng hạnh phúc trăm năm</p>
+                
+                <div class="map-container" style="margin-top: 0;">
+                    <iframe src="https://maps.google.com/maps?q=RM5Q%2B53%20B%C3%ACnh%20L%E1%BB%A3i%20Trung,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- CỘT 2: LỊCH TRÌNH -->
+            <div class="info-box">
+                <h3 class="box-title">Lịch Trình</h3>
+                <div class="timeline">
+                    <!-- Mục 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">17:30</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Đón khách</div>
+                    </div>
+                    <!-- Mục 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">18:30</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Khai tiệc</div>
+                    </div>
+                    <!-- Mục 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">18:45</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Rót rượu, cắt bánh</div>
+                    </div>
+                    <!-- Mục 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">19:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Phục vụ món chính</div>
+                    </div>
+                    <!-- Mục 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">21:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-task">Kết thúc tiệc</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘT 3: LỊCH THÁNG -->
+            <div class="info-box">
+                <h3 class="box-title">Tháng 10 / 2026</h3>
+                <div class="calendar-grid">
+                    <div class="calendar-day-name">T2</div>
+                    <div class="calendar-day-name">T3</div>
+                    <div class="calendar-day-name">T4</div>
+                    <div class="calendar-day-name">T5</div>
+                    <div class="calendar-day-name">T6</div>
+                    <div class="calendar-day-name">T7</div>
+                    <div class="calendar-day-name">CN</div>
+
+                    <div></div><div></div><div></div>
+                    <div class="calendar-date">1</div>
+                    <div class="calendar-date">2</div>
+                    <div class="calendar-date">3</div>
+                    <div class="calendar-date">4</div>
+                    <div class="calendar-date">5</div>
+                    <div class="calendar-date">6</div>
+                    <div class="calendar-date">7</div>
+                    <div class="calendar-date">8</div>
+                    <div class="calendar-date">9</div>
+                    <div class="calendar-date">10</div>
+                    <div class="calendar-date">11</div>
+                    <div class="calendar-date">12</div>
+                    <div class="calendar-date">13</div>
+                    <div class="calendar-date">14</div>
+                    <div class="calendar-date wedding-day"><span>15</span></div>
+                    <div class="calendar-date">16</div>
+                    <div class="calendar-date">17</div>
+                    <div class="calendar-date">18</div>
+                    <div class="calendar-date">19</div>
+                    <div class="calendar-date">20</div>
+                    <div class="calendar-date">21</div>
+                    <div class="calendar-date">22</div>
+                    <div class="calendar-date">23</div>
+                    <div class="calendar-date">24</div>
+                    <div class="calendar-date">25</div>
+                    <div class="calendar-date">26</div>
+                    <div class="calendar-date">27</div>
+                    <div class="calendar-date">28</div>
+                    <div class="calendar-date">29</div>
+                    <div class="calendar-date">30</div>
+                    <div class="calendar-date">31</div>
+                    <div></div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ================= NÚT XÁC NHẬN THAM DỰ (DƯỚI CÙNG) ================= -->
+        <div class="rsvp-container">
+            <a href="#" class="add-to-calendar">Thêm vào lịch</a>
+            <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
+        </div>
     </div>
 
     <footer>
@@ -787,6 +1016,7 @@
     </footer>
 
     <script>
+        // Xử lý đếm ngược
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
 
         const countdownTimer = setInterval(function() {
@@ -808,6 +1038,14 @@
                 document.getElementById("countdown").innerHTML = "<h2 class='section-title serif-font'>Ngày Vui Đã Đến!</h2>";
             }
         }, 1000);
+
+        // Xử lý điền tên khách mời từ URL Parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get('name');
+        
+        if (guestName) {
+            document.getElementById('guest-name').innerText = guestName;
+        }
     </script>
 </body>
 </html>
