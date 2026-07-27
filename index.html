@@ -13,7 +13,6 @@
     
     <style>
         :root {
-            /* RGB: 251, 250, 252 */
             --bg-color: #fbfafc;      
             --text-gold: #a68b6c;     
             --text-dark: #5a4b41;     
@@ -266,7 +265,6 @@
             font-weight: 400;
         }
 
-        /* Bố cục CSS phần tên cô dâu chú rể */
         .couple-grid {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -292,7 +290,6 @@
             text-align: center;
         }
 
-        /* --- BOX GOLD CHO TÊN CÔ DÂU CHÚ RỂ --- */
         .couple-name {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -330,7 +327,6 @@
             }
         }
 
-        /* --- PHẦN CHI TIẾT LỄ THÀNH HÔN --- */
         .ceremony-details {
             display: flex;
             flex-direction: column;
@@ -421,7 +417,6 @@
             max-width: 500px;
         }
 
-        /* --- BOX THÂN MỜI KHÁCH --- */
         .guest-invite-box {
             margin-top: 40px;
             padding: 25px 40px;
@@ -482,7 +477,7 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
-            align-items: stretch; /* Ép 3 khung cao bằng nhau */
+            align-items: stretch;
         }
 
         @media (max-width: 992px) {
@@ -492,16 +487,15 @@
             }
         }
 
-        /* Class dùng chung cho cả 3 khung */
         .info-box {
-            background-color: rgba(255, 255, 255, 0.85); /* Lót nền trắng mờ */
-            border: 1.5px solid rgba(166, 139, 108, 0.4); /* Viền nhạt màu gold */
+            background-color: rgba(255, 255, 255, 0.85); 
+            border: 1.5px solid rgba(166, 139, 108, 0.4); 
             border-radius: 12px;
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; 
+            justify-content: flex-start; 
             width: 100%;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             text-align: center;
@@ -532,7 +526,6 @@
             border: 0;
         }
 
-        /* --- CSS Lịch Trình --- */
         .timeline {
             position: relative;
             width: 100%;
@@ -540,7 +533,6 @@
             margin: 0 auto;
         }
 
-        /* Đường kẻ dọc giữa */
         .timeline::before {
             content: '';
             position: absolute;
@@ -590,7 +582,6 @@
             color: var(--btn-color);
         }
 
-        /* --- CSS Lịch Tháng --- */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -636,13 +627,17 @@
             display: block;
         }
 
-        /* --- RSVP và DRESS CODE --- */
+        /* --- RSVP KHU VỰC CHUNG --- */
+        .rsvp-section-main {
+            background-color: var(--bg-color);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
         .rsvp-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 40px;
-            padding-bottom: 40px;
         }
 
         .dresscode-container {
@@ -695,16 +690,147 @@
             background-color: #7a5a44;
         }
 
+        /* --- MODAL RSVP THÔNG MINH --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); 
+            align-items: center; 
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            opacity: 1;
+        }
+        .modal-content {
+            background: var(--bg-color); 
+            padding: 30px; 
+            border-radius: 12px; 
+            max-width: 500px; 
+            width: 90%;
+            max-height: 90vh; 
+            overflow-y: auto; 
+            position: relative; 
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        .close-modal {
+            position: absolute; 
+            top: 15px; 
+            right: 20px; 
+            font-size: 28px; 
+            cursor: pointer; 
+            color: var(--btn-color);
+        }
+        
+        .modal-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--btn-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            margin: 20px 0 10px;
+            font-size: 1.1rem;
+        }
+
+        .modal-content input[type="text"], .modal-content select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            outline: none;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .rsvp-checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .rsvp-checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+        
+        .rsvp-checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--btn-color);
+            cursor: pointer;
+        }
+
+        .btn-add-plus {
+            background: none;
+            border: 1px dashed var(--btn-color);
+            color: var(--btn-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+        .btn-add-plus:hover {
+            background-color: var(--btn-color);
+            color: var(--white);
+        }
+
+        .relation-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .relation-columns h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--btn-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .rsvp-success {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
         /* --- SỔ LƯU BÚT (GUESTBOOK) --- */
         .guestbook-title-area {
-            background-color: var(--white); /* Nền trắng cho tiêu đề Sổ Lưu Bút */
+            background-color: var(--white);
             padding: 80px 20px 20px;
             text-align: center;
             width: 100%;
         }
 
         .guestbook-section {
-            width: 100%; /* Tràn viền website */
+            width: 100%; 
             padding: 60px 20px 80px;
             background-image: url('4.webp');
             background-size: cover;
@@ -713,7 +839,7 @@
         }
 
         .gb-container {
-            max-width: 900px; /* Giới hạn độ rộng vùng nội dung bên trong hình 4.webp */
+            max-width: 900px; 
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -735,7 +861,6 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
-        /* Form Nhập Lời Chúc */
         .gb-form input, .gb-form textarea {
             width: 100%;
             padding: 12px 15px;
@@ -777,7 +902,6 @@
             background-color: #7a5a44;
         }
 
-        /* Hiển Thị Lời Chúc (FB Messenger Style) */
         .chat-container {
             height: 400px;
             overflow-y: auto;
@@ -788,18 +912,9 @@
             scroll-behavior: smooth;
         }
 
-        /* Tuỳ chỉnh thanh cuộn cho khu vực chat */
-        .chat-container::-webkit-scrollbar {
-            width: 6px;
-        }
-        .chat-container::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.05); 
-            border-radius: 10px;
-        }
-        .chat-container::-webkit-scrollbar-thumb {
-            background: var(--accent-color); 
-            border-radius: 10px;
-        }
+        .chat-container::-webkit-scrollbar { width: 6px; }
+        .chat-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
+        .chat-container::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
 
         .chat-bubble-wrapper {
             display: flex;
@@ -847,7 +962,6 @@
             word-wrap: break-word;
         }
 
-        /* Trạng thái Loading */
         .loading-text {
             color: var(--text-gold);
             font-style: italic;
@@ -864,20 +978,14 @@
 </head>
 <body>
 
-    <!-- HERO BÌA THIỆP -->
     <div class="hero">
         <div class="hero-content">
-            <h1 class="names">
-                Uyên <br>
-                <span class="and">&</span>
-                Đạm
-            </h1>
+            <h1 class="names">Uyên <br><span class="and">&</span> Đạm</h1>
             <p class="save-the-date">SAVE THE DATE</p>
             <p class="date">15.10.2026</p>
         </div>
     </div>
 
-    <!-- KHU VỰC ĐẾM NGƯỢC -->
     <section id="countdown">
         <h2 class="section-title serif-font">Ngày Vui Sắp Đến</h2>
         <div class="countdown-container">
@@ -888,43 +996,31 @@
         </div>
     </section>
 
-    <!-- KHU VỰC 1: THÔNG TIN GIA ĐÌNH VÀ CÔ DÂU CHÚ RỂ (NỀN 4.WEBP) -->
     <div id="wedding-info">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <h2 class="info-title">ĐÔI BÊN GIA ĐÌNH CHÚNG TÔI</h2>
-            
             <div class="family-grid">
-                <!-- Nhà Trai -->
                 <div class="family-side">
                     <p class="role">NHÀ TRAI</p>
                     <p class="parent-name">Ông NGUYỄN ANH LINH<br>Bà BÙI THỊ BÍCH LIÊN</p>
                     <p class="address">3/161 Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
                 </div>
-                
-                <!-- Nhà Gái -->
                 <div class="family-side">
                     <p class="role">NHÀ GÁI</p>
                     <p class="parent-name">Ông NGUYỄN TRUNG NGÔN<br>&nbsp;</p> 
                     <p class="address">825/8K, đường Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM</p>
                 </div>
             </div>
-
             <div class="announcement">
                 <h4>TRÂN TRỌNG BÁO TIN</h4>
                 <p>LỄ THÀNH HÔN CỦA CÁC CON</p>
             </div>
-
-            <!-- Khối tên cô dâu chú rể -->
             <div class="couple-grid">
-                <!-- Chú Rể -->
                 <div class="couple-side">
                     <h3 class="couple-name">Nguyễn Thanh Đạm</h3>
                     <p class="couple-role">Út Nam</p>
                 </div>
-                
                 <div class="ampersand">&</div>
-                
-                <!-- Cô Dâu -->
                 <div class="couple-side">
                     <h3 class="couple-name">Nguyễn Ngọc Hạ Uyên</h3>
                     <p class="couple-role">Trưởng Nữ</p>
@@ -933,16 +1029,13 @@
         </div>
     </div>
 
-    <!-- KHU VỰC 2: CHI TIẾT LỄ THÀNH HÔN VÀ KHÁCH MỜI -->
     <div id="ceremony-info">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <div class="ceremony-details">
                 <h2 class="ceremony-main-title">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI</h2>
                 <p class="cd-text">TƯ GIA</p>
                 <p class="cd-text" style="margin-top: 5px;">VÀO LÚC</p>
-                
                 <p class="cd-time">09:00</p>
-                
                 <div class="cd-date-row">
                     <span class="cd-day-month">THỨ NĂM</span>
                     <div class="cd-divider"></div>
@@ -950,14 +1043,9 @@
                     <div class="cd-divider"></div>
                     <span class="cd-day-month">THÁNG 10</span>
                 </div>
-                
                 <p class="cd-year">2026</p>
+                <p class="cd-lunar">( Tức Ngày 6/9/2026<br>Ngày Nhâm Tuất, Tháng Mậu Tuất, Năm Bính Ngọ )</p>
                 
-                <p class="cd-lunar">
-                    ( Tức Ngày 6/9/2026<br>Ngày Nhâm Tuất, Tháng Mậu Tuất, Năm Bính Ngọ )
-                </p>
-
-                <!-- KHU VỰC THÂN MỜI KHÁCH -->
                 <div class="guest-invite-box">
                     <p class="invite-title">THÂN MỜI</p>
                     <h3 class="guest-name" id="guest-name">Quý Khách</h3>
@@ -967,357 +1055,140 @@
         </div>
     </div>
 
-    <!-- ================= SỰ KIỆN 1: LỄ VU QUY ================= -->
+    <!-- SỰ KIỆN 1 -->
     <section class="event-wrapper">
         <h2 class="section-title serif-font">Lễ Vu Quy</h2>
     </section>
-
     <div class="schedule-calendar-section">
         <div class="sc-container">
-            
-            <!-- CỘT 1: ĐỊA ĐIỂM -->
             <div class="info-box">
                 <h3 class="box-title">Địa Điểm</h3>
                 <p style="margin-bottom: 15px;">Tư gia nhà gái, Quận 5, TP. Hồ Chí Minh</p>
-                
                 <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
                 <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Đón tiếp đoàn nhà trai và làm lễ gia tiên</p>
-                
-                <div class="map-container" style="margin-top: 0;">
+                <div class="map-container" style="margin-top: auto;">
                     <iframe src="https://maps.google.com/maps?q=QM3J%2BX7%20Ch%E1%BB%A3%20Qu%C3%A1n,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-
-            <!-- CỘT 2: LỊCH TRÌNH -->
             <div class="info-box">
                 <h3 class="box-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <!-- Mục 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">09:00</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Đón nhà trai</div>
-                    </div>
-                    <!-- Mục 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">09:30</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Lễ gia tiên</div>
-                    </div>
-                    <!-- Mục 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">10:30</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Phục vụ trà bánh</div>
-                    </div>
-                    <!-- Mục 4 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">11:30</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Kết thúc</div>
-                    </div>
+                    <div class="timeline-item"><div class="timeline-time">09:00</div><div class="timeline-dot"></div><div class="timeline-task">Đón nhà trai</div></div>
+                    <div class="timeline-item"><div class="timeline-time">09:30</div><div class="timeline-dot"></div><div class="timeline-task">Lễ gia tiên</div></div>
+                    <div class="timeline-item"><div class="timeline-time">10:30</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ trà bánh</div></div>
+                    <div class="timeline-item"><div class="timeline-time">11:30</div><div class="timeline-dot"></div><div class="timeline-task">Kết thúc</div></div>
                 </div>
             </div>
-
-            <!-- CỘT 3: LỊCH THÁNG -->
             <div class="info-box">
                 <h3 class="box-title">Tháng 10 / 2026</h3>
                 <div class="calendar-grid">
-                    <div class="calendar-day-name">T2</div>
-                    <div class="calendar-day-name">T3</div>
-                    <div class="calendar-day-name">T4</div>
-                    <div class="calendar-day-name">T5</div>
-                    <div class="calendar-day-name">T6</div>
-                    <div class="calendar-day-name">T7</div>
-                    <div class="calendar-day-name">CN</div>
-
+                    <div class="calendar-day-name">T2</div><div class="calendar-day-name">T3</div><div class="calendar-day-name">T4</div><div class="calendar-day-name">T5</div>
+                    <div class="calendar-day-name">T6</div><div class="calendar-day-name">T7</div><div class="calendar-day-name">CN</div>
                     <div></div><div></div><div></div>
-                    <div class="calendar-date">1</div>
-                    <div class="calendar-date">2</div>
-                    <div class="calendar-date">3</div>
-                    <div class="calendar-date">4</div>
-                    <div class="calendar-date">5</div>
-                    <div class="calendar-date">6</div>
-                    <div class="calendar-date">7</div>
-                    <div class="calendar-date">8</div>
-                    <div class="calendar-date">9</div>
-                    <div class="calendar-date">10</div>
-                    <div class="calendar-date">11</div>
-                    <div class="calendar-date">12</div>
-                    <div class="calendar-date">13</div>
-                    <div class="calendar-date">14</div>
-                    <div class="calendar-date wedding-day"><span>15</span></div>
-                    <div class="calendar-date">16</div>
-                    <div class="calendar-date">17</div>
-                    <div class="calendar-date">18</div>
-                    <div class="calendar-date">19</div>
-                    <div class="calendar-date">20</div>
-                    <div class="calendar-date">21</div>
-                    <div class="calendar-date">22</div>
-                    <div class="calendar-date">23</div>
-                    <div class="calendar-date">24</div>
-                    <div class="calendar-date">25</div>
-                    <div class="calendar-date">26</div>
-                    <div class="calendar-date">27</div>
-                    <div class="calendar-date">28</div>
-                    <div class="calendar-date">29</div>
-                    <div class="calendar-date">30</div>
-                    <div class="calendar-date">31</div>
-                    <div></div>
+                    <div class="calendar-date">1</div><div class="calendar-date">2</div><div class="calendar-date">3</div><div class="calendar-date">4</div>
+                    <div class="calendar-date">5</div><div class="calendar-date">6</div><div class="calendar-date">7</div><div class="calendar-date">8</div>
+                    <div class="calendar-date">9</div><div class="calendar-date">10</div><div class="calendar-date">11</div><div class="calendar-date">12</div>
+                    <div class="calendar-date">13</div><div class="calendar-date">14</div><div class="calendar-date wedding-day"><span>15</span></div><div class="calendar-date">16</div>
+                    <div class="calendar-date">17</div><div class="calendar-date">18</div><div class="calendar-date">19</div><div class="calendar-date">20</div>
+                    <div class="calendar-date">21</div><div class="calendar-date">22</div><div class="calendar-date">23</div><div class="calendar-date">24</div>
+                    <div class="calendar-date">25</div><div class="calendar-date">26</div><div class="calendar-date">27</div><div class="calendar-date">28</div>
+                    <div class="calendar-date">29</div><div class="calendar-date">30</div><div class="calendar-date">31</div><div></div>
                 </div>
             </div>
-            
-        </div>
-        
-        <!-- RSVP NẰM DƯỚI CÙNG Ở GIỮA -->
-        <div class="rsvp-container">
-            <div class="dresscode-container">
-                <p class="dresscode-title">Dress Code</p>
-                <div class="dresscode-colors">
-                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="Trắng"></div>
-                    <div class="color-circle" style="background-color: #000000;" title="Đen"></div>
-                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold"></div>
-                    <div class="color-circle" style="background-color: #7a1f24;" title="Đỏ Rượu"></div>
-                </div>
-            </div>
-            <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
         </div>
     </div>
 
-
-    <!-- ================= SỰ KIỆN 2: TIỆC CƯỚI TẠI TP.HCM ================= -->
+    <!-- SỰ KIỆN 2 -->
     <section class="event-wrapper">
         <h2 class="section-title serif-font">TIỆC CƯỚI TẠI TP.HCM</h2>
     </section>
-
     <div class="schedule-calendar-section">
         <div class="sc-container">
-            
-            <!-- CỘT 1: ĐỊA ĐIỂM -->
             <div class="info-box">
                 <h3 class="box-title">Địa Điểm</h3>
                 <p style="margin-bottom: 15px;">Amor Resort- 61A Nguyễn Văn Đậu, phường Bình Lợi Trung, TP.HCM</p>
-                
                 <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
                 <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Khai tiệc mừng hạnh phúc trăm năm</p>
-                
-                <div class="map-container" style="margin-top: 0;">
+                <div class="map-container" style="margin-top: auto;">
                     <iframe src="https://maps.google.com/maps?q=RM5Q%2B53%20B%C3%ACnh%20L%E1%BB%A3i%20Trung,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-
-            <!-- CỘT 2: LỊCH TRÌNH -->
             <div class="info-box">
                 <h3 class="box-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <!-- Mục 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">17:30</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Đón khách</div>
-                    </div>
-                    <!-- Mục 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">18:30</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Khai tiệc</div>
-                    </div>
-                    <!-- Mục 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">18:45</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Rót rượu, cắt bánh</div>
-                    </div>
-                    <!-- Mục 4 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">19:00</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Phục vụ món chính</div>
-                    </div>
-                    <!-- Mục 5 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">21:00</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Kết thúc tiệc</div>
-                    </div>
+                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task">Khai tiệc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task">Rót rượu, cắt bánh</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ món chính</div></div>
+                    <div class="timeline-item"><div class="timeline-time">21:00</div><div class="timeline-dot"></div><div class="timeline-task">Kết thúc tiệc</div></div>
                 </div>
             </div>
-
-            <!-- CỘT 3: LỊCH THÁNG -->
             <div class="info-box">
                 <h3 class="box-title">Tháng 10 / 2026</h3>
                 <div class="calendar-grid">
-                    <div class="calendar-day-name">T2</div>
-                    <div class="calendar-day-name">T3</div>
-                    <div class="calendar-day-name">T4</div>
-                    <div class="calendar-day-name">T5</div>
-                    <div class="calendar-day-name">T6</div>
-                    <div class="calendar-day-name">T7</div>
-                    <div class="calendar-day-name">CN</div>
-
+                    <div class="calendar-day-name">T2</div><div class="calendar-day-name">T3</div><div class="calendar-day-name">T4</div><div class="calendar-day-name">T5</div>
+                    <div class="calendar-day-name">T6</div><div class="calendar-day-name">T7</div><div class="calendar-day-name">CN</div>
                     <div></div><div></div><div></div>
-                    <div class="calendar-date">1</div>
-                    <div class="calendar-date">2</div>
-                    <div class="calendar-date">3</div>
-                    <div class="calendar-date">4</div>
-                    <div class="calendar-date">5</div>
-                    <div class="calendar-date">6</div>
-                    <div class="calendar-date">7</div>
-                    <div class="calendar-date">8</div>
-                    <div class="calendar-date">9</div>
-                    <div class="calendar-date">10</div>
-                    <div class="calendar-date">11</div>
-                    <div class="calendar-date">12</div>
-                    <div class="calendar-date">13</div>
-                    <div class="calendar-date">14</div>
-                    <div class="calendar-date wedding-day"><span>15</span></div>
-                    <div class="calendar-date">16</div>
-                    <div class="calendar-date">17</div>
-                    <div class="calendar-date">18</div>
-                    <div class="calendar-date">19</div>
-                    <div class="calendar-date">20</div>
-                    <div class="calendar-date">21</div>
-                    <div class="calendar-date">22</div>
-                    <div class="calendar-date">23</div>
-                    <div class="calendar-date">24</div>
-                    <div class="calendar-date">25</div>
-                    <div class="calendar-date">26</div>
-                    <div class="calendar-date">27</div>
-                    <div class="calendar-date">28</div>
-                    <div class="calendar-date">29</div>
-                    <div class="calendar-date">30</div>
-                    <div class="calendar-date">31</div>
-                    <div></div>
+                    <div class="calendar-date">1</div><div class="calendar-date">2</div><div class="calendar-date">3</div><div class="calendar-date">4</div>
+                    <div class="calendar-date">5</div><div class="calendar-date">6</div><div class="calendar-date">7</div><div class="calendar-date">8</div>
+                    <div class="calendar-date">9</div><div class="calendar-date">10</div><div class="calendar-date">11</div><div class="calendar-date">12</div>
+                    <div class="calendar-date">13</div><div class="calendar-date">14</div><div class="calendar-date wedding-day"><span>15</span></div><div class="calendar-date">16</div>
+                    <div class="calendar-date">17</div><div class="calendar-date">18</div><div class="calendar-date">19</div><div class="calendar-date">20</div>
+                    <div class="calendar-date">21</div><div class="calendar-date">22</div><div class="calendar-date">23</div><div class="calendar-date">24</div>
+                    <div class="calendar-date">25</div><div class="calendar-date">26</div><div class="calendar-date">27</div><div class="calendar-date">28</div>
+                    <div class="calendar-date">29</div><div class="calendar-date">30</div><div class="calendar-date">31</div><div></div>
                 </div>
             </div>
-            
-        </div>
-        
-        <!-- RSVP NẰM DƯỚI CÙNG Ở GIỮA -->
-        <div class="rsvp-container">
-            <div class="dresscode-container">
-                <p class="dresscode-title">Dress Code</p>
-                <div class="dresscode-colors">
-                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="Trắng"></div>
-                    <div class="color-circle" style="background-color: #000000;" title="Đen"></div>
-                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold"></div>
-                    <div class="color-circle" style="background-color: #7a1f24;" title="Đỏ Rượu"></div>
-                </div>
-            </div>
-            <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
         </div>
     </div>
 
-
-    <!-- ================= SỰ KIỆN 3: TIỆC CƯỚI TẠI HẢI PHÒNG ================= -->
+    <!-- SỰ KIỆN 3 -->
     <section class="event-wrapper">
         <h2 class="section-title serif-font">TIỆC CƯỚI TẠI HẢI PHÒNG</h2>
     </section>
-
     <div class="schedule-calendar-section">
         <div class="sc-container">
-            
-            <!-- CỘT 1: ĐỊA ĐIỂM -->
             <div class="info-box">
                 <h3 class="box-title">Địa Điểm</h3>
                 <p style="margin-bottom: 15px;">3/161 ngõ Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
-                
                 <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
                 <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Khai tiệc mừng hạnh phúc trăm năm</p>
-                
-                <div class="map-container" style="margin-top: 0;">
+                <div class="map-container" style="margin-top: auto;">
                     <iframe src="https://maps.google.com/maps?q=3%2F161%20ng%C3%B5%20C%E1%BA%A5m%2C%20ph%C6%B0%E1%BB%9Dng%20gia%20vi%C3%AAn%2C%20qu%E1%BA%ADn%20Ng%C3%B4%20Quy%E1%BB%81n%2C%20TP.%20H%E1%BA%A3i%20Ph%C3%B2ng&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-
-            <!-- CỘT 2: LỊCH TRÌNH -->
             <div class="info-box">
                 <h3 class="box-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <!-- Mục 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">17:30</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Đón khách</div>
-                    </div>
-                    <!-- Mục 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">18:30</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Khai tiệc</div>
-                    </div>
-                    <!-- Mục 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">18:45</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Rót rượu, cắt bánh</div>
-                    </div>
-                    <!-- Mục 4 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">19:00</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Phục vụ món chính</div>
-                    </div>
-                    <!-- Mục 5 -->
-                    <div class="timeline-item">
-                        <div class="timeline-time">21:00</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-task">Kết thúc tiệc</div>
-                    </div>
+                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task">Khai tiệc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task">Rót rượu, cắt bánh</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ món chính</div></div>
+                    <div class="timeline-item"><div class="timeline-time">21:00</div><div class="timeline-dot"></div><div class="timeline-task">Kết thúc tiệc</div></div>
                 </div>
             </div>
-
-            <!-- CỘT 3: LỊCH THÁNG -->
             <div class="info-box">
                 <h3 class="box-title">Tháng 10 / 2026</h3>
                 <div class="calendar-grid">
-                    <div class="calendar-day-name">T2</div>
-                    <div class="calendar-day-name">T3</div>
-                    <div class="calendar-day-name">T4</div>
-                    <div class="calendar-day-name">T5</div>
-                    <div class="calendar-day-name">T6</div>
-                    <div class="calendar-day-name">T7</div>
-                    <div class="calendar-day-name">CN</div>
-
+                    <div class="calendar-day-name">T2</div><div class="calendar-day-name">T3</div><div class="calendar-day-name">T4</div><div class="calendar-day-name">T5</div>
+                    <div class="calendar-day-name">T6</div><div class="calendar-day-name">T7</div><div class="calendar-day-name">CN</div>
                     <div></div><div></div><div></div>
-                    <div class="calendar-date">1</div>
-                    <div class="calendar-date">2</div>
-                    <div class="calendar-date">3</div>
-                    <div class="calendar-date">4</div>
-                    <div class="calendar-date">5</div>
-                    <div class="calendar-date">6</div>
-                    <div class="calendar-date">7</div>
-                    <div class="calendar-date">8</div>
-                    <div class="calendar-date">9</div>
-                    <div class="calendar-date">10</div>
-                    <div class="calendar-date">11</div>
-                    <div class="calendar-date">12</div>
-                    <div class="calendar-date">13</div>
-                    <div class="calendar-date">14</div>
-                    <div class="calendar-date">15</div> 
-                    <div class="calendar-date">16</div>
-                    <div class="calendar-date">17</div>
-                    <div class="calendar-date">18</div>
-                    <div class="calendar-date">19</div>
-                    <div class="calendar-date">20</div>
-                    <div class="calendar-date">21</div>
-                    <div class="calendar-date">22</div>
-                    <div class="calendar-date">23</div>
-                    <div class="calendar-date">24</div>
-                    <div class="calendar-date wedding-day"><span>25</span></div> <!-- Highlight ngày 25 -->
-                    <div class="calendar-date">26</div>
-                    <div class="calendar-date">27</div>
-                    <div class="calendar-date">28</div>
-                    <div class="calendar-date">29</div>
-                    <div class="calendar-date">30</div>
-                    <div class="calendar-date">31</div>
-                    <div></div>
+                    <div class="calendar-date">1</div><div class="calendar-date">2</div><div class="calendar-date">3</div><div class="calendar-date">4</div>
+                    <div class="calendar-date">5</div><div class="calendar-date">6</div><div class="calendar-date">7</div><div class="calendar-date">8</div>
+                    <div class="calendar-date">9</div><div class="calendar-date">10</div><div class="calendar-date">11</div><div class="calendar-date">12</div>
+                    <div class="calendar-date">13</div><div class="calendar-date">14</div><div class="calendar-date">15</div><div class="calendar-date">16</div>
+                    <div class="calendar-date">17</div><div class="calendar-date">18</div><div class="calendar-date">19</div><div class="calendar-date">20</div>
+                    <div class="calendar-date">21</div><div class="calendar-date">22</div><div class="calendar-date">23</div><div class="calendar-date">24</div>
+                    <div class="calendar-date wedding-day"><span>25</span></div>
+                    <div class="calendar-date">26</div><div class="calendar-date">27</div><div class="calendar-date">28</div><div class="calendar-date">29</div>
+                    <div class="calendar-date">30</div><div class="calendar-date">31</div><div></div>
                 </div>
             </div>
-            
         </div>
-        
-        <!-- RSVP NẰM DƯỚI CÙNG Ở GIỮA -->
+    </div>
+
+    <!-- RSVP KHU VỰC CHUNG -->
+    <section class="rsvp-section-main">
         <div class="rsvp-container">
             <div class="dresscode-container">
                 <p class="dresscode-title">Dress Code</p>
@@ -1328,20 +1199,70 @@
                     <div class="color-circle" style="background-color: #7a1f24;" title="Đỏ Rượu"></div>
                 </div>
             </div>
-            <button class="btn-rsvp">XÁC NHẬN THAM DỰ</button>
+            <button class="btn-rsvp" id="btn-open-rsvp">XÁC NHẬN THAM DỰ</button>
+        </div>
+    </section>
+
+    <!-- HỘP THOẠI MODAL RSVP -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeRsvp">&times;</span>
+            <h2>Xác Nhận Tham Dự</h2>
+            
+            <form id="rsvpForm">
+                <p style="color: red; font-size: 0.85rem; font-style: italic; margin-bottom: 15px;">* vui lòng nhập đầy đủ nội dung</p>
+                <input type="text" id="rsvp-name-input" placeholder="Tên của bạn *..." required>
+                
+                <div id="plus-ones-container"></div>
+                <button type="button" class="btn-add-plus" id="btn-add-plusone" style="display: none;">+ Thêm người đi cùng</button>
+
+                <h3>Répondez s'il vous plaît</h3>
+                <div class="rsvp-checkbox-group">
+                    <label><input type="checkbox" class="cb-attend" value="TPHCM_Le"> Tôi xác nhận tham gia lễ thành hôn tại TPHCM</label>
+                    <label><input type="checkbox" class="cb-attend" value="HaiPhong_Le"> Tôi xác nhận tham gia lễ thành hôn tại Hải Phòng</label>
+                    <label><input type="checkbox" class="cb-attend" value="TPHCM_Tiec"> Tôi xác nhận tham gia tiệc cưới tại TP.HCM</label>
+                    <label><input type="checkbox" class="cb-attend" value="HaiPhong_Tiec"> Tôi xác nhận tham gia tiệc cưới tại Hải Phòng</label>
+                    <label><input type="checkbox" id="cb-cannot-attend" value="TuChoi"> Tôi chưa thể tham gia</label>
+                </div>
+
+                <div class="relation-columns" id="relation-box" style="display: none;">
+                    <div class="col">
+                        <h4>Nhà Trai</h4>
+                        <select id="rel-groom">
+                            <option value="">-- Chọn --</option>
+                            <option value="người thân/gia đình">Tôi là người thân/gia đình</option>
+                            <option value="đồng nghiệp">Tôi là đồng nghiệp</option>
+                            <option value="bạn bè">Tôi là bạn bè</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <h4>Nhà Gái</h4>
+                        <select id="rel-bride">
+                            <option value="">-- Chọn --</option>
+                            <option value="người thân/gia đình">Tôi là người thân/gia đình</option>
+                            <option value="đồng nghiệp">Tôi là đồng nghiệp</option>
+                            <option value="bạn bè">Tôi là bạn bè</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-rsvp" id="btn-submit-rsvp" style="display: none; width: 100%; margin-top: 10px;">XÁC NHẬN</button>
+            </form>
+
+            <div id="rsvp-result" class="rsvp-success" style="display: none;">
+                <!-- Kết quả trả về sau khi ấn gửi -->
+            </div>
         </div>
     </div>
 
-
-    <!-- ================= SỔ LƯU BÚT ================= -->
+    <!-- SỔ LƯU BÚT -->
     <div class="guestbook-title-area">
         <h2 class="section-title serif-font" style="margin-bottom: 0;">Sổ Lưu Bút</h2>
     </div>
 
     <div class="guestbook-section">
         <div class="gb-container">
-            
-            <!-- CỘT TRÁI: FORM GỬI LỜI CHÚC -->
+            <!-- FORM GỬI LỜI CHÚC -->
             <div class="gb-box">
                 <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;">Gửi Lời Chúc</h3>
                 <form id="wish-form" class="gb-form">
@@ -1352,15 +1273,13 @@
                 </form>
             </div>
 
-            <!-- CỘT PHẢI: HIỂN THỊ LỜI CHÚC (STYLE MESSENGER) -->
+            <!-- HIỂN THỊ LỜI CHÚC -->
             <div class="gb-box" style="padding: 20px 10px 20px 20px;">
                 <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;">Lời Chúc Yêu Thương</h3>
                 <div class="chat-container" id="chat-container">
                     <p class="loading-text" id="loading-msg">Đang tải lời chúc...</p>
-                    <!-- Danh sách bong bóng chat sẽ được Javascript render ở đây -->
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -1369,10 +1288,9 @@
         <p>Thank you for being a part of our lives!</p>
     </footer>
 
-  <script>
-        // ------------------------- XỬ LÝ URL & ĐẾM NGƯỢC -------------------------
+    <script>
+        // --- ĐẾM NGƯỢC ---
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
-
         const countdownTimer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
@@ -1393,24 +1311,23 @@
             }
         }, 1000);
 
-        // Xử lý điền tên khách mời từ URL Parameter
+        // --- LẤY TÊN TỪ URL ---
         const urlParams = new URLSearchParams(window.location.search);
-        const guestName = urlParams.get('name');
+        let guestName = urlParams.get('name');
         
         if (guestName) {
-            // Hiển thị ở thiệp mời
             document.getElementById('guest-name').innerText = guestName;
-            // Tự động điền vào ô form Gửi Lời Chúc
             const inputName = document.getElementById('guest-name-input');
             if(inputName) inputName.value = guestName;
+            
+            const rsvpInputName = document.getElementById('rsvp-name-input');
+            if(rsvpInputName) rsvpInputName.value = guestName;
         }
 
-        // ------------------------- XỬ LÝ GOOGLE SHEETS SỔ LƯU BÚT -------------------------
-        
+        // --- XỬ LÝ SỔ LƯU BÚT ---
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwWmMYuNQu002C6QcH8KEvvZ8opwe7zOOGKziwrQH3zoCi3OfrQJOQfShpq6IixdNq/exec';
         const AVATAR_FOLDER_PATH = './gif';
 
-        // Lấy dữ liệu (GET)
         function fetchMessages() {
             fetch(GOOGLE_SCRIPT_URL)
                 .then(response => response.json())
@@ -1418,13 +1335,10 @@
                     const chatContainer = document.getElementById('chat-container');
                     const loadingMsg = document.getElementById('loading-msg');
                     if (loadingMsg) loadingMsg.style.display = 'none';
+                    chatContainer.innerHTML = ''; 
                     
-                    chatContainer.innerHTML = ''; // Xóa chữ loading
-                    
-                    // Duyệt qua từng lời chúc và tạo giao diện bong bóng chat
                     data.forEach(item => {
                         if (item.name && item.message) {
-                            // Tạo số random từ 1 đến 5 để lấy file ảnh avatar 1.gif, 2.gif...
                             const randomAvatarId = Math.floor(Math.random() * 30) + 1; 
                             const avatarUrl = `${AVATAR_FOLDER_PATH}/${randomAvatarId}.gif`;
                             
@@ -1440,68 +1354,224 @@
                             chatContainer.appendChild(bubble);
                         }
                     });
-
-                    // Tính năng cuộn liên tục (mượt mà)
                     startAutoScroll(chatContainer);
                 })
                 .catch(error => console.error('Error fetching messages:', error));
         }
 
-        // Auto Scroll cho Chat Container
         let scrollInterval;
         function startAutoScroll(container) {
             clearInterval(scrollInterval);
             scrollInterval = setInterval(() => {
                 container.scrollTop += 1;
-                // Nếu cuộn chạm đáy, quay lại đầu
                 if (container.scrollTop >= (container.scrollHeight - container.clientHeight - 1)) {
                     container.scrollTop = 0;
                 }
-            }, 40); // Tốc độ cuộn (nhỏ là nhanh, lớn là chậm)
-            
-            // Dừng cuộn khi rê chuột vào để đọc
+            }, 40); 
             container.addEventListener('mouseenter', () => clearInterval(scrollInterval));
             container.addEventListener('mouseleave', () => startAutoScroll(container));
         }
 
-        // Gửi dữ liệu (POST)
-        const form = document.getElementById('wish-form');
-        const btnSubmit = document.getElementById('btn-submit');
+        const wishForm = document.getElementById('wish-form');
+        const btnSubmitWish = document.getElementById('btn-submit');
         const formMsg = document.getElementById('form-msg');
 
-        form.addEventListener('submit', e => {
+        wishForm.addEventListener('submit', e => {
             e.preventDefault();
-            btnSubmit.innerText = 'Đang gửi...';
-            btnSubmit.disabled = true;
+            btnSubmitWish.innerText = 'Đang gửi...';
+            btnSubmitWish.disabled = true;
 
-            let requestBody = new FormData(form);
+            let requestBody = new FormData(wishForm);
+            requestBody.append('FormType', 'Guestbook'); // Để Apps Script phân biệt
 
             fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: requestBody })
                 .then(response => {
                     formMsg.style.display = 'block';
                     formMsg.style.color = 'green';
                     formMsg.innerText = 'Gửi lời chúc thành công! Cảm ơn bạn.';
-                    form.reset();
-                    btnSubmit.innerText = 'Gửi Lời Chúc';
-                    btnSubmit.disabled = false;
-                    
-                    // Giữ lại tên nếu có từ URL
+                    wishForm.reset();
+                    btnSubmitWish.innerText = 'Gửi Lời Chúc';
+                    btnSubmitWish.disabled = false;
                     if(guestName) document.getElementById('guest-name-input').value = guestName;
-                    
-                    // Fetch lại tin nhắn mới
                     setTimeout(fetchMessages, 1500); 
                 })
                 .catch(error => {
                     formMsg.style.display = 'block';
                     formMsg.style.color = 'red';
                     formMsg.innerText = 'Có lỗi xảy ra, vui lòng thử lại sau!';
-                    btnSubmit.innerText = 'Gửi Lời Chúc';
-                    btnSubmit.disabled = false;
+                    btnSubmitWish.innerText = 'Gửi Lời Chúc';
+                    btnSubmitWish.disabled = false;
                 });
         });
-
-        // Tự động kéo dữ liệu khi tải trang
         fetchMessages();
+
+        // --- XỬ LÝ RSVP ---
+        const modal = document.getElementById("rsvpModal");
+        const btnOpenModal = document.getElementById("btn-open-rsvp");
+        const spanClose = document.getElementById("closeRsvp");
+        
+        const cbAttendList = document.querySelectorAll('.cb-attend');
+        const cbCannotAttend = document.getElementById('cb-cannot-attend');
+        const btnAddPlusOne = document.getElementById('btn-add-plusone');
+        const plusOnesContainer = document.getElementById('plus-ones-container');
+        const relationBox = document.getElementById('relation-box');
+        const btnSubmitRsvp = document.getElementById('btn-submit-rsvp');
+        
+        const relGroomSelect = document.getElementById('rel-groom');
+        const relBrideSelect = document.getElementById('rel-bride');
+        
+        let plusOneCount = 0;
+
+        btnOpenModal.onclick = () => { modal.style.display = "flex"; setTimeout(() => modal.classList.add("show"), 10); }
+        spanClose.onclick = () => { modal.classList.remove("show"); setTimeout(() => modal.style.display = "none", 300); }
+        window.onclick = (event) => { 
+            if (event.target == modal) {
+                modal.classList.remove("show"); setTimeout(() => modal.style.display = "none", 300); 
+            }
+        }
+
+        // Logic check 1 trong 2 dropdown quan hệ
+        relGroomSelect.addEventListener('change', function() { if(this.value) relBrideSelect.value = ''; });
+        relBrideSelect.addEventListener('change', function() { if(this.value) relGroomSelect.value = ''; });
+
+        function updateRelationSelects() {
+            const prefix = plusOneCount > 0 ? "Chúng tôi" : "Tôi";
+            const options = ["người thân/gia đình", "đồng nghiệp", "bạn bè"];
+            
+            [relGroomSelect, relBrideSelect].forEach(select => {
+                const currentVal = select.value;
+                let html = '<option value="">-- Chọn --</option>';
+                options.forEach(opt => { html += `<option value="${opt}">${prefix} là ${opt}</option>`; });
+                select.innerHTML = html;
+                if(currentVal) select.value = currentVal; 
+            });
+        }
+
+        function handleCheckboxChange() {
+            const isAttending = Array.from(cbAttendList).some(cb => cb.checked);
+            const isCannotAttend = cbCannotAttend.checked;
+
+            if (this === cbCannotAttend && isCannotAttend) {
+                cbAttendList.forEach(cb => cb.checked = false);
+            } else if (this !== cbCannotAttend && isAttending) {
+                cbCannotAttend.checked = false;
+            }
+
+            const reCheckAttending = Array.from(cbAttendList).some(cb => cb.checked);
+            
+            if (cbCannotAttend.checked) {
+                btnAddPlusOne.style.display = 'none';
+                relationBox.style.display = 'none';
+                btnSubmitRsvp.style.display = 'block';
+            } else if (reCheckAttending) {
+                btnAddPlusOne.style.display = 'inline-block';
+                relationBox.style.display = 'grid';
+                btnSubmitRsvp.style.display = 'block';
+            } else {
+                btnAddPlusOne.style.display = 'none';
+                relationBox.style.display = 'none';
+                btnSubmitRsvp.style.display = 'none';
+            }
+        }
+
+        cbCannotAttend.addEventListener('change', handleCheckboxChange);
+        cbAttendList.forEach(cb => cb.addEventListener('change', handleCheckboxChange));
+
+        btnAddPlusOne.addEventListener('click', () => {
+            plusOneCount++;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = `Người đi cùng ${plusOneCount} *...`; // Bắt buộc
+            input.className = 'plus-one-input';
+            input.required = true;
+            plusOnesContainer.appendChild(input);
+            updateRelationSelects();
+        });
+
+        // Submit RSVP
+        document.getElementById('rsvpForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const typedName = document.getElementById('rsvp-name-input').value.trim();
+            const userFinalName = guestName || typedName || 'bạn';
+
+            const isHCM_Le = document.querySelector('input[value="TPHCM_Le"]').checked;
+            const isHCM_Tiec = document.querySelector('input[value="TPHCM_Tiec"]').checked;
+            const isHP_Le = document.querySelector('input[value="HaiPhong_Le"]').checked;
+            const isHP_Tiec = document.querySelector('input[value="HaiPhong_Tiec"]').checked;
+            const isCannotAttend = document.getElementById('cb-cannot-attend').checked;
+
+            const relGroom = document.getElementById('rel-groom').value;
+            const relBride = document.getElementById('rel-bride').value;
+            let side = '';
+            let relation = '';
+            
+            if (relGroom) { side = 'Nhà Trai'; relation = relGroom; }
+            else if (relBride) { side = 'Nhà Gái'; relation = relBride; }
+
+            // Validate chọn quan hệ nếu đi tham dự
+            if (!isCannotAttend && side === '') {
+                alert('Vui lòng chọn mối quan hệ với Nhà Trai hoặc Nhà Gái!');
+                return;
+            }
+
+            btnSubmitRsvp.innerText = 'ĐANG GỬI...';
+            btnSubmitRsvp.disabled = true;
+
+            const plusOneInputs = document.querySelectorAll('.plus-one-input');
+            const plusOnes = Array.from(plusOneInputs).map(inp => inp.value.trim()).join(', ');
+
+            let fetchPromises = [];
+
+            if (isCannotAttend) {
+                let fd = new FormData();
+                fd.append('FormType', 'RSVP');
+                fd.append('SheetName', 'Từ Chối');
+                fd.append('CotA', typedName);
+                fetchPromises.push(fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: fd }));
+            } else {
+                if (isHCM_Le || isHCM_Tiec) {
+                    let fdHCM = new FormData();
+                    fdHCM.append('FormType', 'RSVP');
+                    fdHCM.append('SheetName', 'HCM');
+                    fdHCM.append('CotA', typedName);
+                    fdHCM.append('CotB', plusOnes);
+                    fdHCM.append('CotC', side);
+                    fdHCM.append('CotD', relation);
+                    fdHCM.append('CotE', isHCM_Le ? 'Tham gia' : '');
+                    fdHCM.append('CotF', isHCM_Tiec ? 'Tham gia' : '');
+                    fetchPromises.push(fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: fdHCM }));
+                }
+                if (isHP_Le || isHP_Tiec) {
+                    let fdHP = new FormData();
+                    fdHP.append('FormType', 'RSVP');
+                    fdHP.append('SheetName', 'Hải Phòng');
+                    fdHP.append('CotA', typedName);
+                    fdHP.append('CotB', plusOnes);
+                    fdHP.append('CotC', side);
+                    fdHP.append('CotD', relation);
+                    fdHP.append('CotE', isHP_Le ? 'Tham gia' : '');
+                    fdHP.append('CotF', isHP_Tiec ? 'Tham gia' : '');
+                    fetchPromises.push(fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: fdHP }));
+                }
+            }
+
+            Promise.all(fetchPromises).then(() => {
+                document.getElementById('rsvpForm').style.display = 'none';
+                const resultDiv = document.getElementById('rsvp-result');
+                resultDiv.style.display = 'block';
+
+                if (isCannotAttend) {
+                    resultDiv.innerHTML = `<p>Cảm ơn <strong>${userFinalName}</strong> đã phản hồi. Tình cảm và lời chúc của <strong>${userFinalName}</strong> đã là món quà lớn nhất cho gia đình chúng tôi!</p>`;
+                } else {
+                    resultDiv.innerHTML = `<p>Cảm ơn <strong>${userFinalName}</strong> đã phản hồi. Rất mong chờ được đón tiếp <strong>${userFinalName}</strong> đến chung vui cùng gia đình chúng tôi!</p>`;
+                }
+            }).catch(() => {
+                alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+                btnSubmitRsvp.innerText = 'XÁC NHẬN';
+                btnSubmitRsvp.disabled = false;
+            });
+        });
 
     </script>
 </body>
