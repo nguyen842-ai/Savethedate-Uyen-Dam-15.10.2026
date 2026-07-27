@@ -64,12 +64,6 @@
             transition: opacity 1.2s ease, visibility 1.2s ease;
             cursor: pointer;
         }
-        
-        @media (max-width: 768px) {
-            .cover-overlay {
-                background-image: url('c.png');
-            }
-        }
 
         .cover-overlay.hidden {
             opacity: 0;
@@ -109,7 +103,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px; /* Thu nhỏ khoảng cách giữa 2 nút */
+            gap: 10px; 
             margin-top: 10px;
             margin-bottom: 25px;
             z-index: 100000;
@@ -120,10 +114,10 @@
             border: 1px solid var(--btn-color);
             color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem; /* Nhỏ hơn */
+            font-size: 0.75rem; 
             font-weight: 500;
-            padding: 4px 12px; /* Thanh mảnh hơn */
-            border-radius: 15px; /* Bo góc mềm mại */
+            padding: 4px 12px; 
+            border-radius: 15px; 
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
@@ -273,13 +267,6 @@
             font-weight: 500;
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                height: 100vw; 
-                background-size: cover; 
-            }
-        }
-
         /* --- CÁC KHU VỰC BÊN DƯỚI --- */
         section {
             padding: 80px 20px;
@@ -332,12 +319,6 @@
             font-size: 1rem;
         }
 
-        @media (max-width: 480px) {
-            .countdown-container { gap: 10px; }
-            .time-box { padding: 10px 12px; min-width: 70px; }
-            .time-box span { font-size: 1.6rem; }
-        }
-
         /* --- KHU VỰC THÔNG TIN VÀ CỬ HÀNH --- */
         #wedding-info, #ceremony-info {
             background-size: cover;
@@ -358,15 +339,6 @@
             background-image: linear-gradient(to bottom, rgba(251,250,252,1) 0%, rgba(251,250,252,0) 20%), url('4.webp');
         }
 
-        @media (max-width: 768px) {
-            #wedding-info {
-                background-image: linear-gradient(to bottom, rgba(251,250,252,0) 80%, rgba(251,250,252,1) 100%), url('c.png'); 
-            }
-            #ceremony-info {
-                background-image: linear-gradient(to bottom, rgba(251,250,252,1) 0%, rgba(251,250,252,0) 20%), url('c.png'); 
-            }
-        }
-
         .info-title {
             font-family: 'Montserrat', sans-serif;
             font-size: 2rem; 
@@ -382,13 +354,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-bottom: 25px; 
-        }
-
-        @media (max-width: 768px) {
-            .family-grid {
-                grid-template-columns: 1fr; 
-                gap: 30px;
-            }
         }
 
         .family-side {
@@ -458,14 +423,6 @@
             text-align: center;
         }
 
-        @media (max-width: 768px) {
-            .couple-grid {
-                grid-template-columns: 1fr; 
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-        }
-
         .couple-side {
             display: flex;
             flex-direction: column;
@@ -479,7 +436,6 @@
             color: var(--text-gold);
             font-weight: 400;
             margin-bottom: 15px;
-            
             border: 1.5px solid var(--text-gold);
             padding: 12px 25px; 
             border-radius: 15px; 
@@ -503,13 +459,6 @@
             font-style: italic;
         }
 
-        @media (max-width: 480px) {
-            .couple-name { 
-                font-size: 1.9rem; 
-                padding: 10px 18px;
-            }
-        }
-
         .ceremony-details {
             display: flex;
             flex-direction: column;
@@ -528,13 +477,6 @@
             margin-top: 40px; 
             margin-bottom: 15px;
             font-weight: 400;
-        }
-
-        @media (max-width: 480px) {
-            .ceremony-main-title {
-                font-size: 1.6rem;
-                letter-spacing: 2px;
-            }
         }
 
         .cd-text {
@@ -665,13 +607,6 @@
             max-width: 1200px;
             margin: 0 auto;
             align-items: stretch;
-        }
-
-        @media (max-width: 992px) {
-            .sc-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
         }
 
         .info-box {
@@ -1040,12 +975,6 @@
             align-items: flex-start;
         }
 
-        @media (max-width: 768px) {
-            .gb-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .gb-box {
             background-color: rgba(255, 255, 255, 0.85);
             border: 1.5px solid rgba(166, 139, 108, 0.3);
@@ -1168,6 +1097,42 @@
             background-color: #f0ebe4;
             position: relative;
             z-index: 2;
+        }
+
+        /* --- QUẢN LÝ ĐỔI ẢNH NỀN CHO ĐIỆN THOẠI --- */
+        /* Gom tất cả !important vào đây để đảm bảo độ ưu tiên cao nhất, đè lên tất cả CSS ở trên */
+        @media (max-width: 768px) {
+            .hero {
+                height: 100vw; 
+                background-size: cover; 
+            }
+            .cover-overlay {
+                background-image: url('c.png') !important;
+            }
+            #wedding-info {
+                background-image: linear-gradient(to bottom, rgba(251,250,252,0) 80%, rgba(251,250,252,1) 100%), url('c.png') !important; 
+            }
+            #ceremony-info {
+                background-image: linear-gradient(to bottom, rgba(251,250,252,1) 0%, rgba(251,250,252,0) 20%), url('c.png') !important; 
+            }
+            .schedule-calendar-section {
+                background-image: url('c.png') !important;
+            }
+            .guestbook-section {
+                background-image: url('c.png') !important;
+            }
+            
+            .countdown-container { gap: 10px; }
+            .time-box { padding: 10px 12px; min-width: 70px; }
+            .time-box span { font-size: 1.6rem; }
+            
+            .family-grid, .couple-grid, .sc-container, .gb-container {
+                grid-template-columns: 1fr;
+            }
+            .family-grid { gap: 30px; }
+            .couple-grid { gap: 15px; margin-bottom: 20px; }
+            .ceremony-main-title { font-size: 1.6rem; letter-spacing: 2px; }
+            .couple-name { font-size: 1.9rem; padding: 10px 18px; }
         }
     </style>
 </head>
@@ -1610,8 +1575,8 @@
                 "ev-t-music": "Live Music",
                 "ev3-title": "WEDDING RECEPTION IN HAI PHONG",
                 "ev3-loc": "3/161 Cam Alley, Gia Vien, Ngo Quyen, Hai Phong City",
-                "rsvp-btn": "Répondez s'il vous plaît",
-                "rsvp-modal-title": "Répondez s'il vous plaît",
+                "rsvp-btn": "RSVP",
+                "rsvp-modal-title": "RSVP",
                 "rsvp-req": "* please fill in all details",
                 "rsvp-name-pl": "Your name *...",
                 "rsvp-add": "+ Add plus one",
