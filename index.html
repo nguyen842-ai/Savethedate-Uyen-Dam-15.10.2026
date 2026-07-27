@@ -33,13 +33,150 @@
             color: var(--text-dark);
             line-height: 1.6;
             scroll-behavior: smooth;
+            overflow-x: hidden; 
+        }
+
+        /* Khóa cuộn trang khi chưa mở bìa */
+        body.locked {
+            overflow-y: hidden !important;
         }
 
         .serif-font {
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- CẤU HÌNH BÌA THIỆP --- */
+        /* --- LỚP BÌA THIỆP (COVER OVERLAY) --- */
+        .cover-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: var(--bg-color); 
+            z-index: 99999; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+            cursor: pointer;
+        }
+        
+        .cover-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .cover-content {
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cover-greeting {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: 400;
+            /* Đổ bóng chữ nhẹ để nổi bật trên nền ảnh */
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .cover-greeting span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            display: block;
+            margin-top: 10px;
+            color: var(--btn-color);
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .cover-hint {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--btn-color);
+            margin-top: 40px;
+            font-weight: 500;
+            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.8);
+            animation: pulseHint 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseHint {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.95); }
+        }
+
+        /* --- NHẠC ĐĨA THAN & HIỆU ỨNG CHẤM TRẮNG --- */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9998;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            background: 
+                radial-gradient(circle at center, #ffffff 18%, #333333 22%, transparent 24%),
+                repeating-radial-gradient(circle at center, #e8b59d 0px, #e8b59d 2px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px);
+            border: 2px solid var(--white);
+            font-size: 0.85rem;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            opacity: 0; 
+            pointer-events: none;
+        }
+        .music-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+        .music-btn.playing {
+            animation: spinMusic 3s linear infinite;
+        }
+        @keyframes spinMusic {
+            100% { transform: rotate(360deg); }
+        }
+
+        .snow-dot {
+            position: fixed;
+            top: -10%;
+            z-index: 9997; 
+            pointer-events: none; 
+            background-color: #ffffff;
+            border-radius: 50%;
+            /* Shadow mạnh hơn cho tuyết */
+            box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 0.8;
+            animation: fall linear forwards, sway ease-in-out infinite alternate;
+        }
+        @keyframes fall {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { top: 110%; opacity: 0; }
+        }
+        @keyframes sway {
+            0% { transform: translateX(0px); }
+            100% { transform: translateX(40px); }
+        }
+
+        /* --- CẤU HÌNH BÌA THIỆP CHÍNH --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -63,6 +200,7 @@
             padding: 20px;
             width: 100%;
             max-width: 400px;
+            z-index: 2;
         }
 
         .hero .names {
@@ -117,11 +255,15 @@
             font-size: 2rem;
             color: var(--text-gold);
             margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
         }
 
         /* --- PHẦN ĐẾM NGƯỢC --- */
         #countdown {
             padding: 40px 20px 20px; 
+            position: relative;
+            z-index: 2;
         }
         
         #countdown .section-title {
@@ -163,6 +305,7 @@
             background-repeat: no-repeat;
             position: relative;
             background-color: var(--bg-color); 
+            z-index: 2;
         }
 
         #wedding-info {
@@ -460,6 +603,8 @@
             padding: 80px 20px 20px;
             text-align: center;
             background-color: var(--bg-color);
+            position: relative;
+            z-index: 2;
         }
 
         .schedule-calendar-section {
@@ -469,6 +614,8 @@
             background-position: center;
             background-repeat: no-repeat;
             background-color: #f8f5f0; 
+            position: relative;
+            z-index: 2;
         }
 
         .sc-container {
@@ -632,6 +779,8 @@
             background-color: var(--bg-color);
             padding: 50px 20px;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .rsvp-container {
@@ -694,7 +843,7 @@
         .modal {
             display: none; 
             position: fixed; 
-            z-index: 9999; 
+            z-index: 10000; 
             left: 0; 
             top: 0; 
             width: 100%; 
@@ -827,6 +976,8 @@
             padding: 80px 20px 20px;
             text-align: center;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
 
         .guestbook-section {
@@ -836,6 +987,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            position: relative;
+            z-index: 2;
         }
 
         .gb-container {
@@ -973,10 +1126,28 @@
             padding: 40px 20px;
             font-size: 0.9rem;
             background-color: #f0ebe4;
+            position: relative;
+            z-index: 2;
         }
     </style>
 </head>
-<body>
+<body class="locked">
+
+    <!-- LỚP BÌA THIỆP (COVER OVERLAY) -->
+    <div id="cover-overlay" class="cover-overlay">
+        <div class="cover-content">
+            <h2 class="cover-greeting">Thân gửi <span id="cover-guest-name">Quý Khách</span></h2>
+            <p class="cover-hint">Mở thiệp</p>
+        </div>
+    </div>
+
+    <!-- THẺ AUDIO PHÁT NHẠC NỀN -->
+    <audio id="bg-music" loop>
+        <source src="c.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- NÚT ĐIỀU KHIỂN NHẠC NỀN (VẼ ĐĨA THAN) -->
+    <div class="music-btn" id="music-btn" title="Phát nhạc">🔇</div>
 
     <div class="hero">
         <div class="hero-content">
@@ -1116,11 +1287,12 @@
             <div class="info-box">
                 <h3 class="box-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách</div></div>
+                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách, chụp ảnh lưu niệm</div></div>
                     <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task">Khai tiệc</div></div>
                     <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task">Nghi thức</div></div>
                     <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ món chính</div></div>
-                    <div class="timeline-item"><div class="timeline-time">21:00</div><div class="timeline-dot"></div><div class="timeline-task">Kết thúc tiệc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:15</div><div class="timeline-dot"></div><div class="timeline-task">Chương trình âm nhạc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">...</div><div class="timeline-dot"></div><div class="timeline-task">...</div></div>
                 </div>
             </div>
             <div class="info-box">
@@ -1132,11 +1304,12 @@
                     <div class="calendar-date">1</div><div class="calendar-date">2</div><div class="calendar-date">3</div><div class="calendar-date">4</div>
                     <div class="calendar-date">5</div><div class="calendar-date">6</div><div class="calendar-date">7</div><div class="calendar-date">8</div>
                     <div class="calendar-date">9</div><div class="calendar-date">10</div><div class="calendar-date">11</div><div class="calendar-date">12</div>
-                    <div class="calendar-date">13</div><div class="calendar-date">14</div><div class="calendar-date wedding-day"><span>15</span></div><div class="calendar-date">16</div>
+                    <div class="calendar-date">13</div><div class="calendar-date">14</div><div class="calendar-date">15</div><div class="calendar-date">16</div>
                     <div class="calendar-date">17</div><div class="calendar-date">18</div><div class="calendar-date">19</div><div class="calendar-date">20</div>
                     <div class="calendar-date">21</div><div class="calendar-date">22</div><div class="calendar-date">23</div><div class="calendar-date">24</div>
-                    <div class="calendar-date">25</div><div class="calendar-date">26</div><div class="calendar-date">27</div><div class="calendar-date">28</div>
-                    <div class="calendar-date">29</div><div class="calendar-date">30</div><div class="calendar-date">31</div><div></div>
+                    <div class="calendar-date wedding-day"><span>25</span></div>
+                    <div class="calendar-date">26</div><div class="calendar-date">27</div><div class="calendar-date">28</div><div class="calendar-date">29</div>
+                    <div class="calendar-date">30</div><div class="calendar-date">31</div><div></div>
                 </div>
             </div>
         </div>
@@ -1160,11 +1333,12 @@
             <div class="info-box">
                 <h3 class="box-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách</div></div>
+                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách, chụp ảnh lưu niệm</div></div>
                     <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task">Khai tiệc</div></div>
                     <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task">Nghi thức</div></div>
                     <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ món chính</div></div>
-                    <div class="timeline-item"><div class="timeline-time">21:00</div><div class="timeline-dot"></div><div class="timeline-task">Kết thúc tiệc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:15</div><div class="timeline-dot"></div><div class="timeline-task">Chương trình âm nhạc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">...</div><div class="timeline-dot"></div><div class="timeline-task">...</div></div>
                 </div>
             </div>
             <div class="info-box">
@@ -1289,6 +1463,101 @@
     </footer>
 
     <script>
+        // --- LẤY TÊN TỪ URL & CẬP NHẬT GIAO DIỆN SỚM NHẤT ---
+        const urlParams = new URLSearchParams(window.location.search);
+        let guestName = urlParams.get('name');
+        
+        if (guestName) {
+            // Cập nhật bìa thiệp
+            const coverName = document.getElementById('cover-guest-name');
+            if (coverName) coverName.innerText = guestName;
+            
+            // Cập nhật bên trong thiệp
+            document.getElementById('guest-name').innerText = guestName;
+            const inputName = document.getElementById('guest-name-input');
+            if(inputName) inputName.value = guestName;
+            
+            const rsvpInputName = document.getElementById('rsvp-name-input');
+            if(rsvpInputName) rsvpInputName.value = guestName;
+        }
+		// TỰ ĐỘNG CUỘN LÊN ĐẦU KHI TẢI TRANG
+             window.scrollTo(0, 0);
+
+        // --- TRÌNH PHÁT NHẠC NỀN & HIỆU ỨNG HOA RƠI ---
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const coverOverlay = document.getElementById('cover-overlay');
+        let isMusicPlaying = false;
+        let dotInterval;
+
+        function createDot() {
+            const dot = document.createElement('div');
+            dot.classList.add('snow-dot');
+            
+            const size = Math.random() * 4 + 4; 
+            dot.style.width = `${size}px`;
+            dot.style.height = `${size}px`;
+            
+            dot.style.left = `${Math.random() * 100}vw`;
+            
+            const fallDuration = Math.random() * 10 + 10; 
+            const swayDuration = Math.random() * 3 + 3; 
+            
+            dot.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
+            
+            document.body.appendChild(dot);
+            
+            setTimeout(() => {
+                dot.remove();
+            }, fallDuration * 1000);
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+                musicBtn.innerHTML = '🔇';
+            } else {
+                bgMusic.play().then(() => {
+                    musicBtn.classList.add('playing');
+                    musicBtn.innerHTML = ''; // Vân đĩa than
+                }).catch(err => {
+                    console.log("Trình duyệt chặn tự động phát nhạc:", err);
+                });
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        // KHI KHÁCH CLICK VÀO BÌA THIỆP
+        coverOverlay.addEventListener('click', function() {   
+	    // 0. Đưa trang về vị trí trên cùng
+            window.scrollTo(0, 0)
+	    // 1. Mờ bìa và ẩn đi
+            coverOverlay.classList.add('hidden');
+            
+            // 2. Mở khóa cuộn trang
+            document.body.classList.remove('locked');
+            
+            // 3. Hiện nút nhạc đĩa than
+            musicBtn.classList.add('visible');
+
+            // 4. Phát nhạc
+            if (!isMusicPlaying) {
+                toggleMusic();
+            }
+
+            // 5. Bắt đầu rơi lấp lánh (sau 0.5s để chờ bìa mờ bớt)
+            setTimeout(() => {
+                if (!dotInterval) {
+                    dotInterval = setInterval(createDot, 500);
+                }
+            }, 500);
+        });
+
+        // Click thủ công vào nút nhạc sau khi vào trong
+        musicBtn.addEventListener('click', toggleMusic);
+
+
         // --- ĐẾM NGƯỢC ---
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
         const countdownTimer = setInterval(function() {
@@ -1310,19 +1579,6 @@
                 document.getElementById("countdown").innerHTML = "<h2 class='section-title serif-font'>Ngày Vui Đã Đến!</h2>";
             }
         }, 1000);
-
-        // --- LẤY TÊN TỪ URL ---
-        const urlParams = new URLSearchParams(window.location.search);
-        let guestName = urlParams.get('name');
-        
-        if (guestName) {
-            document.getElementById('guest-name').innerText = guestName;
-            const inputName = document.getElementById('guest-name-input');
-            if(inputName) inputName.value = guestName;
-            
-            const rsvpInputName = document.getElementById('rsvp-name-input');
-            if(rsvpInputName) rsvpInputName.value = guestName;
-        }
 
         // --- XỬ LÝ SỔ LƯU BÚT ---
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwl9t2BCq9Li4Us3jUmqkoXeNKbA86V4w0BdDGWd_wHaLPQlrRgWt4arF2KJbIzFcm6/exec';
@@ -1382,7 +1638,7 @@
             btnSubmitWish.disabled = true;
 
             let requestBody = new FormData(wishForm);
-            requestBody.append('FormType', 'Guestbook'); // Để Apps Script phân biệt
+            requestBody.append('FormType', 'Guestbook'); 
 
             fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: requestBody })
                 .then(response => {
@@ -1430,7 +1686,6 @@
             }
         }
 
-        // Logic check 1 trong 2 dropdown quan hệ
         relGroomSelect.addEventListener('change', function() { if(this.value) relBrideSelect.value = ''; });
         relBrideSelect.addEventListener('change', function() { if(this.value) relGroomSelect.value = ''; });
 
@@ -1481,14 +1736,13 @@
             plusOneCount++;
             const input = document.createElement('input');
             input.type = 'text';
-            input.placeholder = `Người đi cùng ${plusOneCount} *...`; // Bắt buộc
+            input.placeholder = `Người đi cùng ${plusOneCount} *...`;
             input.className = 'plus-one-input';
             input.required = true;
             plusOnesContainer.appendChild(input);
             updateRelationSelects();
         });
 
-        // Submit RSVP
         document.getElementById('rsvpForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -1509,7 +1763,6 @@
             if (relGroom) { side = 'Nhà Trai'; relation = relGroom; }
             else if (relBride) { side = 'Nhà Gái'; relation = relBride; }
 
-            // Validate chọn quan hệ nếu đi tham dự
             if (!isCannotAttend && side === '') {
                 alert('Vui lòng chọn mối quan hệ với Nhà Trai hoặc Nhà Gái!');
                 return;
