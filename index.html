@@ -65,6 +65,13 @@
             cursor: pointer;
         }
         
+        /* Đổi sang ảnh c.png khi xem trên màn hình điện thoại */
+        @media (max-width: 768px) {
+            .cover-overlay {
+                background-image: url('c.png');
+            }
+        }
+
         .cover-overlay.hidden {
             opacity: 0;
             visibility: hidden;
@@ -156,11 +163,10 @@
         .snow-dot {
             position: fixed;
             top: -10%;
-            z-index: 9997; 
+            z-index: 100000; /* Chỉ số rất cao để tuyết nổi lên trên cả lớp bìa thiệp */
             pointer-events: none; 
             background-color: #ffffff;
             border-radius: 50%;
-            /* Shadow mạnh hơn cho tuyết */
             box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.2);
             opacity: 0.8;
             animation: fall linear forwards, sway ease-in-out infinite alternate;
@@ -1480,16 +1486,11 @@
             const rsvpInputName = document.getElementById('rsvp-name-input');
             if(rsvpInputName) rsvpInputName.value = guestName;
         }
-		// TỰ ĐỘNG CUỘN LÊN ĐẦU KHI TẢI TRANG
-             window.scrollTo(0, 0);
 
-        // --- TRÌNH PHÁT NHẠC NỀN & HIỆU ỨNG HOA RƠI ---
-        const bgMusic = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-        const coverOverlay = document.getElementById('cover-overlay');
-        let isMusicPlaying = false;
-        let dotInterval;
+        // TỰ ĐỘNG CUỘN LÊN ĐẦU KHI TẢI TRANG
+        window.scrollTo(0, 0);
 
+        // --- HIỆU ỨNG HOA RƠI (TUYẾT TRẮNG) BẮT ĐẦU NGAY ---
         function createDot() {
             const dot = document.createElement('div');
             dot.classList.add('snow-dot');
@@ -1512,6 +1513,15 @@
             }, fallDuration * 1000);
         }
 
+        // Tuyết bắt đầu rơi ngay với tốc độ 800ms
+        let dotInterval = setInterval(createDot, 800);
+
+        // --- TRÌNH PHÁT NHẠC NỀN ---
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const coverOverlay = document.getElementById('cover-overlay');
+        let isMusicPlaying = false;
+
         function toggleMusic() {
             if (isMusicPlaying) {
                 bgMusic.pause();
@@ -1529,29 +1539,23 @@
         }
 
         // KHI KHÁCH CLICK VÀO BÌA THIỆP
-        coverOverlay.addEventListener('click', function() {   
-	    // 0. Đưa trang về vị trí trên cùng
-            window.scrollTo(0, 0)
-	    // 1. Mờ bìa và ẩn đi
+        coverOverlay.addEventListener('click', function() {
+            // Đưa trang về vị trí trên cùng
+            window.scrollTo(0, 0);
+
+            // Mờ bìa và ẩn đi
             coverOverlay.classList.add('hidden');
             
-            // 2. Mở khóa cuộn trang
+            // Mở khóa cuộn trang
             document.body.classList.remove('locked');
             
-            // 3. Hiện nút nhạc đĩa than
+            // Hiện nút nhạc đĩa than
             musicBtn.classList.add('visible');
 
-            // 4. Phát nhạc
+            // Phát nhạc
             if (!isMusicPlaying) {
                 toggleMusic();
             }
-
-            // 5. Bắt đầu rơi lấp lánh (sau 0.5s để chờ bìa mờ bớt)
-            setTimeout(() => {
-                if (!dotInterval) {
-                    dotInterval = setInterval(createDot, 500);
-                }
-            }, 500);
         });
 
         // Click thủ công vào nút nhạc sau khi vào trong
