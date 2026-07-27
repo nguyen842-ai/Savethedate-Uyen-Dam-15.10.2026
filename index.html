@@ -65,7 +65,6 @@
             cursor: pointer;
         }
         
-        /* Đổi sang ảnh c.png khi xem trên màn hình điện thoại */
         @media (max-width: 768px) {
             .cover-overlay {
                 background-image: url('c.png');
@@ -90,9 +89,8 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             color: var(--text-dark);
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             font-weight: 400;
-            /* Đổ bóng chữ nhẹ để nổi bật trên nền ảnh */
             text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
@@ -106,13 +104,46 @@
             text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
+        /* --- NÚT CHỌN NGÔN NGỮ (VI - EN) --- */
+        .lang-boxes {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Thu nhỏ khoảng cách giữa 2 nút */
+            margin-top: 10px;
+            margin-bottom: 25px;
+            z-index: 100000;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--btn-color);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem; /* Nhỏ hơn */
+            font-weight: 500;
+            padding: 4px 12px; /* Thanh mảnh hơn */
+            border-radius: 15px; /* Bo góc mềm mại */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--btn-color);
+            color: var(--white);
+            border-color: var(--btn-color);
+        }
+
         .cover-hint {
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 4px;
             color: var(--btn-color);
-            margin-top: 40px;
+            margin-top: 20px;
             font-weight: 500;
             text-shadow: 0 2px 5px rgba(255, 255, 255, 0.8);
             animation: pulseHint 2s infinite ease-in-out;
@@ -163,7 +194,7 @@
         .snow-dot {
             position: fixed;
             top: -10%;
-            z-index: 100000; /* Chỉ số rất cao để tuyết nổi lên trên cả lớp bìa thiệp */
+            z-index: 100000;
             pointer-events: none; 
             background-color: #ffffff;
             border-radius: 50%;
@@ -297,6 +328,9 @@
             color: var(--text-gold);
             font-family: 'Montserrat', sans-serif;
         }
+        .time-box div {
+            font-size: 1rem;
+        }
 
         @media (max-width: 480px) {
             .countdown-container { gap: 10px; }
@@ -428,7 +462,7 @@
             .couple-grid {
                 grid-template-columns: 1fr; 
                 gap: 15px;
-                margin-top: 20px;
+                margin-bottom: 20px;
             }
         }
 
@@ -1142,8 +1176,15 @@
     <!-- LỚP BÌA THIỆP (COVER OVERLAY) -->
     <div id="cover-overlay" class="cover-overlay">
         <div class="cover-content">
-            <h2 class="cover-greeting">Thân gửi <span id="cover-guest-name">Quý Khách</span></h2>
-            <p class="cover-hint">Mở thiệp</p>
+            <h2 class="cover-greeting"><span data-i18n="cover-greeting">Thân gửi</span> <span id="cover-guest-name">Quý Khách</span></h2>
+            
+            <!-- NÚT CHỌN NGÔN NGỮ (VI - EN) -->
+            <div class="lang-boxes">
+                <button class="lang-btn active" id="btn-vi">VI</button>
+                <button class="lang-btn" id="btn-en">EN</button>
+            </div>
+
+            <p class="cover-hint" id="cover-hint" data-i18n="cover-hint">Mở thiệp</p>
         </div>
     </div>
 
@@ -1164,43 +1205,43 @@
     </div>
 
     <section id="countdown">
-        <h2 class="section-title serif-font">Ngày Vui Sắp Đến</h2>
+        <h2 class="section-title serif-font" data-i18n="countdown-title">Ngày Vui Sắp Đến</h2>
         <div class="countdown-container">
-            <div class="time-box"><span id="days">00</span>Ngày</div>
-            <div class="time-box"><span id="hours">00</span>Giờ</div>
-            <div class="time-box"><span id="minutes">00</span>Phút</div>
-            <div class="time-box"><span id="seconds">00</span>Giây</div>
+            <div class="time-box"><span id="days">00</span><div data-i18n="lbl-day">Ngày</div></div>
+            <div class="time-box"><span id="hours">00</span><div data-i18n="lbl-hour">Giờ</div></div>
+            <div class="time-box"><span id="minutes">00</span><div data-i18n="lbl-min">Phút</div></div>
+            <div class="time-box"><span id="seconds">00</span><div data-i18n="lbl-sec">Giây</div></div>
         </div>
     </section>
 
     <div id="wedding-info">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <h2 class="info-title">ĐÔI BÊN GIA ĐÌNH CHÚNG TÔI</h2>
+            <h2 class="info-title" data-i18n="fam-title">ĐÔI BÊN GIA ĐÌNH CHÚNG TÔI</h2>
             <div class="family-grid">
                 <div class="family-side">
-                    <p class="role">NHÀ TRAI</p>
-                    <p class="parent-name">Ông NGUYỄN ANH LINH<br>Bà BÙI THỊ BÍCH LIÊN</p>
-                    <p class="address">3/161 Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
+                    <p class="role" data-i18n="fam-groom">NHÀ TRAI</p>
+                    <p class="parent-name" data-i18n="groom-parents">Ông NGUYỄN ANH LINH<br>Bà BÙI THỊ BÍCH LIÊN</p>
+                    <p class="address" data-i18n="groom-addr">3/161 Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
                 </div>
                 <div class="family-side">
-                    <p class="role">NHÀ GÁI</p>
-                    <p class="parent-name">Ông NGUYỄN TRUNG NGÔN<br>Bà NGUYỄN THỊ HƯỜNG (Tạ thế)</p>
-                    <p class="address">825/8K, đường Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM</p>
+                    <p class="role" data-i18n="fam-bride">NHÀ GÁI</p>
+                    <p class="parent-name" data-i18n="bride-parents">Ông NGUYỄN TRUNG NGÔN<br>Bà NGUYỄN THỊ HƯỜNG (Tạ thế)</p>
+                    <p class="address" data-i18n="bride-addr">825/8K, đường Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM</p>
                 </div>
             </div>
             <div class="announcement">
-                <h4>TRÂN TRỌNG BÁO TIN</h4>
-                <p>LỄ THÀNH HÔN CỦA CÁC CON</p>
+                <h4 data-i18n="announce-1">TRÂN TRỌNG BÁO TIN</h4>
+                <p data-i18n="announce-2">LỄ THÀNH HÔN CỦA CÁC CON</p>
             </div>
             <div class="couple-grid">
                 <div class="couple-side">
                     <h3 class="couple-name">Nguyễn Thanh Đạm</h3>
-                    <p class="couple-role">Út Nam</p>
+                    <p class="couple-role" data-i18n="role-groom">Út Nam</p>
                 </div>
                 <div class="ampersand">&</div>
                 <div class="couple-side">
                     <h3 class="couple-name">Nguyễn Ngọc Hạ Uyên</h3>
-                    <p class="couple-role">Trưởng Nữ</p>
+                    <p class="couple-role" data-i18n="role-bride">Trưởng Nữ</p>
                 </div>
             </div>
         </div>
@@ -1209,24 +1250,24 @@
     <div id="ceremony-info">
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <div class="ceremony-details">
-                <h2 class="ceremony-main-title">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI</h2>
-                <p class="cd-text">TƯ GIA</p>
-                <p class="cd-text" style="margin-top: 5px;">VÀO LÚC</p>
+                <h2 class="ceremony-main-title" data-i18n="cere-title">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI</h2>
+                <p class="cd-text" data-i18n="cere-home">TƯ GIA</p>
+                <p class="cd-text" style="margin-top: 5px;" data-i18n="cere-time">VÀO LÚC</p>
                 <p class="cd-time">09:00</p>
                 <div class="cd-date-row">
-                    <span class="cd-day-month">THỨ NĂM</span>
+                    <span class="cd-day-month" data-i18n="cere-day">THỨ NĂM</span>
                     <div class="cd-divider"></div>
                     <span class="cd-date-number">15</span>
                     <div class="cd-divider"></div>
-                    <span class="cd-day-month">THÁNG 10</span>
+                    <span class="cd-day-month" data-i18n="cere-month">THÁNG 10</span>
                 </div>
                 <p class="cd-year">2026</p>
-                <p class="cd-lunar">( Tức Ngày 6/9/2026<br>Ngày Nhâm Tuất, Tháng Mậu Tuất, Năm Bính Ngọ )</p>
+                <p class="cd-lunar" data-i18n="cere-lunar">( Tức Ngày 6/9/2026<br>Ngày Nhâm Tuất, Tháng Mậu Tuất, Năm Bính Ngọ )</p>
                 
                 <div class="guest-invite-box">
-                    <p class="invite-title">THÂN MỜI</p>
+                    <p class="invite-title" data-i18n="invite-1">THÂN MỜI</p>
                     <h3 class="guest-name" id="guest-name">Quý Khách</h3>
-                    <p class="invite-message">Đến chung vui cùng gia đình chúng tôi</p>
+                    <p class="invite-message" data-i18n="invite-2">Đến chung vui cùng gia đình chúng tôi</p>
                 </div>
             </div>
         </div>
@@ -1234,33 +1275,33 @@
 
     <!-- SỰ KIỆN 1 -->
     <section class="event-wrapper">
-        <h2 class="section-title serif-font">Lễ Thành Hôn</h2>
+        <h2 class="section-title serif-font" data-i18n="ev1-title">Lễ Thành Hôn</h2>
     </section>
     <div class="schedule-calendar-section">
         <div class="sc-container">
             <div class="info-box">
-                <h3 class="box-title">Địa Điểm</h3>
-                <p style="margin-bottom: 15px;">Tư gia nhà gái, Quận 5, TP. Hồ Chí Minh</p>
+                <h3 class="box-title" data-i18n="loc-title">Địa Điểm</h3>
+                <p style="margin-bottom: 15px;" data-i18n="ev1-loc">Tư gia nhà gái, Quận 5, TP. Hồ Chí Minh</p>
                 <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
-                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Đón tiếp đoàn nhà trai và làm lễ gia tiên</p>
+                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;" data-i18n="ev1-desc">Đón tiếp đoàn nhà trai và làm lễ gia tiên</p>
                 <div class="map-container" style="margin-top: auto;">
                     <iframe src="https://maps.google.com/maps?q=QM3J%2BX7%20Ch%E1%BB%A3%20Qu%C3%A1n,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
             <div class="info-box">
-                <h3 class="box-title">Lịch Trình</h3>
+                <h3 class="box-title" data-i18n="sche-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-time">09:00</div><div class="timeline-dot"></div><div class="timeline-task">Đón nhà gái</div></div>
-                    <div class="timeline-item"><div class="timeline-time">09:30</div><div class="timeline-dot"></div><div class="timeline-task">Lễ gia tiên</div></div>
-                    <div class="timeline-item"><div class="timeline-time">10:30</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ trà bánh</div></div>
-                    <div class="timeline-item"><div class="timeline-time">11:30</div><div class="timeline-dot"></div><div class="timeline-task">Kết thúc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">09:00</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev1-t1">Đón nhà gái</div></div>
+                    <div class="timeline-item"><div class="timeline-time">09:30</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev1-t2">Lễ gia tiên</div></div>
+                    <div class="timeline-item"><div class="timeline-time">10:30</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev1-t3">Phục vụ trà bánh</div></div>
+                    <div class="timeline-item"><div class="timeline-time">11:30</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev1-t4">Kết thúc</div></div>
                 </div>
             </div>
             <div class="info-box">
-                <h3 class="box-title">Tháng 10 / 2026</h3>
+                <h3 class="box-title" data-i18n="cal-title">Tháng 10 / 2026</h3>
                 <div class="calendar-grid">
-                    <div class="calendar-day-name">T2</div><div class="calendar-day-name">T3</div><div class="calendar-day-name">T4</div><div class="calendar-day-name">T5</div>
-                    <div class="calendar-day-name">T6</div><div class="calendar-day-name">T7</div><div class="calendar-day-name">CN</div>
+                    <div class="calendar-day-name" data-i18n="day-2">T2</div><div class="calendar-day-name" data-i18n="day-3">T3</div><div class="calendar-day-name" data-i18n="day-4">T4</div><div class="calendar-day-name" data-i18n="day-5">T5</div>
+                    <div class="calendar-day-name" data-i18n="day-6">T6</div><div class="calendar-day-name" data-i18n="day-7">T7</div><div class="calendar-day-name" data-i18n="day-8">CN</div>
                     <div></div><div></div><div></div>
                     <div class="calendar-date">1</div><div class="calendar-date">2</div><div class="calendar-date">3</div><div class="calendar-date">4</div>
                     <div class="calendar-date">5</div><div class="calendar-date">6</div><div class="calendar-date">7</div><div class="calendar-date">8</div>
@@ -1277,35 +1318,35 @@
 
     <!-- SỰ KIỆN 2 -->
     <section class="event-wrapper">
-        <h2 class="section-title serif-font">TIỆC CƯỚI TẠI TP.HCM</h2>
+        <h2 class="section-title serif-font" data-i18n="ev2-title">TIỆC CƯỚI TẠI TP.HCM</h2>
     </section>
     <div class="schedule-calendar-section">
         <div class="sc-container">
             <div class="info-box">
-                <h3 class="box-title">Địa Điểm</h3>
-                <p style="margin-bottom: 15px;">Amor Resort- 61A Nguyễn Văn Đậu, phường Bình Lợi Trung, TP.HCM</p>
+                <h3 class="box-title" data-i18n="loc-title">Địa Điểm</h3>
+                <p style="margin-bottom: 15px;" data-i18n="ev2-loc">Amor Resort- 61A Nguyễn Văn Đậu, phường Bình Lợi Trung, TP.HCM</p>
                 <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
-                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Khai tiệc mừng hạnh phúc trăm năm</p>
+                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;" data-i18n="ev-desc-party">Khai tiệc mừng hạnh phúc trăm năm</p>
                 <div class="map-container" style="margin-top: auto;">
                     <iframe src="https://maps.google.com/maps?q=RM5Q%2B53%20B%C3%ACnh%20L%E1%BB%A3i%20Trung,%20H%E1%BB%93%20Ch%C3%AD%20Minh,%20Vi%E1%BB%87t%20Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
             <div class="info-box">
-                <h3 class="box-title">Lịch Trình</h3>
+                <h3 class="box-title" data-i18n="sche-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách, chụp ảnh lưu niệm</div></div>
-                    <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task">Khai tiệc</div></div>
-                    <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task">Nghi thức</div></div>
-                    <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ món chính</div></div>
-                    <div class="timeline-item"><div class="timeline-time">19:15</div><div class="timeline-dot"></div><div class="timeline-task">Chương trình âm nhạc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-welcome">Đón khách, chụp ảnh lưu niệm</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-start">Khai tiệc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-ceremony">Nghi thức</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-main">Phục vụ món chính</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:15</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-music">Chương trình âm nhạc</div></div>
                     <div class="timeline-item"><div class="timeline-time">...</div><div class="timeline-dot"></div><div class="timeline-task">...</div></div>
                 </div>
             </div>
              <div class="info-box">
-                <h3 class="box-title">Tháng 10 / 2026</h3>
+                <h3 class="box-title" data-i18n="cal-title">Tháng 10 / 2026</h3>
                 <div class="calendar-grid">
-                    <div class="calendar-day-name">T2</div><div class="calendar-day-name">T3</div><div class="calendar-day-name">T4</div><div class="calendar-day-name">T5</div>
-                    <div class="calendar-day-name">T6</div><div class="calendar-day-name">T7</div><div class="calendar-day-name">CN</div>
+                    <div class="calendar-day-name" data-i18n="day-2">T2</div><div class="calendar-day-name" data-i18n="day-3">T3</div><div class="calendar-day-name" data-i18n="day-4">T4</div><div class="calendar-day-name" data-i18n="day-5">T5</div>
+                    <div class="calendar-day-name" data-i18n="day-6">T6</div><div class="calendar-day-name" data-i18n="day-7">T7</div><div class="calendar-day-name" data-i18n="day-8">CN</div>
                     <div></div><div></div><div></div>
                     <div class="calendar-date">1</div><div class="calendar-date">2</div><div class="calendar-date">3</div><div class="calendar-date">4</div>
                     <div class="calendar-date">5</div><div class="calendar-date">6</div><div class="calendar-date">7</div><div class="calendar-date">8</div>
@@ -1322,35 +1363,35 @@
 
     <!-- SỰ KIỆN 3 -->
     <section class="event-wrapper">
-        <h2 class="section-title serif-font">TIỆC CƯỚI TẠI HẢI PHÒNG</h2>
+        <h2 class="section-title serif-font" data-i18n="ev3-title">TIỆC CƯỚI TẠI HẢI PHÒNG</h2>
     </section>
     <div class="schedule-calendar-section">
         <div class="sc-container">
             <div class="info-box">
-                <h3 class="box-title">Địa Điểm</h3>
-                <p style="margin-bottom: 15px;">3/161 ngõ Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
+                <h3 class="box-title" data-i18n="loc-title">Địa Điểm</h3>
+                <p style="margin-bottom: 15px;" data-i18n="ev3-loc">3/161 ngõ Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng</p>
                 <hr style="width: 100%; margin: 15px 0; border: 0; border-top: 1px dashed var(--accent-color);">
-                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;">Khai tiệc mừng hạnh phúc trăm năm</p>
+                <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 15px;" data-i18n="ev-desc-party">Khai tiệc mừng hạnh phúc trăm năm</p>
                 <div class="map-container" style="margin-top: auto;">
                     <iframe src="https://maps.google.com/maps?q=3%2F161%20ng%C3%B5%20C%E1%BA%A5m%2C%20ph%C6%B0%E1%BB%9Dng%20gia%20vi%C3%AAn%2C%20qu%E1%BA%ADn%20Ng%C3%B4%20Quy%E1%BB%81n%2C%20TP.%20H%E1%BA%A3i%20Ph%C3%B2ng&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
             <div class="info-box">
-                <h3 class="box-title">Lịch Trình</h3>
+                <h3 class="box-title" data-i18n="sche-title">Lịch Trình</h3>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task">Đón khách, chụp ảnh lưu niệm</div></div>
-                    <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task">Khai tiệc</div></div>
-                    <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task">Nghi thức</div></div>
-                    <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task">Phục vụ món chính</div></div>
-                    <div class="timeline-item"><div class="timeline-time">19:15</div><div class="timeline-dot"></div><div class="timeline-task">Chương trình âm nhạc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-welcome">Đón khách, chụp ảnh lưu niệm</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-start">Khai tiệc</div></div>
+                    <div class="timeline-item"><div class="timeline-time">18:45</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-ceremony">Nghi thức</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-main">Phục vụ món chính</div></div>
+                    <div class="timeline-item"><div class="timeline-time">19:15</div><div class="timeline-dot"></div><div class="timeline-task" data-i18n="ev-t-music">Chương trình âm nhạc</div></div>
                     <div class="timeline-item"><div class="timeline-time">...</div><div class="timeline-dot"></div><div class="timeline-task">...</div></div>
                 </div>
             </div>
             <div class="info-box">
-                <h3 class="box-title">Tháng 10 / 2026</h3>
+                <h3 class="box-title" data-i18n="cal-title">Tháng 10 / 2026</h3>
                 <div class="calendar-grid">
-                    <div class="calendar-day-name">T2</div><div class="calendar-day-name">T3</div><div class="calendar-day-name">T4</div><div class="calendar-day-name">T5</div>
-                    <div class="calendar-day-name">T6</div><div class="calendar-day-name">T7</div><div class="calendar-day-name">CN</div>
+                    <div class="calendar-day-name" data-i18n="day-2">T2</div><div class="calendar-day-name" data-i18n="day-3">T3</div><div class="calendar-day-name" data-i18n="day-4">T4</div><div class="calendar-day-name" data-i18n="day-5">T5</div>
+                    <div class="calendar-day-name" data-i18n="day-6">T6</div><div class="calendar-day-name" data-i18n="day-7">T7</div><div class="calendar-day-name" data-i18n="day-8">CN</div>
                     <div></div><div></div><div></div>
                     <div class="calendar-date">1</div><div class="calendar-date">2</div><div class="calendar-date">3</div><div class="calendar-date">4</div>
                     <div class="calendar-date">5</div><div class="calendar-date">6</div><div class="calendar-date">7</div><div class="calendar-date">8</div>
@@ -1372,13 +1413,13 @@
             <div class="dresscode-container">
                 <p class="dresscode-title">Dress Code</p>
                 <div class="dresscode-colors">
-                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="Trắng"></div>
-                    <div class="color-circle" style="background-color: #000000;" title="Đen"></div>
-                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold"></div>
-                    <div class="color-circle" style="background-color: #7a1f24;" title="Đỏ Rượu"></div>
+                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="White / Trắng"></div>
+                    <div class="color-circle" style="background-color: #000000;" title="Black / Đen"></div>
+                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold / Vàng Kim"></div>
+                    <div class="color-circle" style="background-color: #7a1f24;" title="Burgundy / Đỏ Rượu"></div>
                 </div>
             </div>
-            <button class="btn-rsvp" id="btn-open-rsvp">XÁC NHẬN THAM DỰ</button>
+            <button class="btn-rsvp" id="btn-open-rsvp" data-i18n="rsvp-btn">XÁC NHẬN THAM GIA</button>
         </div>
     </section>
 
@@ -1386,77 +1427,65 @@
     <div id="rsvpModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" id="closeRsvp">&times;</span>
-            <h2>Xác Nhận Tham Dự</h2>
+            <h2 id="rsvp-modal-title" data-i18n="rsvp-modal-title">Xác Nhận Tham Gia</h2>
             
             <form id="rsvpForm">
-                <p style="color: red; font-size: 0.85rem; font-style: italic; margin-bottom: 15px;">* vui lòng nhập đầy đủ nội dung</p>
-                <input type="text" id="rsvp-name-input" placeholder="Tên của bạn *..." required>
+                <p style="color: red; font-size: 0.85rem; font-style: italic; margin-bottom: 15px;" data-i18n="rsvp-req">* vui lòng nhập đầy đủ nội dung</p>
+                <input type="text" id="rsvp-name-input" data-i18n="rsvp-name-pl" placeholder="Tên của bạn *..." required>
                 
                 <div id="plus-ones-container"></div>
-                <button type="button" class="btn-add-plus" id="btn-add-plusone" style="display: none;">+ Thêm người đi cùng</button>
+                <button type="button" class="btn-add-plus" id="btn-add-plusone" data-i18n="rsvp-add">+ Thêm người đi cùng</button>
 
-                <h3>Répondez s'il vous plaît</h3>
+                <h3 data-i18n="rsvp-ans">Répondez s'il vous plaît</h3>
                 <div class="rsvp-checkbox-group">
-                    <label><input type="checkbox" class="cb-attend" value="TPHCM_Le"> Tôi xác nhận tham gia lễ thành hôn tại TPHCM</label>
-                    <label><input type="checkbox" class="cb-attend" value="HaiPhong_Le"> Tôi xác nhận tham gia lễ thành hôn tại Hải Phòng</label>
-                    <label><input type="checkbox" class="cb-attend" value="TPHCM_Tiec"> Tôi xác nhận tham gia tiệc cưới tại TP.HCM</label>
-                    <label><input type="checkbox" class="cb-attend" value="HaiPhong_Tiec"> Tôi xác nhận tham gia tiệc cưới tại Hải Phòng</label>
-                    <label><input type="checkbox" id="cb-cannot-attend" value="TuChoi"> Tôi chưa thể tham gia</label>
+                    <label><input type="checkbox" class="cb-attend" value="TPHCM_Le"> <span class="rsvp-pronoun">Tôi</span><span data-i18n="cb-hcm-le"> xác nhận tham gia lễ thành hôn tại TPHCM</span></label>
+                    <label><input type="checkbox" class="cb-attend" value="HaiPhong_Le"> <span class="rsvp-pronoun">Tôi</span><span data-i18n="cb-hp-le"> xác nhận tham gia lễ thành hôn tại Hải Phòng</span></label>
+                    <label><input type="checkbox" class="cb-attend" value="TPHCM_Tiec"> <span class="rsvp-pronoun">Tôi</span><span data-i18n="cb-hcm-tiec"> xác nhận tham gia tiệc cưới tại TP.HCM</span></label>
+                    <label><input type="checkbox" class="cb-attend" value="HaiPhong_Tiec"> <span class="rsvp-pronoun">Tôi</span><span data-i18n="cb-hp-tiec"> xác nhận tham gia tiệc cưới tại Hải Phòng</span></label>
+                    <label><input type="checkbox" id="cb-cannot-attend" value="TuChoi"> <span class="rsvp-pronoun">Tôi</span><span data-i18n="cb-no"> chưa thể tham gia</span></label>
                 </div>
 
                 <div class="relation-columns" id="relation-box" style="display: none;">
                     <div class="col">
-                        <h4>Nhà Trai</h4>
-                        <select id="rel-groom">
-                            <option value="">-- Chọn --</option>
-                            <option value="người thân/gia đình">Tôi là người thân/gia đình</option>
-                            <option value="đồng nghiệp">Tôi là đồng nghiệp</option>
-                            <option value="bạn bè">Tôi là bạn bè</option>
-                        </select>
+                        <h4 data-i18n="side-groom">Nhà Trai</h4>
+                        <select id="rel-groom"></select>
                     </div>
                     <div class="col">
-                        <h4>Nhà Gái</h4>
-                        <select id="rel-bride">
-                            <option value="">-- Chọn --</option>
-                            <option value="người thân/gia đình">Tôi là người thân/gia đình</option>
-                            <option value="đồng nghiệp">Tôi là đồng nghiệp</option>
-                            <option value="bạn bè">Tôi là bạn bè</option>
-                        </select>
+                        <h4 data-i18n="side-bride">Nhà Gái</h4>
+                        <select id="rel-bride"></select>
                     </div>
                 </div>
 
-                <button type="submit" class="btn-rsvp" id="btn-submit-rsvp" style="display: none; width: 100%; margin-top: 10px;">XÁC NHẬN</button>
+                <button type="submit" class="btn-rsvp" id="btn-submit-rsvp" data-i18n="rsvp-submit" style="display: none; width: 100%; margin-top: 10px;">XÁC NHẬN</button>
             </form>
 
-            <div id="rsvp-result" class="rsvp-success" style="display: none;">
-                <!-- Kết quả trả về sau khi ấn gửi -->
-            </div>
+            <div id="rsvp-result" class="rsvp-success" style="display: none;"></div>
         </div>
     </div>
 
     <!-- SỔ LƯU BÚT -->
     <div class="guestbook-title-area">
-        <h2 class="section-title serif-font" style="margin-bottom: 0;">Sổ Lưu Bút</h2>
+        <h2 class="section-title serif-font" style="margin-bottom: 0;" data-i18n="gb-title">Sổ Lưu Bút</h2>
     </div>
 
     <div class="guestbook-section">
         <div class="gb-container">
             <!-- FORM GỬI LỜI CHÚC -->
             <div class="gb-box">
-                <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;">Gửi Lời Chúc</h3>
+                <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;" data-i18n="gb-form-title">Gửi Lời Chúc</h3>
                 <form id="wish-form" class="gb-form">
-                    <input type="text" name="Ten" id="guest-name-input" placeholder="Tên của bạn..." required>
-                    <textarea name="LoiChuc" id="guest-wish-input" placeholder="Nhập lời chúc của bạn tới cô dâu và chú rể..." required></textarea>
-                    <button type="submit" class="btn-submit-wish" id="btn-submit">Gửi Lời Chúc</button>
+                    <input type="text" name="Ten" id="guest-name-input" data-i18n="gb-name" placeholder="Tên của bạn..." required>
+                    <textarea name="LoiChuc" id="guest-wish-input" data-i18n="gb-wish" placeholder="Nhập lời chúc của bạn tới cô dâu và chú rể..." required></textarea>
+                    <button type="submit" class="btn-submit-wish" id="btn-submit" data-i18n="gb-btn">Gửi Lời Chúc</button>
                     <p id="form-msg" style="margin-top: 10px; font-size: 0.9rem; color: var(--btn-color); display: none;"></p>
                 </form>
             </div>
 
             <!-- HIỂN THỊ LỜI CHÚC -->
             <div class="gb-box" style="padding: 20px 10px 20px 20px;">
-                <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;">Lời Chúc Yêu Thương</h3>
+                <h3 class="box-title" style="margin-bottom: 20px; font-size: 1.3rem;" data-i18n="gb-list-title">Lời Chúc Yêu Thương</h3>
                 <div class="chat-container" id="chat-container">
-                    <p class="loading-text" id="loading-msg">Đang tải lời chúc...</p>
+                    <p class="loading-text" id="loading-msg" data-i18n="gb-loading">Đang tải lời chúc...</p>
                 </div>
             </div>
         </div>
@@ -1468,58 +1497,239 @@
     </footer>
 
     <script>
-        // --- LẤY TÊN TỪ URL & CẬP NHẬT GIAO DIỆN SỚM NHẤT ---
+        // --- 1. HỆ THỐNG ĐA NGÔN NGỮ ---
+        const translations = {
+            vi: {
+                "cover-greeting": "Thân gửi",
+                "cover-hint": "Mở thiệp",
+                "countdown-title": "Ngày Vui Sắp Đến",
+                "lbl-day": "Ngày", "lbl-hour": "Giờ", "lbl-min": "Phút", "lbl-sec": "Giây",
+                "fam-title": "ĐÔI BÊN GIA ĐÌNH CHÚNG TÔI",
+                "fam-groom": "NHÀ TRAI",
+                "fam-bride": "NHÀ GÁI",
+                "groom-parents": "Ông NGUYỄN ANH LINH<br>Bà BÙI THỊ BÍCH LIÊN",
+                "bride-parents": "Ông NGUYỄN TRUNG NGÔN<br>Bà NGUYỄN THỊ HƯỜNG (Tạ thế)",
+                "groom-addr": "3/161 Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng",
+                "bride-addr": "825/8K, đường Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM",
+                "announce-1": "TRÂN TRỌNG BÁO TIN",
+                "announce-2": "LỄ THÀNH HÔN CỦA CÁC CON",
+                "role-groom": "Út Nam",
+                "role-bride": "Trưởng Nữ",
+                "cere-title": "LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI",
+                "cere-home": "TƯ GIA",
+                "cere-time": "VÀO LÚC",
+                "cere-day": "THỨ NĂM",
+                "cere-month": "THÁNG 10",
+                "cere-lunar": "( Tức Ngày 6/9/2026<br>Ngày Nhâm Tuất, Tháng Mậu Tuất, Năm Bính Ngọ )",
+                "invite-1": "THÂN MỜI",
+                "invite-2": "Đến chung vui cùng gia đình chúng tôi",
+                "ev1-title": "Lễ Thành Hôn",
+                "loc-title": "Địa Điểm",
+                "ev1-loc": "Tư gia nhà gái, Quận 5, TP. Hồ Chí Minh",
+                "ev1-desc": "Đón tiếp đoàn nhà trai và làm lễ gia tiên",
+                "sche-title": "Lịch Trình",
+                "ev1-t1": "Đón nhà gái",
+                "ev1-t2": "Lễ gia tiên",
+                "ev1-t3": "Phục vụ trà bánh",
+                "ev1-t4": "Kết thúc",
+                "cal-title": "Tháng 10 / 2026",
+                "ev2-title": "TIỆC CƯỚI TẠI TP.HCM",
+                "ev2-loc": "Amor Resort- 61A Nguyễn Văn Đậu, phường Bình Lợi Trung, TP.HCM",
+                "ev-desc-party": "Khai tiệc mừng hạnh phúc trăm năm",
+                "ev-t-welcome": "Đón khách, chụp ảnh lưu niệm",
+                "ev-t-start": "Khai tiệc",
+                "ev-t-ceremony": "Nghi thức",
+                "ev-t-main": "Phục vụ món chính",
+                "ev-t-music": "Chương trình âm nhạc",
+                "ev3-title": "TIỆC CƯỚI TẠI HẢI PHÒNG",
+                "ev3-loc": "3/161 ngõ Cấm, phường Gia Viên, quận Ngô Quyền, TP. Hải Phòng",
+                "rsvp-btn": "XÁC NHẬN THAM GIA",
+                "rsvp-modal-title": "Xác Nhận Tham Gia",
+                "rsvp-req": "* vui lòng nhập đầy đủ nội dung",
+                "rsvp-name-pl": "Tên của bạn *...",
+                "rsvp-add": "+ Thêm người đi cùng",
+                "rsvp-ans": "Répondez s'il vous plaît",
+                "cb-hcm-le": " xác nhận tham gia lễ thành hôn tại TPHCM",
+                "cb-hp-le": " xác nhận tham gia lễ thành hôn tại Hải Phòng",
+                "cb-hcm-tiec": " xác nhận tham gia tiệc cưới tại TP.HCM",
+                "cb-hp-tiec": " xác nhận tham gia tiệc cưới tại Hải Phòng",
+                "cb-no": " chưa thể tham gia",
+                "side-groom": "Nhà Trai",
+                "side-bride": "Nhà Gái",
+                "rsvp-submit": "XÁC NHẬN",
+                "gb-title": "Sổ Lưu Bút",
+                "gb-form-title": "Gửi Lời Chúc",
+                "gb-name": "Tên của bạn...",
+                "gb-wish": "Nhập lời chúc của bạn tới cô dâu và chú rể...",
+                "gb-btn": "Gửi Lời Chúc",
+                "gb-list-title": "Lời Chúc Yêu Thương",
+                "gb-loading": "Đang tải lời chúc...",
+                "day-2": "T2", "day-3": "T3", "day-4": "T4", "day-5": "T5", "day-6": "T6", "day-7": "T7", "day-8": "CN"
+            },
+            en: {
+                "cover-greeting": "Dear",
+                "cover-hint": "Open Invitation",
+                "countdown-title": "The Big Day Is Coming",
+                "lbl-day": "Days", "lbl-hour": "Hours", "lbl-min": "Mins", "lbl-sec": "Secs",
+                "fam-title": "OUR LOVING FAMILIES",
+                "fam-groom": "THE GROOM'S FAMILY",
+                "fam-bride": "THE BRIDE'S FAMILY",
+                "groom-parents": "Mr. NGUYEN ANH LINH<br>Mrs. BUI THI BICH LIEN",
+                "bride-parents": "Mr. NGUYEN TRUNG NGON<br>Late Mrs. NGUYEN THI HUONG",
+                "groom-addr": "Gia Vien Ward, Ngo Quyen Dist., Hai Phong City",
+                "bride-addr": "District 5, Ho Chi Minh City",
+                "announce-1": "JOYFULLY ANNOUNCE",
+                "announce-2": "THE WEDDING OF OUR CHILDREN",
+                "role-groom": "Youngest Son",
+                "role-bride": "Eldest Daughter",
+                "cere-title": "THE WEDDING CEREMONY WILL BE HELD AT",
+                "cere-home": "OUR HOME",
+                "cere-time": "AT",
+                "cere-day": "THURSDAY",
+                "cere-month": "OCTOBER",
+                "cere-lunar": "( Lunar Calendar: Sep 6th, 2026 )",
+                "invite-1": "CORDIALLY INVITE",
+                "invite-2": "To celebrate with our families",
+                "ev1-title": "Wedding Ceremony",
+                "loc-title": "Location",
+                "ev1-loc": "Bride's home, District 5, HCMC",
+                "ev1-desc": "Welcoming the Groom's family & Traditional Ceremony",
+                "sche-title": "Schedule",
+                "ev1-t1": "Groom's arrival",
+                "ev1-t2": "Traditional Ceremony",
+                "ev1-t3": "Tea break",
+                "ev1-t4": "Conclusion",
+                "cal-title": "October 2026",
+                "ev2-title": "WEDDING RECEPTION IN HCMC",
+                "ev2-loc": "Amor Resort - 61A Nguyen Van Dau, Binh Loi Trung, HCMC",
+                "ev-desc-party": "Celebrate our happily ever after",
+                "ev-t-welcome": "Welcome guests & Photos",
+                "ev-t-start": "Reception starts",
+                "ev-t-ceremony": "Wedding Rituals",
+                "ev-t-main": "Main course served",
+                "ev-t-music": "Live Music",
+                "ev3-title": "WEDDING RECEPTION IN HAI PHONG",
+                "ev3-loc": "3/161 Cam Alley, Gia Vien, Ngo Quyen, Hai Phong City",
+                "rsvp-btn": "Répondez s'il vous plaît",
+                "rsvp-modal-title": "Répondez s'il vous plaît",
+                "rsvp-req": "* please fill in all details",
+                "rsvp-name-pl": "Your name *...",
+                "rsvp-add": "+ Add plus one",
+                "rsvp-ans": "Répondez s'il vous plaît",
+                "cb-hcm-le": " will attend the ceremony in HCMC",
+                "cb-hp-le": " will attend the ceremony in Hai Phong",
+                "cb-hcm-tiec": " will attend the reception in HCMC",
+                "cb-hp-tiec": " will attend the reception in Hai Phong",
+                "cb-no": " cannot attend",
+                "side-groom": "Groom's Side",
+                "side-bride": "Bride's Side",
+                "rsvp-submit": "SUBMIT",
+                "gb-title": "Guestbook",
+                "gb-form-title": "Send Wishes",
+                "gb-name": "Your name...",
+                "gb-wish": "Write your wishes for the bride and groom...",
+                "gb-btn": "Send Wishes",
+                "gb-list-title": "Lovely Wishes",
+                "gb-loading": "Loading wishes...",
+                "day-2": "Mon", "day-3": "Tue", "day-4": "Wed", "day-5": "Thu", "day-6": "Fri", "day-7": "Sat", "day-8": "Sun"
+            }
+        };
+
+        let currentLang = 'vi';
+
+        // Lấy tên từ URL & thiết lập mặc định
         const urlParams = new URLSearchParams(window.location.search);
         let guestName = urlParams.get('name');
         
         if (guestName) {
-            // Cập nhật bìa thiệp
-            const coverName = document.getElementById('cover-guest-name');
-            if (coverName) coverName.innerText = guestName;
-            
-            // Cập nhật bên trong thiệp
+            document.getElementById('cover-guest-name').innerText = guestName;
             document.getElementById('guest-name').innerText = guestName;
-            const inputName = document.getElementById('guest-name-input');
-            if(inputName) inputName.value = guestName;
-            
-            const rsvpInputName = document.getElementById('rsvp-name-input');
-            if(rsvpInputName) rsvpInputName.value = guestName;
+            document.getElementById('guest-name-input').value = guestName;
         }
+
+        // --- HÀM THAY ĐỔI NGÔN NGỮ ---
+        function applyLanguage(lang) {
+            currentLang = lang;
+            
+            // Đổi các thẻ đánh dấu data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
+                    } else {
+                        el.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            // Nếu khách không có tên trên URL -> đổi tên mặc định (Quý khách/Our Guest)
+            if (!guestName) {
+                document.getElementById('cover-guest-name').innerText = lang === 'vi' ? 'Quý Khách' : 'Our Guest';
+                document.getElementById('guest-name').innerText = lang === 'vi' ? 'Quý Khách' : 'Our Guest';
+            }
+
+            // Gọi hàm cập nhật văn bản linh hoạt (RSVP/Sổ lưu bút)
+            updatePronounsAndRelations();
+            handleCheckboxChange(); 
+
+            // Cập nhật các ô input thêm người đã được click tạo ra
+            document.querySelectorAll('.plus-one-input').forEach((input, idx) => {
+                input.placeholder = lang === 'vi' ? `Người đi cùng ${idx+1} *...` : `Plus one ${idx+1} *...`;
+            });
+            
+            // Xử lý thông báo submit (nếu có)
+            const formMsg = document.getElementById('form-msg');
+            if (formMsg.style.display === 'block') {
+                if (formMsg.style.color === 'green') formMsg.innerText = lang === 'vi' ? 'Gửi lời chúc thành công! Cảm ơn bạn.' : 'Wishes sent successfully! Thank you.';
+                else formMsg.innerText = lang === 'vi' ? 'Có lỗi xảy ra, vui lòng thử lại sau!' : 'An error occurred, please try again later!';
+            }
+        }
+
+        const btnVi = document.getElementById('btn-vi');
+        const btnEn = document.getElementById('btn-en');
+
+        btnVi.addEventListener('click', function(e) {
+            e.stopPropagation(); // Ngăn việc nhấn vào nút ngôn ngữ bị hiểu thành "Mở thiệp"
+            if (currentLang === 'vi') return;
+            btnVi.classList.add('active');
+            btnEn.classList.remove('active');
+            applyLanguage('vi');
+        });
+
+        btnEn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (currentLang === 'en') return;
+            btnEn.classList.add('active');
+            btnVi.classList.remove('active');
+            applyLanguage('en');
+        });
+
 
         // TỰ ĐỘNG CUỘN LÊN ĐẦU KHI TẢI TRANG
         window.scrollTo(0, 0);
 
-        // --- HIỆU ỨNG HOA RƠI (TUYẾT TRẮNG) BẮT ĐẦU NGAY ---
+        // --- HIỆU ỨNG HOA RƠI (TUYẾT TRẮNG) ---
         function createDot() {
             const dot = document.createElement('div');
             dot.classList.add('snow-dot');
-            
             const size = Math.random() * 4 + 4; 
             dot.style.width = `${size}px`;
             dot.style.height = `${size}px`;
-            
             dot.style.left = `${Math.random() * 100}vw`;
-            
             const fallDuration = Math.random() * 10 + 10; 
             const swayDuration = Math.random() * 3 + 3; 
-            
             dot.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
-            
             document.body.appendChild(dot);
-            
-            setTimeout(() => {
-                dot.remove();
-            }, fallDuration * 1000);
+            setTimeout(() => { dot.remove(); }, fallDuration * 1000);
         }
-
-        // Tuyết bắt đầu rơi ngay với tốc độ 800ms
-        let dotInterval = setInterval(createDot, 800);
 
         // --- TRÌNH PHÁT NHẠC NỀN ---
         const bgMusic = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         const coverOverlay = document.getElementById('cover-overlay');
         let isMusicPlaying = false;
+        let isSnowing = false; 
 
         function toggleMusic() {
             if (isMusicPlaying) {
@@ -1529,7 +1739,7 @@
             } else {
                 bgMusic.play().then(() => {
                     musicBtn.classList.add('playing');
-                    musicBtn.innerHTML = ''; // Vân đĩa than
+                    musicBtn.innerHTML = ''; 
                 }).catch(err => {
                     console.log("Trình duyệt chặn tự động phát nhạc:", err);
                 });
@@ -1539,27 +1749,21 @@
 
         // KHI KHÁCH CLICK VÀO BÌA THIỆP
         coverOverlay.addEventListener('click', function() {
-            // Đưa trang về vị trí trên cùng
             window.scrollTo(0, 0);
-
-            // Mờ bìa và ẩn đi
             coverOverlay.classList.add('hidden');
-            
-            // Mở khóa cuộn trang
             document.body.classList.remove('locked');
-            
-            // Hiện nút nhạc đĩa than
             musicBtn.classList.add('visible');
 
-            // Phát nhạc
-            if (!isMusicPlaying) {
-                toggleMusic();
+            // Hiệu ứng tuyết mới bắt đầu chạy sau khi mở thiệp (Giảm giật lag khi tải)
+            if (!isSnowing) {
+                setInterval(createDot, 800);
+                isSnowing = true;
             }
+            
+            if (!isMusicPlaying) toggleMusic();
         });
 
-        // Click thủ công vào nút nhạc sau khi vào trong
         musicBtn.addEventListener('click', toggleMusic);
-
 
         // --- ĐẾM NGƯỢC ---
         const weddingDate = new Date("October 15, 2026 09:00:00").getTime();
@@ -1579,7 +1783,9 @@
 
             if (distance < 0) {
                 clearInterval(countdownTimer);
-                document.getElementById("countdown").innerHTML = "<h2 class='section-title serif-font'>Ngày Vui Đã Đến!</h2>";
+                document.getElementById("countdown").innerHTML = currentLang === 'vi' 
+                    ? "<h2 class='section-title serif-font'>Ngày Vui Đã Đến!</h2>"
+                    : "<h2 class='section-title serif-font'>The Big Day Is Here!</h2>";
             }
         }, 1000);
 
@@ -1637,7 +1843,7 @@
 
         wishForm.addEventListener('submit', e => {
             e.preventDefault();
-            btnSubmitWish.innerText = 'Đang gửi...';
+            btnSubmitWish.innerText = currentLang === 'vi' ? 'Đang gửi...' : 'Sending...';
             btnSubmitWish.disabled = true;
 
             let requestBody = new FormData(wishForm);
@@ -1647,9 +1853,9 @@
                 .then(response => {
                     formMsg.style.display = 'block';
                     formMsg.style.color = 'green';
-                    formMsg.innerText = 'Gửi lời chúc thành công! Cảm ơn bạn.';
+                    formMsg.innerText = currentLang === 'vi' ? 'Gửi lời chúc thành công! Cảm ơn bạn.' : 'Wishes sent successfully! Thank you.';
                     wishForm.reset();
-                    btnSubmitWish.innerText = 'Gửi Lời Chúc';
+                    btnSubmitWish.innerText = currentLang === 'vi' ? 'Gửi Lời Chúc' : 'Send Wishes';
                     btnSubmitWish.disabled = false;
                     if(guestName) document.getElementById('guest-name-input').value = guestName;
                     setTimeout(fetchMessages, 1500); 
@@ -1657,8 +1863,8 @@
                 .catch(error => {
                     formMsg.style.display = 'block';
                     formMsg.style.color = 'red';
-                    formMsg.innerText = 'Có lỗi xảy ra, vui lòng thử lại sau!';
-                    btnSubmitWish.innerText = 'Gửi Lời Chúc';
+                    formMsg.innerText = currentLang === 'vi' ? 'Có lỗi xảy ra, vui lòng thử lại sau!' : 'An error occurred, please try again later!';
+                    btnSubmitWish.innerText = currentLang === 'vi' ? 'Gửi Lời Chúc' : 'Send Wishes';
                     btnSubmitWish.disabled = false;
                 });
         });
@@ -1668,6 +1874,10 @@
         const modal = document.getElementById("rsvpModal");
         const btnOpenModal = document.getElementById("btn-open-rsvp");
         const spanClose = document.getElementById("closeRsvp");
+        const rsvpModalTitle = document.getElementById("rsvp-modal-title");
+        
+        const rsvpNameInput = document.getElementById("rsvp-name-input");
+        const rsvpPronouns = document.querySelectorAll(".rsvp-pronoun");
         
         const cbAttendList = document.querySelectorAll('.cb-attend');
         const cbCannotAttend = document.getElementById('cb-cannot-attend');
@@ -1692,18 +1902,39 @@
         relGroomSelect.addEventListener('change', function() { if(this.value) relBrideSelect.value = ''; });
         relBrideSelect.addEventListener('change', function() { if(this.value) relGroomSelect.value = ''; });
 
-        function updateRelationSelects() {
-            const prefix = plusOneCount > 0 ? "Chúng tôi" : "Tôi";
-            const options = ["người thân/gia đình", "đồng nghiệp", "bạn bè"];
+        function updatePronounsAndRelations() {
+            const nameVal = rsvpNameInput.value.toLowerCase();
+            const hasMultiple = plusOneCount > 0 || nameVal.includes('và') || nameVal.includes('&') || nameVal.includes(',') || nameVal.includes('gia đình') || nameVal.includes('cùng');
+            
+            let prefix = "";
+            if (currentLang === 'vi') prefix = hasMultiple ? "Chúng tôi" : "Tôi";
+            else prefix = hasMultiple ? "We" : "I";
+            
+            rsvpPronouns.forEach(el => el.innerText = prefix);
+
+            const optionsVi = ["người thân/gia đình", "đồng nghiệp", "bạn bè"];
+            const optionsEn = ["family/relative", "coworker(s)", "friend(s)"];
+            const options = currentLang === 'vi' ? optionsVi : optionsEn;
+            
+            const selDef = currentLang === 'vi' ? "-- Chọn --" : "-- Select --";
+            const isVerb = currentLang === 'vi' ? " là " : (hasMultiple ? " are " : " am ");
             
             [relGroomSelect, relBrideSelect].forEach(select => {
                 const currentVal = select.value;
-                let html = '<option value="">-- Chọn --</option>';
-                options.forEach(opt => { html += `<option value="${opt}">${prefix} là ${opt}</option>`; });
+                let html = `<option value="">${selDef}</option>`;
+                options.forEach((opt, idx) => { 
+                    // Vẫn giữ lại value bằng tiếng Việt để đẩy lên Google Sheets đúng cấu trúc
+                    html += `<option value="${optionsVi[idx]}">${prefix}${isVerb}${opt}</option>`; 
+                });
                 select.innerHTML = html;
-                if(currentVal) select.value = currentVal; 
+                if (currentVal) select.value = currentVal; 
             });
         }
+        
+        rsvpNameInput.addEventListener('input', updatePronounsAndRelations);
+        
+        // Khởi tạo select dropdown ngay từ đầu (bằng ngôn ngữ mặc định)
+        updatePronounsAndRelations();
 
         function handleCheckboxChange() {
             const isAttending = Array.from(cbAttendList).some(cb => cb.checked);
@@ -1718,14 +1949,17 @@
             const reCheckAttending = Array.from(cbAttendList).some(cb => cb.checked);
             
             if (cbCannotAttend.checked) {
+                rsvpModalTitle.innerText = currentLang === 'vi' ? "Xác Nhận Từ Chối Tham Gia" : "Decline Invitation";
                 btnAddPlusOne.style.display = 'none';
                 relationBox.style.display = 'none';
                 btnSubmitRsvp.style.display = 'block';
             } else if (reCheckAttending) {
+                rsvpModalTitle.innerText = currentLang === 'vi' ? "Xác Nhận Tham Gia" : "RSVP";
                 btnAddPlusOne.style.display = 'inline-block';
                 relationBox.style.display = 'grid';
                 btnSubmitRsvp.style.display = 'block';
             } else {
+                rsvpModalTitle.innerText = currentLang === 'vi' ? "Xác Nhận Tham Gia" : "RSVP";
                 btnAddPlusOne.style.display = 'none';
                 relationBox.style.display = 'none';
                 btnSubmitRsvp.style.display = 'none';
@@ -1739,18 +1973,18 @@
             plusOneCount++;
             const input = document.createElement('input');
             input.type = 'text';
-            input.placeholder = `Người đi cùng ${plusOneCount} *...`;
+            input.placeholder = currentLang === 'vi' ? `Người đi cùng ${plusOneCount} *...` : `Plus one ${plusOneCount} *...`;
             input.className = 'plus-one-input';
             input.required = true;
             plusOnesContainer.appendChild(input);
-            updateRelationSelects();
+            updatePronounsAndRelations();
         });
 
         document.getElementById('rsvpForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
             const typedName = document.getElementById('rsvp-name-input').value.trim();
-            const userFinalName = guestName || typedName || 'bạn';
+            const userFinalName = typedName || guestName || 'bạn';
 
             const isHCM_Le = document.querySelector('input[value="TPHCM_Le"]').checked;
             const isHCM_Tiec = document.querySelector('input[value="TPHCM_Tiec"]').checked;
@@ -1767,11 +2001,11 @@
             else if (relBride) { side = 'Nhà Gái'; relation = relBride; }
 
             if (!isCannotAttend && side === '') {
-                alert('Vui lòng chọn mối quan hệ với Nhà Trai hoặc Nhà Gái!');
+                alert(currentLang === 'vi' ? 'Vui lòng chọn mối quan hệ với Nhà Trai hoặc Nhà Gái!' : 'Please select your relationship to the Groom or Bride!');
                 return;
             }
 
-            btnSubmitRsvp.innerText = 'ĐANG GỬI...';
+            btnSubmitRsvp.innerText = currentLang === 'vi' ? 'ĐANG GỬI...' : 'SENDING...';
             btnSubmitRsvp.disabled = true;
 
             const plusOneInputs = document.querySelectorAll('.plus-one-input');
@@ -1818,13 +2052,17 @@
                 resultDiv.style.display = 'block';
 
                 if (isCannotAttend) {
-                    resultDiv.innerHTML = `<p>Cảm ơn <strong>${userFinalName}</strong> đã phản hồi. Tình cảm và lời chúc của <strong>${userFinalName}</strong> đã là món quà lớn nhất cho gia đình chúng tôi!</p>`;
+                    resultDiv.innerHTML = currentLang === 'vi' 
+                        ? `<p>Cảm ơn <strong>${userFinalName}</strong> đã phản hồi. Tình cảm và lời chúc của <strong>${userFinalName}</strong> đã là món quà lớn nhất cho gia đình chúng tôi!</p>`
+                        : `<p>Thank you <strong>${userFinalName}</strong> for your response. Your love and wishes are the greatest gifts to our family!</p>`;
                 } else {
-                    resultDiv.innerHTML = `<p>Cảm ơn <strong>${userFinalName}</strong> đã phản hồi. Rất mong chờ được đón tiếp <strong>${userFinalName}</strong> đến chung vui cùng gia đình chúng tôi!</p>`;
+                    resultDiv.innerHTML = currentLang === 'vi'
+                        ? `<p>Cảm ơn <strong>${userFinalName}</strong> đã phản hồi. Rất mong chờ được đón tiếp <strong>${userFinalName}</strong> đến chung vui cùng gia đình chúng tôi!</p>`
+                        : `<p>Thank you <strong>${userFinalName}</strong> for RSVPing. We look forward to celebrating with you!</p>`;
                 }
             }).catch(() => {
-                alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-                btnSubmitRsvp.innerText = 'XÁC NHẬN';
+                alert(currentLang === 'vi' ? 'Có lỗi xảy ra, vui lòng thử lại sau!' : 'An error occurred, please try again later!');
+                btnSubmitRsvp.innerText = currentLang === 'vi' ? 'XÁC NHẬN' : 'SUBMIT';
                 btnSubmitRsvp.disabled = false;
             });
         });
