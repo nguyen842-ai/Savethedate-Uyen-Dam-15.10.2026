@@ -1575,8 +1575,8 @@
                 "ev-t-music": "Live Music",
                 "ev3-title": "WEDDING RECEPTION IN HAI PHONG",
                 "ev3-loc": "3/161 Cam Alley, Gia Vien, Ngo Quyen, Hai Phong City",
-                "rsvp-btn": "Répondez s'il vous plaît",
-                "rsvp-modal-title": "Répondez s'il vous plaît",
+                "rsvp-btn": "RSVP",
+                "rsvp-modal-title": "RSVP",
                 "rsvp-req": "* please fill in all details",
                 "rsvp-name-pl": "Your name *...",
                 "rsvp-add": "+ Add plus one",
@@ -1602,11 +1602,21 @@
 
         let currentLang = 'vi';
 
-        // Lấy tên từ URL & thiết lập mặc định
+        // Lấy tên từ URL, GIẢI MÃ KHOẢNG TRẮNG, và thiết lập mặc định
         const urlParams = new URLSearchParams(window.location.search);
-        let guestName = urlParams.get('name');
-        
-        if (guestName) {
+        let rawName = urlParams.get('name');
+        let guestName = "";
+
+        if (rawName) {
+            // Xử lý lỗi Facebook/Zalo tự động mã hóa %20 hoặc dấu +
+            try {
+                guestName = decodeURIComponent(rawName);
+            } catch(e) {
+                guestName = rawName;
+            }
+            // Thay thế triệt để %20 và + bằng khoảng trắng nếu còn sót
+            guestName = guestName.replace(/%20/g, ' ').replace(/\+/g, ' ');
+
             document.getElementById('cover-guest-name').innerText = guestName;
             document.getElementById('guest-name').innerText = guestName;
             document.getElementById('guest-name-input').value = guestName;
