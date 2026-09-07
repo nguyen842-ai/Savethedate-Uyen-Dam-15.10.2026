@@ -1235,7 +1235,6 @@
                     <p class="invite-message" data-i18n="invite-2">Đến chung vui cùng gia đình chúng tôi</p>
                 </div>
                 
-                <!-- NÚT XÁC NHẬN THAM GIA ĐƯỢC DỜI LÊN ĐÂY -->
                 <button class="btn-rsvp" id="btn-open-rsvp" data-i18n="rsvp-btn" style="margin-top: 30px;">Xác nhận tham gia</button>
             </div>
         </div>
@@ -1739,6 +1738,29 @@
             }
             
             if (!isMusicPlaying) toggleMusic();
+
+            // THÊM TÍNH NĂNG TỰ ĐỘNG CUỘN TỪ TỪ XUỐNG CUỐI TRANG SAU 2 GIÂY (2000ms)
+            setTimeout(function() {
+                let autoScrollAnimation;
+                
+                function slowScroll() {
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    if (window.scrollY < maxScroll) {
+                        window.scrollBy(0, 1.5); // Tốc độ cuộn: 1.5px mỗi khung hình (Càng lớn càng nhanh)
+                        autoScrollAnimation = requestAnimationFrame(slowScroll);
+                    }
+                }
+                
+                // Bắt đầu hiệu ứng cuộn
+                autoScrollAnimation = requestAnimationFrame(slowScroll);
+
+                // Nếu khách chạm màn hình, cuộn chuột hoặc click thì dừng tự động cuộn ngay lập tức
+                const stopScroll = () => cancelAnimationFrame(autoScrollAnimation);
+                window.addEventListener('wheel', stopScroll, {once: true});
+                window.addEventListener('touchstart', stopScroll, {once: true});
+                window.addEventListener('mousedown', stopScroll, {once: true});
+                
+            }, 2000);
         });
 
         musicBtn.addEventListener('click', toggleMusic);
