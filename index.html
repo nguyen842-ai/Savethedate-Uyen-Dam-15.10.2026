@@ -13,7 +13,7 @@
     
     <style>
         :root {
-            --bg-color: #fbfafc;      
+            --bg-color: #fbfafc;     
             --text-gold: #a68b6c;     
             --text-dark: #5a4b41;     
             --accent-color: #c5a880;
@@ -269,7 +269,7 @@
 
         /* --- CÁC KHU VỰC BÊN DƯỚI --- */
         section {
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
             max-width: 900px; 
             margin: 0 auto;
@@ -278,7 +278,7 @@
         .section-title {
             font-size: 2rem;
             color: var(--text-gold);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
             z-index: 2;
         }
@@ -335,7 +335,7 @@
         }
 
         #ceremony-info {
-            padding: 0px 20px 80px; 
+            padding: 0px 20px 40px; 
             background-image: linear-gradient(to bottom, rgba(251,250,252,1) 0%, rgba(251,250,252,0) 20%), url('4.webp');
         }
 
@@ -579,18 +579,73 @@
             font-weight: 400;
             font-style: italic;
         }
+        
+        .btn-rsvp {
+            background-color: var(--btn-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(140, 106, 81, 0.25);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-rsvp:hover {
+            transform: translateY(-2px);
+            background-color: #7a5a44;
+        }
+
+        /* --- DRESS CODE (Nằm dưới nút xác nhận tham gia) --- */
+        .dresscode-container {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dresscode-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--btn-color);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .dresscode-colors {
+            display: flex;
+            gap: 15px;
+        }
+
+        .color-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
         /* --- SỰ KIỆN: LỊCH TRÌNH VÀ LỊCH THÁNG --- */
         .event-wrapper {
-            padding: 80px 20px 20px;
+            padding: 40px 20px 10px; /* Giảm khoảng cách padding tiêu đề */
             text-align: center;
             background-color: var(--bg-color);
             position: relative;
             z-index: 2;
         }
+        
+        .event-wrapper .section-title {
+            margin-bottom: 20px;
+        }
 
         .schedule-calendar-section {
-            padding: 60px 20px;
+            padding: 20px 20px 40px; 
             background-image: url('2.png');
             background-size: cover;
             background-position: center;
@@ -749,70 +804,59 @@
             display: block;
         }
 
-        /* --- RSVP KHU VỰC CHUNG --- */
-        .rsvp-section-main {
-            background-color: var(--bg-color);
-            padding: 50px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .rsvp-container {
+        /* --- ALBUM HÌNH CƯỚI (SLIDER THÔNG MINH) --- */
+        .gallery-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Cố định tỷ lệ chuẩn của slide PowerPoint */
+    height: auto; /* Chiều cao tự động co giãn theo tỷ lệ ngang */
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border: 1.5px solid rgba(166, 139, 108, 0.4);
+    background: var(--bg-color);
+}
+        .gallery-slides {
             display: flex;
-            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
             align-items: center;
+            justify-content: center;
         }
-
-        .dresscode-container {
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Phủ kín khung hình */
         }
-
-        .dresscode-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            color: var(--btn-color);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .dresscode-colors {
-            display: flex;
-            gap: 15px;
-        }
-
-        .color-circle {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .btn-rsvp {
-            background-color: var(--btn-color);
-            color: var(--white);
+        .gallery-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(140, 106, 81, 0.7);
+            color: white;
             border: none;
-            padding: 14px 40px;
-            border-radius: 30px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(140, 106, 81, 0.25);
-            transition: transform 0.2s, background-color 0.2s;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
         }
-
-        .btn-rsvp:hover {
-            transform: translateY(-2px);
-            background-color: #7a5a44;
+        .gallery-btn:hover {
+            background: var(--btn-color);
         }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
 
         /* --- MODAL RSVP THÔNG MINH --- */
         .modal {
@@ -948,7 +992,7 @@
         /* --- SỔ LƯU BÚT (GUESTBOOK) --- */
         .guestbook-title-area {
             background-color: var(--white);
-            padding: 80px 20px 20px;
+            padding: 60px 20px 20px;
             text-align: center;
             width: 100%;
             position: relative;
@@ -957,7 +1001,7 @@
 
         .guestbook-section {
             width: 100%; 
-            padding: 60px 20px 80px;
+            padding: 40px 20px 80px;
             background-image: url('4.webp');
             background-size: cover;
             background-position: center;
@@ -1099,8 +1143,6 @@
             z-index: 2;
         }
 
-        /* --- QUẢN LÝ ĐỔI ẢNH NỀN CHO ĐIỆN THOẠI --- */
-        /* Gom tất cả !important vào đây để đảm bảo độ ưu tiên cao nhất, đè lên tất cả CSS ở trên */
         @media (max-width: 768px) {
             .hero {
                 height: 100vw; 
@@ -1133,17 +1175,18 @@
             .couple-grid { gap: 15px; margin-bottom: 20px; }
             .ceremony-main-title { font-size: 1.6rem; letter-spacing: 2px; }
             .couple-name { font-size: 1.9rem; padding: 10px 18px; }
+            .gallery-slider { height: 550px; } /* Phóng to cho khung dọc Mobile */
         }
     </style>
 </head>
 <body class="locked">
 
-    <!-- LỚP BÌA THIỆP (COVER OVERLAY) -->
+    <!-- LỚP BÌA THIỆP -->
     <div id="cover-overlay" class="cover-overlay">
         <div class="cover-content">
             <h2 class="cover-greeting"><span data-i18n="cover-greeting">Thân gửi</span> <span id="cover-guest-name">Quý Khách</span></h2>
             
-            <!-- NÚT CHỌN NGÔN NGỮ (VI - EN) -->
+            <!-- NÚT NGÔN NGỮ -->
             <div class="lang-boxes">
                 <button class="lang-btn active" id="btn-vi">VI</button>
                 <button class="lang-btn" id="btn-en">EN</button>
@@ -1153,12 +1196,12 @@
         </div>
     </div>
 
-    <!-- THẺ AUDIO PHÁT NHẠC NỀN -->
+    <!-- AUDIO PHÁT NHẠC NỀN -->
     <audio id="bg-music" loop>
         <source src="c.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- NÚT ĐIỀU KHIỂN NHẠC NỀN (VẼ ĐĨA THAN) -->
+    <!-- NÚT ĐIỀU KHIỂN NHẠC -->
     <div class="music-btn" id="music-btn" title="Phát nhạc">🔇</div>
 
     <div class="hero">
@@ -1236,6 +1279,18 @@
                 </div>
                 
                 <button class="btn-rsvp" id="btn-open-rsvp" data-i18n="rsvp-btn" style="margin-top: 30px;">Xác nhận tham gia</button>
+                
+                <!-- DRESS CODE (Đã dời lên đây) -->
+                <div class="dresscode-container">
+                    <p class="dresscode-title">Dress Code</p>
+                    <div class="dresscode-colors">
+                        <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="White / Trắng"></div>
+                        <div class="color-circle" style="background-color: #000000;" title="Black / Đen"></div>
+                        <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold / Vàng Kim"></div>
+                        <div class="color-circle" style="background-color: #7a1f24;" title="Burgundy / Đỏ Rượu"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -1375,20 +1430,19 @@
         </div>
     </div>
 
-    <!-- RSVP KHU VỰC CHUNG (Chỉ còn giữ lại mục Dress Code) -->
-    <section class="rsvp-section-main">
-        <div class="rsvp-container">
-            <div class="dresscode-container">
-                <p class="dresscode-title">Dress Code</p>
-                <div class="dresscode-colors">
-                    <div class="color-circle" style="background-color: #ffffff; border: 1px solid #dcdcdc;" title="White / Trắng"></div>
-                    <div class="color-circle" style="background-color: #000000;" title="Black / Đen"></div>
-                    <div class="color-circle" style="background-color: #CFB53B;" title="Old Gold / Vàng Kim"></div>
-                    <div class="color-circle" style="background-color: #7a1f24;" title="Burgundy / Đỏ Rượu"></div>
-                </div>
-            </div>
-        </div>
+    <!-- ALBUM HÌNH CƯỚI (SLIDER THÔNG MINH) -->
+    <section class="event-wrapper" style="padding-bottom: 10px;">
+        <h2 class="section-title serif-font" data-i18n="album-title">Album Hình Cưới</h2>
     </section>
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 20px 40px; position: relative; z-index: 2;">
+        <div class="gallery-slider">
+            <!-- Khu vực trống, ảnh sẽ được tự động chèn vào đây thông qua Javascript bên dưới -->
+            <div class="gallery-slides" id="gallerySlides"></div>
+            
+            <button class="gallery-btn prev-btn" id="prevSlide">&#10094;</button>
+            <button class="gallery-btn next-btn" id="nextSlide">&#10095;</button>
+        </div>
+    </div>
 
     <!-- HỘP THOẠI MODAL RSVP -->
     <div id="rsvpModal" class="modal">
@@ -1509,14 +1563,13 @@
                 "ev-t-music": "Chương trình âm nhạc",
                 "ev3-title": "TIỆC CƯỚI TẠI HẢI PHÒNG",
                 "ev3-loc": "Trung Tâm Tổ Chức Sự Kiện & Tiệc Cưới Pandora Center- Số 12 Võ Nguyên Giáp, phường An Biên, Hải Phòng.",
+                "album-title": "Album Hình Cưới",
                 "rsvp-btn": "XÁC NHẬN THAM GIA",
                 "rsvp-modal-title": "Xác Nhận Tham Gia",
                 "rsvp-req": "* vui lòng nhập đầy đủ nội dung",
                 "rsvp-name-pl": "Tên của bạn *...",
                 "rsvp-add": "+ Thêm người đi cùng",
                 "rsvp-ans": "Répondez s'il vous plaît",
-                "cb-hcm-le": " xác nhận tham gia lễ thành hôn tại TPHCM",
-                "cb-hp-le": " xác nhận tham gia lễ thành hôn tại Hải Phòng",
                 "cb-hcm-tiec": " xác nhận tham gia tiệc cưới tại TP.HCM",
                 "cb-hp-tiec": " xác nhận tham gia tiệc cưới tại Hải Phòng",
                 "cb-no": " chưa thể tham gia",
@@ -1577,14 +1630,13 @@
                 "ev-t-music": "Live Music",
                 "ev3-title": "WEDDING RECEPTION IN HAI PHONG",
                 "ev3-loc": "Pandora Wedding & Event Center- No.12 Võ Nguyên Giáp st, An Biên ward, Hải Phòng city.",
+                "album-title": "Wedding Photo Album",
                 "rsvp-btn": "RSVP",
                 "rsvp-modal-title": "RSVP",
                 "rsvp-req": "* please fill in all details",
                 "rsvp-name-pl": "Your name *...",
                 "rsvp-add": "+ Add plus one",
                 "rsvp-ans": "Répondez s'il vous plaît",
-                "cb-hcm-le": " will attend the ceremony in HCMC",
-                "cb-hp-le": " will attend the ceremony in Hai Phong",
                 "cb-hcm-tiec": " will attend the reception in HCMC",
                 "cb-hp-tiec": " will attend the reception in Hai Phong",
                 "cb-no": " cannot attend",
@@ -1604,19 +1656,16 @@
 
         let currentLang = 'vi';
 
-        // Lấy tên từ URL, GIẢI MÃ KHOẢNG TRẮNG, và thiết lập mặc định
         const urlParams = new URLSearchParams(window.location.search);
         let rawName = urlParams.get('name');
         let guestName = "";
 
         if (rawName) {
-            // Xử lý lỗi Facebook/Zalo tự động mã hóa %20 hoặc dấu +
             try {
                 guestName = decodeURIComponent(rawName);
             } catch(e) {
                 guestName = rawName;
             }
-            // Thay thế triệt để %20 và + bằng khoảng trắng nếu còn sót
             guestName = guestName.replace(/%20/g, ' ').replace(/\+/g, ' ');
 
             document.getElementById('cover-guest-name').innerText = guestName;
@@ -1624,11 +1673,9 @@
             document.getElementById('guest-name-input').value = guestName;
         }
 
-        // --- HÀM THAY ĐỔI NGÔN NGỮ ---
         function applyLanguage(lang) {
             currentLang = lang;
             
-            // Đổi các thẻ đánh dấu data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
@@ -1640,22 +1687,18 @@
                 }
             });
 
-            // Nếu khách không có tên trên URL -> đổi tên mặc định (Quý khách/Our Guest)
             if (!guestName) {
                 document.getElementById('cover-guest-name').innerText = lang === 'vi' ? 'Quý Khách' : 'Our Guest';
                 document.getElementById('guest-name').innerText = lang === 'vi' ? 'Quý Khách' : 'Our Guest';
             }
 
-            // Gọi hàm cập nhật văn bản linh hoạt (RSVP/Sổ lưu bút)
             updatePronounsAndRelations();
             handleCheckboxChange(); 
 
-            // Cập nhật các ô input thêm người đã được click tạo ra
             document.querySelectorAll('.plus-one-input').forEach((input, idx) => {
                 input.placeholder = lang === 'vi' ? `Người đi cùng ${idx+1} *...` : `Plus one ${idx+1} *...`;
             });
             
-            // Xử lý thông báo submit (nếu có)
             const formMsg = document.getElementById('form-msg');
             if (formMsg.style.display === 'block') {
                 if (formMsg.style.color === 'green') formMsg.innerText = lang === 'vi' ? 'Gửi lời chúc thành công! Cảm ơn bạn.' : 'Wishes sent successfully! Thank you.';
@@ -1667,7 +1710,7 @@
         const btnEn = document.getElementById('btn-en');
 
         btnVi.addEventListener('click', function(e) {
-            e.stopPropagation(); // Ngăn việc nhấn vào nút ngôn ngữ bị hiểu thành "Mở thiệp"
+            e.stopPropagation();
             if (currentLang === 'vi') return;
             btnVi.classList.add('active');
             btnEn.classList.remove('active');
@@ -1682,11 +1725,9 @@
             applyLanguage('en');
         });
 
-
-        // TỰ ĐỘNG CUỘN LÊN ĐẦU KHI TẢI TRANG
         window.scrollTo(0, 0);
 
-        // --- HIỆU ỨNG HOA RƠI (TUYẾT TRẮNG) ---
+        // --- HIỆU ỨNG HOA RƠI ---
         function createDot() {
             const dot = document.createElement('div');
             dot.classList.add('snow-dot');
@@ -1700,6 +1741,118 @@
             document.body.appendChild(dot);
             setTimeout(() => { dot.remove(); }, fallDuration * 1000);
         }
+
+       // --- ALBUM HÌNH CƯỚI (SLIDER THÔNG MINH DESKTOP/MOBILE) ---
+        const gallerySlides = document.getElementById('gallerySlides');
+        const isMobile = window.innerWidth <= 768; 
+
+        // 1. Hàm xáo trộn mảng ngẫu nhiên (Fisher-Yates Shuffle)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // 2. Tạo danh sách ảnh tùy theo thiết bị
+        let imageSources = [];
+        if (isMobile) {
+            for(let i = 1; i <= 27; i++) {
+                imageSources.push(`pic 2/${i}.jpg`);
+            }
+        } else {
+            imageSources = [
+                'pic/ALBUM_page-0002.jpg',
+                'pic/ALBUM_page-0003.jpg',
+                'pic/ALBUM_page-0004.jpg',
+                'pic/ALBUM_page-0005.jpg',
+                'pic/ALBUM_page-0006.jpg',
+                'pic/ALBUM_page-0007.jpg',
+                'pic/ALBUM_page-0008.jpg',
+                'pic/ALBUM_page-0009.jpg',
+                'pic/ALBUM_page-0010.jpg',
+                'pic/ALBUM_page-0011.jpg',
+                'pic/ALBUM_page-0012.jpg',
+                'pic/ALBUM_page-0013.jpg',
+                'pic/ALBUM_page-0014.jpg',
+                'pic/ALBUM_page-0015.jpg',
+                'pic/ALBUM_page-0016.jpg'
+            ];
+        }
+
+        // Xáo trộn thứ tự ảnh ngẫu nhiên
+        imageSources = shuffleArray(imageSources);
+
+        // 3. Đưa ảnh thật vào HTML
+        imageSources.forEach((src, idx) => {
+            const slide = document.createElement('div');
+            slide.className = 'gallery-slide';
+            slide.innerHTML = `<img src="${src}" alt="Album ${idx+1}" loading="lazy">`;
+            gallerySlides.appendChild(slide);
+        });
+
+        // 4. Kỹ thuật Infinite Loop (Lặp vô tận không giật)
+        // Nhân bản slide đầu và slide cuối
+        const slides = document.querySelectorAll('.gallery-slide');
+        const slideCount = slides.length;
+        
+        if (slideCount > 0) {
+            const firstClone = slides[0].cloneNode(true);
+            const lastClone = slides[slideCount - 1].cloneNode(true);
+
+            // Dán slide cuối lên đầu, slide đầu xuống cuối
+            gallerySlides.appendChild(firstClone);
+            gallerySlides.insertBefore(lastClone, slides[0]);
+
+            let currentSlideIdx = 1; // Bắt đầu từ ảnh thật đầu tiên (index 1 do bị đẩy 1 vị trí bởi clone)
+            let isTransitioning = false; // Ngăn chặn bấm nút lướt quá nhanh gây lỗi
+
+            // Đặt vị trí ban đầu
+            gallerySlides.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+
+            function moveToNextSlide() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentSlideIdx++;
+                gallerySlides.style.transition = 'transform 0.5s ease-in-out';
+                gallerySlides.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+            }
+
+            function moveToPrevSlide() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentSlideIdx--;
+                gallerySlides.style.transition = 'transform 0.5s ease-in-out';
+                gallerySlides.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+            }
+
+            document.getElementById('nextSlide').addEventListener('click', moveToNextSlide);
+            document.getElementById('prevSlide').addEventListener('click', moveToPrevSlide);
+
+            // Lắng nghe sự kiện khi hiệu ứng chuyển động hoàn tất
+            gallerySlides.addEventListener('transitionend', () => {
+                isTransitioning = false;
+                
+                // Nếu lướt qua phải đụng slide đầu tiên (bản clone nằm ở cuối)
+                if (currentSlideIdx === slideCount + 1) {
+                    gallerySlides.style.transition = 'none'; // Tắt hiệu ứng để dịch chuyển tức thời
+                    currentSlideIdx = 1; // Nhảy về slide thật đầu tiên
+                    gallerySlides.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+                }
+                
+                // Nếu lướt qua trái đụng slide cuối cùng (bản clone nằm ở đầu)
+                if (currentSlideIdx === 0) {
+                    gallerySlides.style.transition = 'none'; 
+                    currentSlideIdx = slideCount; 
+                    gallerySlides.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+                }
+            });
+
+            // Tự động chuyển ảnh mỗi 6 giây
+            setInterval(moveToNextSlide, 6000);
+        }
+
 
         // --- TRÌNH PHÁT NHẠC NỀN ---
         const bgMusic = document.getElementById('bg-music');
@@ -1724,14 +1877,12 @@
             isMusicPlaying = !isMusicPlaying;
         }
 
-        // KHI KHÁCH CLICK VÀO BÌA THIỆP
         coverOverlay.addEventListener('click', function() {
             window.scrollTo(0, 0);
             coverOverlay.classList.add('hidden');
             document.body.classList.remove('locked');
             musicBtn.classList.add('visible');
 
-            // Hiệu ứng tuyết mới bắt đầu chạy sau khi mở thiệp (Giảm giật lag khi tải)
             if (!isSnowing) {
                 setInterval(createDot, 800);
                 isSnowing = true;
@@ -1739,27 +1890,21 @@
             
             if (!isMusicPlaying) toggleMusic();
 
-            // THÊM TÍNH NĂNG TỰ ĐỘNG CUỘN TỪ TỪ XUỐNG CUỐI TRANG SAU 2 GIÂY (2000ms)
             setTimeout(function() {
                 let autoScrollAnimation;
-                
                 function slowScroll() {
                     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                     if (window.scrollY < maxScroll) {
-                        window.scrollBy(0, 1.5); // Tốc độ cuộn: 1.5px mỗi khung hình (Càng lớn càng nhanh)
+                        window.scrollBy(0, 1.5);
                         autoScrollAnimation = requestAnimationFrame(slowScroll);
                     }
                 }
-                
-                // Bắt đầu hiệu ứng cuộn
                 autoScrollAnimation = requestAnimationFrame(slowScroll);
 
-                // Nếu khách chạm màn hình, cuộn chuột hoặc click thì dừng tự động cuộn ngay lập tức
                 const stopScroll = () => cancelAnimationFrame(autoScrollAnimation);
                 window.addEventListener('wheel', stopScroll, {once: true});
                 window.addEventListener('touchstart', stopScroll, {once: true});
                 window.addEventListener('mousedown', stopScroll, {once: true});
-                
             }, 2000);
         });
 
@@ -1923,7 +2068,6 @@
                 const currentVal = select.value;
                 let html = `<option value="">${selDef}</option>`;
                 options.forEach((opt, idx) => { 
-                    // Vẫn giữ lại value bằng tiếng Việt để đẩy lên Google Sheets đúng cấu trúc
                     html += `<option value="${optionsVi[idx]}">${prefix}${isVerb}${opt}</option>`; 
                 });
                 select.innerHTML = html;
@@ -1932,8 +2076,6 @@
         }
         
         rsvpNameInput.addEventListener('input', updatePronounsAndRelations);
-        
-        // Khởi tạo select dropdown ngay từ đầu (bằng ngôn ngữ mặc định)
         updatePronounsAndRelations();
 
         function handleCheckboxChange() {
@@ -1986,9 +2128,7 @@
             const typedName = document.getElementById('rsvp-name-input').value.trim();
             const userFinalName = typedName || guestName || 'bạn';
 
-            const isHCM_Le = document.querySelector('input[value="TPHCM_Le"]')?.checked || false;
             const isHCM_Tiec = document.querySelector('input[value="TPHCM_Tiec"]')?.checked || false;
-            const isHP_Le = document.querySelector('input[value="HaiPhong_Le"]')?.checked || false;
             const isHP_Tiec = document.querySelector('input[value="HaiPhong_Tiec"]')?.checked || false;
             const isCannotAttend = document.getElementById('cb-cannot-attend').checked;
 
@@ -2020,7 +2160,7 @@
                 fd.append('CotA', typedName);
                 fetchPromises.push(fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: fd }));
             } else {
-                if (isHCM_Le || isHCM_Tiec) {
+                if (isHCM_Tiec) {
                     let fdHCM = new FormData();
                     fdHCM.append('FormType', 'RSVP');
                     fdHCM.append('SheetName', 'HCM');
@@ -2028,11 +2168,10 @@
                     fdHCM.append('CotB', plusOnes);
                     fdHCM.append('CotC', side);
                     fdHCM.append('CotD', relation);
-                    fdHCM.append('CotE', isHCM_Le ? 'Tham gia' : '');
-                    fdHCM.append('CotF', isHCM_Tiec ? 'Tham gia' : '');
+                    fdHCM.append('CotF', 'Tham gia');
                     fetchPromises.push(fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: fdHCM }));
                 }
-                if (isHP_Le || isHP_Tiec) {
+                if (isHP_Tiec) {
                     let fdHP = new FormData();
                     fdHP.append('FormType', 'RSVP');
                     fdHP.append('SheetName', 'Hải Phòng');
@@ -2040,8 +2179,7 @@
                     fdHP.append('CotB', plusOnes);
                     fdHP.append('CotC', side);
                     fdHP.append('CotD', relation);
-                    fdHP.append('CotE', isHP_Le ? 'Tham gia' : '');
-                    fdHP.append('CotF', isHP_Tiec ? 'Tham gia' : '');
+                    fdHP.append('CotF', 'Tham gia');
                     fetchPromises.push(fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: fdHP }));
                 }
             }
@@ -2066,7 +2204,6 @@
                 btnSubmitRsvp.disabled = false;
             });
         });
-
     </script>
 </body>
 </html>
