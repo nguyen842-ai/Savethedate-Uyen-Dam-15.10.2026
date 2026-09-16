@@ -1979,18 +1979,31 @@
                 .catch(error => console.error('Error fetching messages:', error));
         }
 
+       const chatContainerNode = document.getElementById('chat-container');
         let scrollInterval;
+
         function startAutoScroll(container) {
             clearInterval(scrollInterval);
             scrollInterval = setInterval(() => {
                 container.scrollTop += 1;
+                // Nếu cuộn đến đáy thì quay lại đầu
                 if (container.scrollTop >= (container.scrollHeight - container.clientHeight - 1)) {
                     container.scrollTop = 0;
                 }
             }, 40); 
-            container.addEventListener('mouseenter', () => clearInterval(scrollInterval));
-            container.addEventListener('mouseleave', () => startAutoScroll(container));
         }
+
+        function stopAutoScroll() {
+            clearInterval(scrollInterval);
+        }
+
+        // Tạm dừng cuộn tự động khi dùng chuột (Máy tính)
+        chatContainerNode.addEventListener('mouseenter', stopAutoScroll);
+        chatContainerNode.addEventListener('mouseleave', () => startAutoScroll(chatContainerNode));
+
+        // Tạm dừng cuộn tự động khi chạm/vuốt (Điện thoại)
+        chatContainerNode.addEventListener('touchstart', stopAutoScroll, { passive: true });
+        chatContainerNode.addEventListener('touchend', () => startAutoScroll(chatContainerNode), { passive: true });
 
         const wishForm = document.getElementById('wish-form');
         const btnSubmitWish = document.getElementById('btn-submit');
